@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">HeroOfMyLife</string>
+    <string name="difficulte_name">Choisir une Difficulte</string>
+    <string-array name="difficulté">
+        <item>Difficile</item>
+        <item>Moyen</item>
+        <item>Facile</item>
+    </string-array>
 </resources>
