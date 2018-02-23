@@ -9,4 +9,17 @@ public abstract class Tache {
     private String nom;
     private String description;
     private Difficulte diff;
+
+    public Tache(String nom, String description, Difficulte diff) {
+        this.nom = nom;
+        this.description = description;
+        this.diff = diff;
+    }
+
+    @Override
+    public String toString() {
+        return "Tache{" +
+                "nom='" + nom + '\'' +
+                '}';
+    }
 }

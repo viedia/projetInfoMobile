@@ -8,12 +8,18 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.pm.heroofmylife.ToDo.Difficulte;
+import com.pm.heroofmylife.ToDo.Tache;
+import com.pm.heroofmylife.ToDo.ToDoNormal;
+import com.pm.heroofmylife.ToDo.TodoAdaptater;
+
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ArrayList<String> items;
-    private ArrayAdapter<String> itemsAdapter;
+    private TodoAdaptater itemsAdapter;
     private ListView lvItems;
+    private ArrayList<Tache> listTache;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,12 +27,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         lvItems = (ListView) findViewById(R.id.lvItems);
-        items = new ArrayList<String>();
-        itemsAdapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, items);
+
+        listTache = new ArrayList<Tache>();
+        listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.FACILE));
+        listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.MOYEN));
+
+        itemsAdapter = new TodoAdaptater(this, listTache);
         lvItems.setAdapter(itemsAdapter);
-        items.add("First Item");
-        items.add("Second Item");
+      /*  for(Tache t : listTache){
+           // items.add(t.toString());
+            itemsAdapter.add(t);
+        }*/
 
         setupListViewListener();
     }
@@ -40,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
                     public boolean onItemLongClick(AdapterView<?> adapter,
                                                    View item, int pos, long id) {
                         // Remove the item within array at position
-                        items.remove(pos);
+                        listTache.remove(pos);
                         // Refresh the adapter
                         itemsAdapter.notifyDataSetChanged();
                         // Return true consumes the long click event (marks it handled)
@@ -56,8 +67,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void onAddItem(View view) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-        String itemText = etNewItem.getText().toString();
-        itemsAdapter.add(itemText);
+        listTache.add(new ToDoNormal(etNewItem.getText().toString(),"",Difficulte.DIFFICILE));
         etNewItem.setText("");
     }
 }
