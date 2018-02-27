@@ -18,8 +18,10 @@ public abstract class Tache {
 
     @Override
     public String toString() {
-        return "Tache{" +
-                "nom='" + nom + '\'' +
-                '}';
+        return nom ;
+    }
+
+    public Difficulte getDiff() {
+        return diff;
     }
 }

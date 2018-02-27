@@ -32,8 +32,10 @@ public class TodoAdaptater extends ArrayAdapter<Tache> {
         }
         // Lookup view for data population
         TextView champName = (TextView) convertView.findViewById(R.id.name);
+        TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
+        champDiff.setText(t.getDiff().toString());
         // Return the completed view to render on screen
         return convertView;
     }
