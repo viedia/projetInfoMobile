@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.pm.heroofmylife.R;
@@ -30,12 +31,15 @@ public class TodoAdaptater extends ArrayAdapter<Tache> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.temptodo, parent, false);
         }
-        // Lookup view for data population
+        // Lookup view for data 
         TextView champName = (TextView) convertView.findViewById(R.id.name);
         TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);
+        CheckBox box = (CheckBox) convertView.findViewById(R.id.checkbox);
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
         champDiff.setText(t.getDiff().toString());
+        box.setTag(position);
+        box.setChecked(false);
         // Return the completed view to render on screen
         return convertView;
     }

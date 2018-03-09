@@ -99,4 +99,12 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
+    public void onRemove(View view) {
+        // Remove the item within array at position
+        listTache.remove((int)view.getTag());
+       // itemsAdapter.remove(listTache.get((int)view.getTag()));
+        // Refresh the adapter
+        itemsAdapter.notifyDataSetChanged();
+        // Return true consumes the long click event (marks it handled)
+    }
 }
