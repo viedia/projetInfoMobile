@@ -2,10 +2,13 @@ package com.pm.heroofmylife;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -43,6 +46,25 @@ public class MainActivity extends AppCompatActivity {
         itemsAdapter = new TodoAdaptater(this, listTache);
         lvItems.setAdapter(itemsAdapter);
         setupListViewListener();
+
+        NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
+
+        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                if(item.getItemId()  == R.id.nav_Todo)
+                {
+                    setContentView(R.layout.activity_main);
+                }
+                if(item.getItemId() == R.id.nav_other)
+                {
+                    setContentView(R.layout.testlayout);
+                }
+                return false;
+            }
+        });
+
     }
 
     /***
