@@ -8,26 +8,33 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        >
-        <activity android:name=".MainActivity"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".PersonnageActivity"
-            android:screenOrientation="portrait"
+        <activity
+            android:name=".PersonnageActivity"
             android:label="@string/personnage_name"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.pm.heroofmylife.MainActivity" />
-
         </activity>
-
+        <activity
+            android:name=".EquipementActivity"
+            android:label="@string/title_activity_equipement"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".FamilierActivity"
+            android:label="@string/title_activity_familier"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -46,9 +46,21 @@ public class Menu {
                 parent.startActivity(intent);
                 break;
             }
-            case  R.id.nav_other:
+            case  R.id.nav_Personnage:
                 {
                 Intent intent = new Intent(parent, PersonnageActivity.class);
+                parent.startActivity(intent);
+                break;
+            }
+            case  R.id.nav_Equipement:
+            {
+                Intent intent = new Intent(parent, EquipementActivity.class);
+                parent.startActivity(intent);
+                break;
+            }
+            case  R.id.nav_Familier:
+            {
+                Intent intent = new Intent(parent, FamilierActivity.class);
                 parent.startActivity(intent);
                 break;
             }
