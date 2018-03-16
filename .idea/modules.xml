@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\pierr\Documents\GitHub\projetInfoMobile\HeroOfMyLife.iml" filepath="C:\Users\pierr\Documents\GitHub\projetInfoMobile\HeroOfMyLife.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\etudiant\Documents\GitHub\projetInfoMobile\app\app.iml" filepath="C:\Users\etudiant\Documents\GitHub\projetInfoMobile\app\app.iml" />
-      <module fileurl="file://C:\Users\pierr\Documents\GitHub\projetInfoMobile\app\app.iml" filepath="C:\Users\pierr\Documents\GitHub\projetInfoMobile\app\app.iml" />
       <module fileurl="file://$PROJECT_DIR$/projetInfoMobile.iml" filepath="$PROJECT_DIR$/projetInfoMobile.iml" />
-      <module fileurl="file://C:\Users\etudiant\Documents\GitHub\projetInfoMobile\projetInfoMobile.iml" filepath="C:\Users\etudiant\Documents\GitHub\projetInfoMobile\projetInfoMobile.iml" />
     </modules>
   </component>
 </project>
