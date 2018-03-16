@@ -27,16 +27,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    private ArrayList<String> items;
     private TodoAdaptater itemsAdapter;
     private ListView lvItems;
     private ArrayList<Tache> listTache;
+    private Menu m;
 
     private static final String TAG = "MainActivity";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         lvItems = (ListView) findViewById(R.id.lvItems);
 
@@ -46,29 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         itemsAdapter = new TodoAdaptater(this, listTache);
         lvItems.setAdapter(itemsAdapter);
-        setupListViewListener();
-
-        NavigationView nav_view = (NavigationView) findViewById(R.id.nav_view);
-
-        nav_view.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                if(item.getItemId()  == R.id.nav_Todo)
-                {
-                    Intent intent = new Intent(MainActivity.this, PersonnageActivity.class);
-                    startActivity(intent);
-                    //setContentView(R.layout.activity_main);
-                }
-                if(item.getItemId() == R.id.nav_other)
-                {
-                    Intent intent = new Intent(MainActivity.this, PersonnageActivity.class);
-                    startActivity(intent);
-                    //setContentView(R.layout.testlayout);
-                }
-                return false;
-            }
-        });
+     //   setupListViewListener();
     }
 
     /***
