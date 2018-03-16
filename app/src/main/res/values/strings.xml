@@ -15,4 +15,5 @@
     <string name="Intelligence"></string>
     <string name="force"></string>
     <string name="agilite"></string>
+    <string name="personnage_name">Personnage</string>
 </resources>
