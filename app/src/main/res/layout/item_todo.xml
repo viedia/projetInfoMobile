@@ -1,7 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_gravity="center_vertical">
+    android:layout_gravity="center_vertical"
+    android:padding="20px">
 <TableLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -69,6 +70,27 @@
             android:layout_toEndOf="@id/difficulte_title"
             android:entries="@array/difficulté"
             android:prompt="@string/difficulte_name"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+        <TextView
+            android:id="@+id/competence_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Competences : "
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_competence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/competence_title"
+            android:entries="@array/competence"
+            android:prompt="@string/competence_name"
             android:textSize="20sp" />
 
     </TableRow>
