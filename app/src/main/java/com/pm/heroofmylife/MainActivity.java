@@ -2,6 +2,7 @@ package com.pm.heroofmylife;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v7.app.AlertDialog;
@@ -55,16 +56,19 @@ public class MainActivity extends AppCompatActivity {
 
                 if(item.getItemId()  == R.id.nav_Todo)
                 {
-                    setContentView(R.layout.activity_main);
+                    Intent intent = new Intent(MainActivity.this, PersonnageActivity.class);
+                    startActivity(intent);
+                    //setContentView(R.layout.activity_main);
                 }
                 if(item.getItemId() == R.id.nav_other)
                 {
-                    setContentView(R.layout.testlayout);
+                    Intent intent = new Intent(MainActivity.this, PersonnageActivity.class);
+                    startActivity(intent);
+                    //setContentView(R.layout.testlayout);
                 }
                 return false;
             }
         });
-
     }
 
     /***
