@@ -16,15 +16,22 @@ public class Joueur {
     private int exp =0;
     private int expMax = 100;
     private int argent=0;
-    private Image image;
+   // private String image;
     private Classe classe;
     private Caracteristique[] caracteristiques;
 
-    public Joueur(String nom, Image image, Classe classe) {
+    public Joueur(String nom, Classe classe) {
         this.nom = nom;
-        this.image = image;
         this.classe = classe;
         caracteristiques = new Caracteristique[]{new Caracteristique("Intelligence"),new Caracteristique("Force"),new Caracteristique("Agilité") };
+        choisirImage();
+    }
+
+    /***
+     * Fixe l'image correspondant à la classe du personnage (tant que l'image est statique
+     */
+    private void choisirImage() {
+
     }
 
 
@@ -64,14 +71,6 @@ public class Joueur {
         this.argent = argent;
         if(argent < 0)
             argent = 0;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
     }
 
     public Classe getClasse() {

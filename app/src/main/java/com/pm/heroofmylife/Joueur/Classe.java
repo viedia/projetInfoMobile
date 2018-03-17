@@ -4,7 +4,7 @@ package com.pm.heroofmylife.Joueur;
  * Created by Laetitia on 27/02/2018.
  */
 
-enum Classe {
+public enum Classe {
     Mage,
     Guerrier,
     Voleur
