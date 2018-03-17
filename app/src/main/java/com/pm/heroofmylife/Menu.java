@@ -38,11 +38,11 @@ public class Menu {
      * Crée une nouvelle activité en fonction de celle choisie dans le menu
      * @param nbItem ID de l'activité selectionnée par l'utilisateur
      */
-    private void changerActivity(int nbItem){
+    public void changerActivity(int nbItem){
         switch(nbItem){
             case R.id.nav_Todo :
             {
-                Intent intent = new Intent(parent, MainActivity.class);
+                Intent intent = new Intent(parent, To_DoActivity.class);
                 parent.startActivity(intent);
                 break;
             }

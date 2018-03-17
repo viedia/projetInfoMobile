@@ -7,36 +7,26 @@
     android:fitsSystemWindows="true">
 
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity">
-
-        <ListView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/lvItems"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/btnAddItem" />
-
-        <android.support.design.widget.FloatingActionButton
-            android:src="@drawable/plus"
-            app:fabSize="normal"
-            android:layout_margin="16dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:backgroundTint="#303F9F"
-            android:text="Add Item"
-            android:id="@+id/btnAddItem"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:onClick="onAddItem"/>
-
-    </RelativeLayout>
+        android:layout_height="match_parent">
+        <TableRow>
+            <Button android:text="@string/to_do_menu"
+                android:onClick="chargerPage"
+                android:id="@+id/nav_Todo"/>
+            <Button android:text="@string/personnage_menu"
+                android:onClick="chargerPage"
+                android:id="@+id/nav_Personnage"/>
+        </TableRow>
+        <TableRow>
+            <Button android:text="@string/equipement_menu"
+                android:onClick="chargerPage"
+                android:id="@+id/nav_Equipement"/>
+            <Button android:text="@string/familer_menu"
+                android:onClick="chargerPage"
+                android:id="@+id/nav_Familier"/>
+        </TableRow>
+    </TableLayout>
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

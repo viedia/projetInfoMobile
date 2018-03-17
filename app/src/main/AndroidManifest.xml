@@ -34,7 +34,8 @@
         <activity
             android:name=".FamilierActivity"
             android:label="@string/title_activity_familier"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".To_DoActivity"></activity>
     </application>
 
 </manifest>

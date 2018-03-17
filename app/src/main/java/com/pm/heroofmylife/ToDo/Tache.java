@@ -24,4 +24,5 @@ public abstract class Tache {
     public Difficulte getDiff() {
         return diff;
     }
+
 }

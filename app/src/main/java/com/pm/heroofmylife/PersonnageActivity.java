@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pm.heroofmylife.Joueur.Classe;
@@ -38,6 +39,8 @@ public class PersonnageActivity extends Activity {
         classe.setText(j.getClasse().toString());
         TextView niveau = (TextView) findViewById(R.id.niveau_personnage);
         niveau.setText(niveau.getText()+" "+String.valueOf(j.getLevel()));
+        ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
+        exp.setProgress(j.getExp());
     }
 
     /**
