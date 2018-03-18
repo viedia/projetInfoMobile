@@ -1,20 +1,23 @@
 package com.pm.heroofmylife.Joueur;
 
 import android.media.Image;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.pm.heroofmylife.R;
 
 /**
  * Created by Laetitia on 27/02/2018.
  */
 
-public class Joueur {
+public class Joueur implements Parcelable{
     private String nom;
     private int level =1;
-    private static int PVMAX = 100;
-    private int PV = PVMAX;
+    private static final int PVMAX = 100;
+    private int pv = PVMAX;
 
     private int exp =50;
-    private int expMax = 100;
+    private static final int EXPMAX = 100;
     private int argent=0;
    // private String image;
     private Classe classe;
@@ -26,15 +29,62 @@ public class Joueur {
         caracteristiques = new Caracteristique[]{new Caracteristique("Intelligence"),new Caracteristique("Force"),new Caracteristique("Agilité") };
     }
 
-
-    public int GetPv() {
-        return PV;
+    /***
+     * Lis les information du parcel
+     * @param in
+     */
+    protected Joueur(Parcel in) {
+        nom = in.readString();
+        classe = Classe.valueOf(in.readString());
+        level = in.readInt();
+        pv = in.readInt();
+        exp = in.readInt();
+        argent = in.readInt();
     }
 
-    public void SetPv(int PV) {
-        this.PV = PV;
-        if(PV > PVMAX)
-            PV = PVMAX;
+    public static final Creator<Joueur> CREATOR = new Creator<Joueur>() {
+        @Override
+        public Joueur createFromParcel(Parcel in) {
+            return new Joueur(in);
+        }
+
+        @Override
+        public Joueur[] newArray(int size) {
+            return new Joueur[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    /***
+     * Ecris les informations dans la parcel
+     * @param parcel
+     * @param i
+     */
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(nom);
+        parcel.writeString(classe.name());
+        parcel.writeInt(level);
+        parcel.writeInt(pv);
+        parcel.writeInt(exp);
+        parcel.writeInt(argent);
+    }
+
+
+
+
+    public int GetPv() {
+        return pv;
+    }
+
+    public void SetPv(int pv) {
+        this.pv = pv;
+        if(pv > PVMAX)
+            pv = PVMAX;
     }
 
     public int getLevel() {
@@ -48,10 +98,10 @@ public class Joueur {
 
     public void setExp(int exp) {
         this.exp = exp;
-        if(exp > expMax) //Si il a assez d'exp, le joueur passe de niveau et perd l'exp pour un niveau
+        if(exp > EXPMAX) //Si il a assez d'exp, le joueur passe de niveau et perd l'exp pour un niveau
         {
             level+= 1;
-            exp = expMax - exp;
+            exp = EXPMAX - exp;
         }
     }
 
@@ -80,4 +130,6 @@ public class Joueur {
     public void setCaracteristiques(Caracteristique[] caracteristiques) {
         this.caracteristiques = caracteristiques;
     }
+
+
 }

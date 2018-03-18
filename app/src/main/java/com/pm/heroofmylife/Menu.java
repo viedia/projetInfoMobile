@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.view.MenuItem;
 
+import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.MainActivity;
 import com.pm.heroofmylife.PersonnageActivity;
 import com.pm.heroofmylife.R;
@@ -28,7 +29,7 @@ public class Menu {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem items) {
-                        Menu.this.changerActivity(items.getItemId());
+                        Menu.this.changerActivity(items.getItemId(), null);
                         return true;
                     }
                 });
@@ -38,7 +39,7 @@ public class Menu {
      * Crée une nouvelle activité en fonction de celle choisie dans le menu
      * @param nbItem ID de l'activité selectionnée par l'utilisateur
      */
-    public void changerActivity(int nbItem){
+    public void changerActivity(int nbItem, Object donnees){
         switch(nbItem){
             case R.id.nav_Todo :
             {
@@ -49,6 +50,7 @@ public class Menu {
             case  R.id.nav_Personnage:
                 {
                 Intent intent = new Intent(parent, PersonnageActivity.class);
+                intent.putExtra("joueur" ,(Joueur) donnees);
                 parent.startActivity(intent);
                 break;
             }

@@ -5,7 +5,8 @@ package com.pm.heroofmylife.Joueur;
  */
 
 public enum Classe {
-    Mage,
+    Mage ,
     Guerrier,
-    Voleur
+    Voleur;
+
 }
