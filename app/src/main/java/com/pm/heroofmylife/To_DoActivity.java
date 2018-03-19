@@ -21,15 +21,13 @@ import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
 
- public class To_DoActivity extends AppCompatActivity   {
+ public class To_DoActivity extends AppCompatActivity  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private TodoAdaptater itemsAdapter;
     private ListView lvItems;
     private ArrayList<Tache> listTache;
     private Menu m;
-    //private Spinner todotypes ;
 
-    ArrayAdapter<CharSequence> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,44 +42,28 @@ import java.util.ArrayList;
         listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.MOYEN));
         itemsAdapter = new TodoAdaptater(this, listTache);
         lvItems.setAdapter(itemsAdapter);
-
-
-        /**
-         Systeme pour recupérer la valeur du spinner dans le but de cacher ou non des élements
-         ne fonctionne pas pour l'instant
-         */
-/*
-        todotypes = (Spinner) findViewById(R.id.spinner_types);
-        adapter = ArrayAdapter.createFromResource(this, R.array.todotypes,android.R.layout.simple_spinner_item);
+     /*   Spinner spinner = findViewById(R.id.spinner_types);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.todotypes,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        todotypes.setAdapter(adapter);
-        todotypes.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-                switch (position) {
-                    case 0 :
-                        Toast toast = Toast.makeText(To_DoActivity.this, "je suis dansd le simple", Toast.LENGTH_LONG);
-                        toast.show();
-                        break;
-                    case 1 :
-                        Toast toast2 = Toast.makeText(To_DoActivity.this, "je suis dansd le regulier", Toast.LENGTH_LONG);
-                        toast2.show();
-                        break;
-                    case 2 :
-                        Toast toast3 = Toast.makeText(To_DoActivity.this, "je suis dansd le deadline", Toast.LENGTH_LONG);
-                        toast3.show();
-                        break;
-                }
-            }
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this); */
 
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-                    return;
-            }
-        }); */
 
     }
 
+    // selection d'un element du spinner, ne fonctionne pas pour l'instant
+/*
+     @Override
+     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+        String text = adapterView.getItemAtPosition(position).toString();
+        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
+     }
+
+     @Override
+     public void onNothingSelected(AdapterView<?> adapterView) {
+
+     }
+    */
     /**
      * Fonction d'ajout d'item rattacher au bouton par le layout
      * @param view
@@ -144,4 +126,6 @@ import java.util.ArrayList;
 
         });
     }
-}
+
+
+ }
