@@ -1,8 +1,13 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center_vertical"
     android:padding="20px">
+
 <TableLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -95,6 +100,82 @@
 
     </TableRow>
 
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+        <TextView
+            android:id="@+id/todotypes_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Type de Todo : "
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_types"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/todotypes_title"
+            android:entries="@array/todotypes"
+            android:prompt="@string/todotypes_name"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+        <TextView
+            android:id="@+id/frequence_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fréquence : "
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_frequence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/frequence_title"
+            android:entries="@array/frequence"
+            android:prompt="@string/frequence_name"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow>
+        <TextView
+            android:id="@+id/Date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date de fin : "
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <CalendarView
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:id="@+id/simpleCalendarView"
+            />
+        </LinearLayout>
+    </TableRow>
+<TableRow>
+    <TextView
+        android:id="@+id/notificqtion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activer notif "
+        android:textSize="20sp"
+        android:layout_centerInParent="true"/>
+    <CheckBox
+        android:id="@+id/checkbox_notifs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        />
+</TableRow>
     <TableRow
         android:layout_marginBottom="20px"
         android:layout_marginTop="20px">
@@ -114,4 +195,6 @@
         android:text="Add" />
     </TableRow>
 </TableLayout>
+
 </LinearLayout>
+    </ScrollView>

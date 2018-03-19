@@ -19,11 +19,29 @@
         <item>Facile</item>
     </string-array>
 
+
+
     <string name="competence_name">Choisir une Compétence</string>
     <string-array name="competence">
         <item>Physique</item>
         <item>Intelligence</item>
         <item>Mental</item>
+    </string-array>
+
+    <string name="todotypes_name">Choisir un Type</string>
+    <string-array name="todotypes">
+        <item>Simple</item>
+        <item>Regulier</item>
+        <item>Deadline</item>
+    </string-array>
+
+    <string name="frequence_name">Frequence : </string>
+    <string-array name="frequence">
+        <item>Quotidienne</item>
+        <item>Hebdomadaire</item>
+        <item>Tous les mois </item>
+        <item>Tous les ans</item>
+
     </string-array>
 
     <string name="Intelligence">Intelligence</string>
