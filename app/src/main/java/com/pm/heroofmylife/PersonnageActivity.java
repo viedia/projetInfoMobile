@@ -23,11 +23,11 @@ public class PersonnageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personnage);
+
         Intent intent = getIntent();
         j = (Joueur) intent.getParcelableExtra("joueur");
-
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
-        //j = new Joueur("Toto", Classe.Voleur);
+
         initialiserPage();
     }
 

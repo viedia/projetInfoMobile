@@ -21,7 +21,7 @@ import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
 
- public class To_DoActivity extends AppCompatActivity  /*implements  AdapterView.OnItemSelectedListener*/ {
+ public class To_DoActivity extends AppCompatActivity implements OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private TodoAdaptater itemsAdapter;
     private ListView lvItems;
@@ -42,17 +42,13 @@ import java.util.ArrayList;
         listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.MOYEN));
         itemsAdapter = new TodoAdaptater(this, listTache);
         lvItems.setAdapter(itemsAdapter);
-     /*   Spinner spinner = findViewById(R.id.spinner_types);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.todotypes,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this); */
+
 
 
     }
 
     // selection d'un element du spinner, ne fonctionne pas pour l'instant
-/*
+
      @Override
      public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
         String text = adapterView.getItemAtPosition(position).toString();
@@ -63,7 +59,7 @@ import java.util.ArrayList;
      public void onNothingSelected(AdapterView<?> adapterView) {
 
      }
-    */
+
     /**
      * Fonction d'ajout d'item rattacher au bouton par le layout
      * @param view
@@ -75,11 +71,21 @@ import java.util.ArrayList;
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.item_todo);
         dialog.setTitle("Add new task" );
+
+
+
+
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
 
         Button addButton = (Button) dialog.findViewById(R.id.task_add);
 
         Button closeButton = (Button) dialog.findViewById(R.id.task_delete);
+
+        Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner_types);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.todotypes,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         // if button is clicked, close the custom dialog
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,4 +134,8 @@ import java.util.ArrayList;
     }
 
 
+     @Override
+     public void onPointerCaptureChanged(boolean hasCapture) {
+
+     }
  }

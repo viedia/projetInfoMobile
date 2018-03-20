@@ -19,7 +19,6 @@ public class Joueur implements Parcelable{
     private int exp =50;
     private static final int EXPMAX = 100;
     private int argent=0;
-   // private String image;
     private Classe classe;
     private Caracteristique[] caracteristiques;
 
@@ -30,7 +29,7 @@ public class Joueur implements Parcelable{
     }
 
     /***
-     * Lis les information du parcel
+     * Lis les informations du parcel
      * @param in
      */
     protected Joueur(Parcel in) {
