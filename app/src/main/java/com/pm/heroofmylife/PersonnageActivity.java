@@ -7,8 +7,6 @@ import android.support.design.widget.NavigationView;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.pm.heroofmylife.Joueur.Classe;
 import com.pm.heroofmylife.Joueur.Joueur;
 
 

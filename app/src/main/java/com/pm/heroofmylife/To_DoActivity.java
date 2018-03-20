@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
+import com.pm.heroofmylife.ToDo.ToDoDeadline;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
+import com.pm.heroofmylife.ToDo.ToDoRegulier;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
@@ -38,8 +40,8 @@ import java.util.ArrayList;
         lvItems = (ListView) findViewById(R.id.lvItems);
 
         listTache = new ArrayList<Tache>();
-        listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.FACILE));
-        listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.MOYEN));
+        listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.Facile));
+        listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.Moyen));
         itemsAdapter = new TodoAdaptater(this, listTache);
         lvItems.setAdapter(itemsAdapter);
 
@@ -90,7 +92,7 @@ import java.util.ArrayList;
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemsAdapter.add(new ToDoNormal(name.getText().toString(),"", Difficulte.DIFFICILE));
+                itemsAdapter.add(recupererInforamtion(dialog));
                 dialog.dismiss();
             }
         });
@@ -105,7 +107,35 @@ import java.util.ArrayList;
         dialog.show();
     }
 
-    public void onRemove(View view) {
+     /**
+      * Récupère les information de la fenetre d'ajout pour creer un todo
+      * @param v la fenetre d'ajout
+      * @return le nouveau TO DO
+      */
+     private Tache recupererInforamtion(Dialog v) {
+        Tache retour=null;
+         EditText name = (EditText) v.findViewById(R.id.edit_name);
+         EditText description = (EditText) v.findViewById(R.id.edit_description);
+         Spinner spinner = (Spinner) v.findViewById(R.id.spinner_difficulte);
+         String difficulte = spinner.getSelectedItem().toString();
+         spinner = (Spinner) v.findViewById(R.id.spinner_competence);
+         String competence = spinner.getSelectedItem().toString();
+         spinner = (Spinner) v.findViewById(R.id.spinner_types);
+         switch (spinner.getSelectedItem().toString()){
+             case "Simple":
+                 retour = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
+                 break;
+             case "Regulier":
+                 retour = new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
+                 break;
+             case "Deadline":
+                 retour = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
+                 break;
+         }
+         return retour;
+     }
+
+     public void onRemove(View view) {
         // Remove the item within array at position
         listTache.remove((int)view.getTag());
         // itemsAdapter.remove(listTache.get((int)view.getTag()));

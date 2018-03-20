@@ -5,7 +5,7 @@ package com.pm.heroofmylife.ToDo;
  */
 
 public enum Difficulte {
-    FACILE,
-    MOYEN,
-    DIFFICILE
+    Facile,
+    Moyen,
+    Difficile
 }
