@@ -5,8 +5,10 @@ package com.pm.heroofmylife.ToDo;
  */
 
 public class ToDoRegulier extends Tache {
-    public ToDoRegulier(String nom, String description, Difficulte diff, String s) {
+    private Frequence frequence;
+    public ToDoRegulier(String nom, String description, Difficulte diff, String f) {
         super(nom, description, diff);
+        frequence = Frequence.valueOf(f);
     }
 
 }

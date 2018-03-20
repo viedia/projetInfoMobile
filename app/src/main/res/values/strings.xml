@@ -38,8 +38,8 @@
     <string-array name="frequence">
         <item>Quotidienne</item>
         <item>Hebdomadaire</item>
-        <item>Tous les mois </item>
-        <item>Tous les ans</item>
+        <item>Mensuelle</item>
+        <item>Annuelle</item>
 
     </string-array>
     <!--String Autre!-->
