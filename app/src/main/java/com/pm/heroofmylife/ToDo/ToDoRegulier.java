@@ -5,7 +5,7 @@ package com.pm.heroofmylife.ToDo;
  */
 
 public class ToDoRegulier extends Tache {
-    public ToDoRegulier(String nom, String description, Difficulte diff) {
+    public ToDoRegulier(String nom, String description, Difficulte diff, String s) {
         super(nom, description, diff);
     }
 
