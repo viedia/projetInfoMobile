@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_search"
+
+        android:title="ouououuouo"/>
+    <!-- Settings, should always be in the overflow -->
+
+    <item
+        android:id="@+id/action_location_found"
+
+
+        android:title="blblblbl"/>
+    <item
+        android:id="@+id/menu_overflow"
+
+        android:orderInCategory="11111"
+        >
+        <menu>
+
+            <!-- Refresh -->
+            <item
+                android:id="@+id/action_refresh"
+
+
+                android:title="dfgsdfgds"/>
+
+            <!-- Help -->
+            <item
+                android:id="@+id/action_help"
+
+
+                android:title="fdsgdfgsdg"/>
+
+            <!-- Check updates -->
+            <item
+                android:id="@+id/action_check_updates"
+
+                android:title="ahahahahah"/>
+        </menu>
+    </item>
+</menu>

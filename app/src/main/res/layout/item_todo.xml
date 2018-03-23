@@ -124,7 +124,9 @@
 
     <TableRow
         android:layout_marginBottom="20px"
-        android:layout_marginTop="20px">
+        android:layout_marginTop="20px"
+        android:id="@+id/frequence"
+        >
         <TextView
             android:id="@+id/frequence_title"
             android:layout_width="wrap_content"
@@ -143,7 +145,11 @@
 
     </TableRow>
 
-    <TableRow>
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px"
+        android:id="@+id/date"
+        >
         <TextView
             android:id="@+id/Date_title"
             android:layout_width="wrap_content"
@@ -161,9 +167,12 @@
             />
         </LinearLayout>
     </TableRow>
-<TableRow>
+<TableRow
+    android:layout_marginBottom="20px"
+    android:layout_marginTop="20px"
+    android:id="@+id/notification">
     <TextView
-        android:id="@+id/notificqtion"
+        android:id="@+id/notification_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Activer notif "

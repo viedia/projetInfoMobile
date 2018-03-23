@@ -17,7 +17,7 @@ import android.app.Activity;
 /***
  * Menu du jeu qui est un drawer
  */
-public class Menu {
+public class Menu  {
     private NavigationView nav_view;
     private Activity parent;
 

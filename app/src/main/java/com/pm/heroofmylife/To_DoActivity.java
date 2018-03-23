@@ -13,6 +13,7 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.pm.heroofmylife.ToDo.Difficulte;
@@ -54,6 +55,26 @@ import java.util.ArrayList;
 
      @Override
      public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+      /*   TableRow frequence = (TableRow) view.findViewById(R.id.frequence);
+         TableRow date = (TableRow) view.findViewById(R.id.date);
+         TableRow notification = (TableRow) view.findViewById(R.id.notification);
+         switch (position){
+             case 0:
+                frequence.setVisibility(View.GONE);
+                 date.setVisibility(View.GONE);
+                 notification.setVisibility(View.GONE);
+                 break;
+             case 1:
+                 frequence.setVisibility(View.VISIBLE);
+                 date.setVisibility(View.GONE);
+                 notification.setVisibility(View.GONE);
+                 break;
+             case 2:
+                 frequence.setVisibility(View.GONE);
+                 date.setVisibility(View.VISIBLE);
+                 notification.setVisibility(View.VISIBLE);
+                 break;
+         } */
         String text = adapterView.getItemAtPosition(position).toString();
         Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
      }
@@ -108,6 +129,10 @@ import java.util.ArrayList;
         dialog.show();
     }
 
+     public boolean onCreateOptionsMenu(Menu menu) {
+         getMenuInflater().inflate(R.menu.actionmenu, (android.view.Menu) menu);
+         return true;
+     }
      /**
       * Récupère les information de la fenetre d'ajout pour creer un todo
       * @param v la fenetre d'ajout
