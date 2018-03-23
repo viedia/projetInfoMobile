@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -51,39 +52,6 @@ import java.util.ArrayList;
 
     }
 
-    // selection d'un element du spinner, ne fonctionne pas pour l'instant
-
-     @Override
-     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-      /*   TableRow frequence = (TableRow) view.findViewById(R.id.frequence);
-         TableRow date = (TableRow) view.findViewById(R.id.date);
-         TableRow notification = (TableRow) view.findViewById(R.id.notification);
-         switch (position){
-             case 0:
-                frequence.setVisibility(View.GONE);
-                 date.setVisibility(View.GONE);
-                 notification.setVisibility(View.GONE);
-                 break;
-             case 1:
-                 frequence.setVisibility(View.VISIBLE);
-                 date.setVisibility(View.GONE);
-                 notification.setVisibility(View.GONE);
-                 break;
-             case 2:
-                 frequence.setVisibility(View.GONE);
-                 date.setVisibility(View.VISIBLE);
-                 notification.setVisibility(View.VISIBLE);
-                 break;
-         } */
-        String text = adapterView.getItemAtPosition(position).toString();
-        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
-     }
-
-     @Override
-     public void onNothingSelected(AdapterView<?> adapterView) {
-
-     }
-
     /**
      * Fonction d'ajout d'item rattacher au bouton par le layout
      * @param view
@@ -93,11 +61,8 @@ import java.util.ArrayList;
         //  final EditText etNewItem = new EditText(this);
 
         final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.item_todo);
+        dialog.setContentView(R.layout.item_todoNormal);
         dialog.setTitle("Add new task" );
-
-
-
 
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
 
@@ -105,11 +70,6 @@ import java.util.ArrayList;
 
         Button closeButton = (Button) dialog.findViewById(R.id.task_delete);
 
-        Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner_types);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.todotypes,android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
         // if button is clicked, close the custom dialog
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,13 +93,13 @@ import java.util.ArrayList;
          getMenuInflater().inflate(R.menu.actionmenu, (android.view.Menu) menu);
          return true;
      }
-     /**
+     /**NE FONCTIONNE PLUS TANT QUE TABS NON INSTALLE
       * Récupère les information de la fenetre d'ajout pour creer un todo
       * @param v la fenetre d'ajout
       * @return le nouveau TO DO
       */
      private Tache recupererInforamtion(Dialog v) {
-        Tache retour=null;
+    /*    Tache retour=null;
          EditText name = (EditText) v.findViewById(R.id.edit_name);
          EditText description = (EditText) v.findViewById(R.id.edit_description);
          Spinner spinner = (Spinner) v.findViewById(R.id.spinner_difficulte);
@@ -160,7 +120,7 @@ import java.util.ArrayList;
                  retour = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate());
                  break;
          }
-         return retour;
+         return retour;*/
      }
 
      public void onRemove(View view) {
