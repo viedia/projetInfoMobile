@@ -1,7 +1,12 @@
 package com.pm.heroofmylife;
 
 import android.app.Dialog;
+import android.net.Uri;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -17,6 +22,10 @@ import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.pm.heroofmylife.ToDo.Difficulte;
+import com.pm.heroofmylife.ToDo.PageAdapter;
+import com.pm.heroofmylife.ToDo.Tab1;
+import com.pm.heroofmylife.ToDo.Tab2;
+import com.pm.heroofmylife.ToDo.Tab3;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
@@ -25,7 +34,7 @@ import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
 
- public class To_DoActivity extends AppCompatActivity implements OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
+ public class To_DoActivity extends AppCompatActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private TodoAdaptater itemsAdapter;
     private ListView lvItems;
@@ -37,6 +46,8 @@ import java.util.ArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to__do);
+
+
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         lvItems = (ListView) findViewById(R.id.lvItems);
@@ -196,4 +207,6 @@ import java.util.ArrayList;
      public void onPointerCaptureChanged(boolean hasCapture) {
 
      }
+
+     
  }
