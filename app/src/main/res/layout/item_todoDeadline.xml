@@ -1,0 +1,164 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_vertical"
+    android:padding="20px">
+
+<TableLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+        <TextView
+            android:id="@+id/name_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name : "
+
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/name_title"
+
+            android:textSize="20sp" />
+
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+        <TextView
+            android:id="@+id/description_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Description : "
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/edit_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/description_title"
+
+            android:textSize="20sp" />
+
+
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+        <TextView
+            android:id="@+id/difficulte_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Difficulte : "
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_difficulte"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/difficulte_title"
+            android:entries="@array/difficulté"
+            android:prompt="@string/difficulte_name"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+        <TextView
+            android:id="@+id/competence_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Competences : "
+            android:textSize="20sp" />
+
+        <Spinner
+            android:id="@+id/spinner_competence"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/competence_title"
+            android:entries="@array/competence"
+            android:prompt="@string/competence_name"
+            android:textSize="20sp" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px"
+        android:id="@+id/date"
+        >
+        <TextView
+            android:id="@+id/Date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Date de fin : "
+            android:textSize="20sp" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+        <CalendarView
+            android:layout_width="200dp"
+            android:layout_height="300dp"
+            android:id="@+id/simpleCalendarView"
+            />
+        </LinearLayout>
+    </TableRow>
+<TableRow
+    android:layout_marginBottom="20px"
+    android:layout_marginTop="20px"
+    android:id="@+id/notification">
+    <TextView
+        android:id="@+id/notification_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Activer notif "
+        android:textSize="20sp"
+        android:layout_centerInParent="true"/>
+    <CheckBox
+        android:id="@+id/checkbox_notifs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        />
+</TableRow>
+    <TableRow
+        android:layout_marginBottom="20px"
+        android:layout_marginTop="20px">
+    <Button
+        android:id="@+id/task_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Close" />
+    <Button
+        android:id="@+id/task_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Add" />
+    </TableRow>
+</TableLayout>
+
+</LinearLayout>
+    </ScrollView>
