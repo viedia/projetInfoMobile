@@ -1,9 +1,13 @@
 package com.pm.heroofmylife;
 
+import android.app.ActionBar;
 import android.app.Dialog;
+import android.app.FragmentTransaction;
 import android.net.Uri;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -34,21 +38,39 @@ import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
 
- public class To_DoActivity extends AppCompatActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
+ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private TodoAdaptater itemsAdapter;
     private ListView lvItems;
     private ArrayList<Tache> listTache;
     private Menu m;
 
+    private TabLayout tabLayout ;
+    private AppBarLayout appBarLayout;
+    private ViewPager viewPager;
 
-    @Override
+
+
+
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to__do);
+        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbarid);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        //adding Fragments
+        adapter.AddFragment(new NormalTodo(), "Normal");
+         adapter.AddFragment(new RegulierTodo(), "Regulier");
+         adapter.AddFragment(new DeadlineTodo(), "Deadline");
+         //adapter setup
+         viewPager.setAdapter(adapter);
+         tabLayout.setupWithViewPager(viewPager);
 
 
-        m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
+
+     m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         lvItems = (ListView) findViewById(R.id.lvItems);
 
@@ -66,26 +88,7 @@ import java.util.ArrayList;
 
      @Override
      public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
-      /*   TableRow frequence = (TableRow) view.findViewById(R.id.frequence);
-         TableRow date = (TableRow) view.findViewById(R.id.date);
-         TableRow notification = (TableRow) view.findViewById(R.id.notification);
-         switch (position){
-             case 0:
-                frequence.setVisibility(View.GONE);
-                 date.setVisibility(View.GONE);
-                 notification.setVisibility(View.GONE);
-                 break;
-             case 1:
-                 frequence.setVisibility(View.VISIBLE);
-                 date.setVisibility(View.GONE);
-                 notification.setVisibility(View.GONE);
-                 break;
-             case 2:
-                 frequence.setVisibility(View.GONE);
-                 date.setVisibility(View.VISIBLE);
-                 notification.setVisibility(View.VISIBLE);
-                 break;
-         } */
+
         String text = adapterView.getItemAtPosition(position).toString();
         Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
      }
@@ -106,10 +109,6 @@ import java.util.ArrayList;
         final Dialog dialog = new Dialog(this);
         dialog.setContentView(R.layout.item_todonormal);
         dialog.setTitle("Add new task" );
-
-
-
-
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
 
         Button addButton = (Button) dialog.findViewById(R.id.task_add);

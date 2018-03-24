@@ -60,7 +60,7 @@ public class Tab1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.temptodo, container, false);
+        return inflater.inflate(R.layout.normaltodo, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
