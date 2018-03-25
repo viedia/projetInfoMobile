@@ -26,7 +26,7 @@ import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
 
- public class To_DoActivity extends AppCompatActivity implements OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
+ public class To_DoActivity extends AppCompatActivity   /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private TodoAdaptater itemsAdapter;
     private ListView lvItems;
@@ -74,7 +74,7 @@ import java.util.ArrayList;
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemsAdapter.add(recupererInforamtion(dialog));
+               // itemsAdapter.add(recupererInforamtion(dialog));
                 dialog.dismiss();
             }
         });
@@ -95,11 +95,11 @@ import java.util.ArrayList;
      }
      /**NE FONCTIONNE PLUS TANT QUE TABS NON INSTALLE
       * Récupère les information de la fenetre d'ajout pour creer un todo
-      * @param v la fenetre d'ajout
+      * param  la fenetre d'ajout
       * @return le nouveau TO DO
       */
-     private Tache recupererInforamtion(Dialog v) {
-    /*    Tache retour=null;
+    /* private Tache recupererInforamtion(Dialog v) {
+        Tache retour=null;
          EditText name = (EditText) v.findViewById(R.id.edit_name);
          EditText description = (EditText) v.findViewById(R.id.edit_description);
          Spinner spinner = (Spinner) v.findViewById(R.id.spinner_difficulte);
@@ -120,8 +120,8 @@ import java.util.ArrayList;
                  retour = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate());
                  break;
          }
-         return retour;*/
-     }
+         return retour;
+     }*/
 
      public void onRemove(View view) {
         // Remove the item within array at position
