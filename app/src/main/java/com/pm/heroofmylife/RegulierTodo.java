@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
+import com.pm.heroofmylife.ToDo.ToDoRegulier;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
@@ -44,5 +45,9 @@ public class RegulierTodo extends Fragment {
 
         itemsAdapter = new TodoAdaptater(getActivity(), listTache);
         lvItems.setAdapter(itemsAdapter);
+    }
+
+    public void ajouterRegulierTodo(ToDoRegulier toDoRegulier) {
+        itemsAdapter.add(toDoRegulier);
     }
 }

@@ -58,4 +58,8 @@ public class NormalTodo extends Fragment {
         itemsAdapter = new TodoAdaptater(getActivity(), listTache);
         lvItems.setAdapter(itemsAdapter);
     }
+
+    public void ajouterNormalTodo(ToDoNormal t){
+        itemsAdapter.add(t);
+    }
 }

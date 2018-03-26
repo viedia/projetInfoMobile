@@ -38,6 +38,7 @@ import java.util.ArrayList;
     private TabLayout tabLayout ;
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
+    private  ViewPagerAdapter adapter;
 
 
 
@@ -50,25 +51,19 @@ import java.util.ArrayList;
         appBarLayout = (AppBarLayout) findViewById(R.id.appbarid);
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
 
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+         adapter= new ViewPagerAdapter(getSupportFragmentManager());
         //adding Fragments
         adapter.AddFragment(new NormalTodo(), "Normal",R.drawable.plus);
          adapter.AddFragment(new RegulierTodo(), "Regulier",R.drawable.plus);
          adapter.AddFragment(new DeadlineTodo(), "Deadline",R.drawable.plus);
          //adapter setup
-
          viewPager.setAdapter(adapter);
          tabLayout.setupWithViewPager(viewPager);
 
 
 
      m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
-
-
-
-
-
-    }
+     }
 
     // selection d'un element du spinner, ne fonctionne pas pour l'instant
 
@@ -91,6 +86,7 @@ import java.util.ArrayList;
     public void onAddItem(View view) {
         final Dialog dialog = new Dialog(this);
         final int fActuel = this.viewPager.getCurrentItem();
+        final android.support.v4.app.Fragment fenetreActuel = adapter.getItem(fActuel);
         switch(fActuel){
             case 0:
                 dialog.setContentView(R.layout.item_todonormal);
@@ -110,7 +106,7 @@ import java.util.ArrayList;
         Button closeButton = (Button) dialog.findViewById(R.id.task_delete);
 
         Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner_competence);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.competence,android.R.layout.simple_spinner_item);
+        final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.competence,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -118,7 +114,7 @@ import java.util.ArrayList;
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemsAdapter.add(recupererInforamtion(dialog, fActuel));
+                creerToDo(dialog, fActuel, fenetreActuel);
                 dialog.dismiss();
             }
         });
@@ -142,8 +138,8 @@ import java.util.ArrayList;
       * param  la fenetre d'ajout
       * @return le nouveau TO DO
       */
-     private Tache recupererInforamtion(Dialog v, int numeroFragement) {
-        Tache retour=null;
+     private void creerToDo(Dialog v, int numeroFragement,  android.support.v4.app.Fragment fragement) {
+
          EditText name = (EditText) v.findViewById(R.id.edit_name);
          EditText description = (EditText) v.findViewById(R.id.edit_description);
          Spinner spinner = (Spinner) v.findViewById(R.id.spinner_difficulte);
@@ -152,18 +148,17 @@ import java.util.ArrayList;
          String competence = spinner.getSelectedItem().toString();
          switch (numeroFragement){ //cas fragement Normal
              case 0:
-                 retour = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
+                 ((NormalTodo)fragement).ajouterNormalTodo(new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte)));
                  break;
              case 1: //cas fragement Regulier
                  spinner = v.findViewById(R.id.spinner_frequence);
-                 retour = new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString());
+                 ((RegulierTodo)fragement).ajouterRegulierTodo(new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString()));
                  break;
              case 2: //cas fragement Deadline
                  CalendarView date = v.findViewById(R.id.simpleCalendarView);
-                 retour = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate());
+                 ((DeadlineTodo)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate()));
                  break;
          }
-         return retour;
      }
 
      public void onRemove(View view) {

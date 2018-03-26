@@ -9,6 +9,7 @@ import android.widget.ListView;
 
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
+import com.pm.heroofmylife.ToDo.ToDoDeadline;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
@@ -41,5 +42,9 @@ public class DeadlineTodo extends Fragment {
         listTache = new ArrayList<Tache>();
         itemsAdapter = new TodoAdaptater(getActivity(), listTache);
         lvItems.setAdapter(itemsAdapter);
+    }
+
+    public void ajouterDeadlineTodo(ToDoDeadline toDoDeadline) {
+        itemsAdapter.add(toDoDeadline);
     }
 }
