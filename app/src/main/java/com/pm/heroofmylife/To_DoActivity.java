@@ -1,6 +1,7 @@
 package com.pm.heroofmylife;
 
 import android.app.Dialog;
+import android.app.Fragment;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -92,11 +93,8 @@ import java.util.ArrayList;
      * @param view
      */
     public void onAddItem(View view) {
-        //EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
-        //  final EditText etNewItem = new EditText(this);
-
         final Dialog dialog = new Dialog(this);
-
+        final int fActuel = this.viewPager.getCurrentItem();
         dialog.setContentView(R.layout.item_todonormal);
         dialog.setTitle("Add new task" );
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
@@ -114,7 +112,7 @@ import java.util.ArrayList;
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                itemsAdapter.add(recupererInforamtion(dialog));
+                itemsAdapter.add(recupererInforamtion(dialog, fActuel));
                 dialog.dismiss();
             }
         });
@@ -138,7 +136,7 @@ import java.util.ArrayList;
       * param  la fenetre d'ajout
       * @return le nouveau TO DO
       */
-     private Tache recupererInforamtion(Dialog v) {
+     private Tache recupererInforamtion(Dialog v, int numeroFragement) {
         Tache retour=null;
          EditText name = (EditText) v.findViewById(R.id.edit_name);
          EditText description = (EditText) v.findViewById(R.id.edit_description);
@@ -146,15 +144,15 @@ import java.util.ArrayList;
          String difficulte = spinner.getSelectedItem().toString();
          spinner = (Spinner) v.findViewById(R.id.spinner_competence);
          String competence = spinner.getSelectedItem().toString();
-         switch (spinner.getSelectedItem().toString()){
-             case "Simple":
+         switch (numeroFragement){ //cas fragement Normal
+             case 0:
                  retour = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
                  break;
-             case "Regulier":
+             case 1: //cas fragement Regulier
                  spinner = v.findViewById(R.id.spinner_frequence);
                  retour = new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString());
                  break;
-             case "Deadline":
+             case 2: //cas fragement Deadline
                  CalendarView date = v.findViewById(R.id.simpleCalendarView);
                  retour = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate());
                  break;
