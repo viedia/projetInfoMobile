@@ -1,11 +1,13 @@
 package com.pm.heroofmylife;
 
 import android.app.Dialog;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -14,7 +16,6 @@ import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.TableRow;
 import android.widget.Toast;
 
 import com.pm.heroofmylife.ToDo.Difficulte;
@@ -26,19 +27,39 @@ import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
 
- public class To_DoActivity extends AppCompatActivity   /*implements  AdapterView.OnItemSelectedListener*/ {
+ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private TodoAdaptater itemsAdapter;
     private ListView lvItems;
     private ArrayList<Tache> listTache;
     private Menu m;
 
+    private TabLayout tabLayout ;
+    private AppBarLayout appBarLayout;
+    private ViewPager viewPager;
 
-    @Override
+
+
+
+     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to__do);
-        m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
+        tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbarid);
+        viewPager = (ViewPager) findViewById(R.id.viewpager_id);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        //adding Fragments
+        adapter.AddFragment(new NormalTodo(), "Normal");
+         adapter.AddFragment(new RegulierTodo(), "Regulier");
+         adapter.AddFragment(new DeadlineTodo(), "Deadline");
+         //adapter setup
+         viewPager.setAdapter(adapter);
+         tabLayout.setupWithViewPager(viewPager);
+
+
+
+     m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         lvItems = (ListView) findViewById(R.id.lvItems);
 
@@ -52,6 +73,20 @@ import java.util.ArrayList;
 
     }
 
+    // selection d'un element du spinner, ne fonctionne pas pour l'instant
+
+     @Override
+     public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
+
+        String text = adapterView.getItemAtPosition(position).toString();
+        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
+     }
+
+     @Override
+     public void onNothingSelected(AdapterView<?> adapterView) {
+
+     }
+
     /**
      * Fonction d'ajout d'item rattacher au bouton par le layout
      * @param view
@@ -61,20 +96,24 @@ import java.util.ArrayList;
         //  final EditText etNewItem = new EditText(this);
 
         final Dialog dialog = new Dialog(this);
-        dialog.setContentView(R.layout.item_todoNormal);
+        dialog.setContentView(R.layout.item_todonormal);
         dialog.setTitle("Add new task" );
-
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
 
         Button addButton = (Button) dialog.findViewById(R.id.task_add);
 
         Button closeButton = (Button) dialog.findViewById(R.id.task_delete);
 
+        Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner_competence);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.todotypes,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(this);
         // if button is clicked, close the custom dialog
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // itemsAdapter.add(recupererInforamtion(dialog));
+                itemsAdapter.add(recupererInforamtion(dialog));
                 dialog.dismiss();
             }
         });
@@ -93,12 +132,12 @@ import java.util.ArrayList;
          getMenuInflater().inflate(R.menu.actionmenu, (android.view.Menu) menu);
          return true;
      }
-     /**NE FONCTIONNE PLUS TANT QUE TABS NON INSTALLE
+     /**
       * Récupère les information de la fenetre d'ajout pour creer un todo
       * param  la fenetre d'ajout
       * @return le nouveau TO DO
       */
-    /* private Tache recupererInforamtion(Dialog v) {
+     private Tache recupererInforamtion(Dialog v) {
         Tache retour=null;
          EditText name = (EditText) v.findViewById(R.id.edit_name);
          EditText description = (EditText) v.findViewById(R.id.edit_description);
@@ -106,7 +145,7 @@ import java.util.ArrayList;
          String difficulte = spinner.getSelectedItem().toString();
          spinner = (Spinner) v.findViewById(R.id.spinner_competence);
          String competence = spinner.getSelectedItem().toString();
-         spinner = (Spinner) v.findViewById(R.id.spinner_types);
+         spinner = (Spinner) v.findViewById(R.id.spinner_competence);
          switch (spinner.getSelectedItem().toString()){
              case "Simple":
                  retour = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
@@ -121,7 +160,7 @@ import java.util.ArrayList;
                  break;
          }
          return retour;
-     }*/
+     }
 
      public void onRemove(View view) {
         // Remove the item within array at position
@@ -156,4 +195,6 @@ import java.util.ArrayList;
      public void onPointerCaptureChanged(boolean hasCapture) {
 
      }
+
+     
  }

@@ -5,29 +5,66 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
 
+            android:id="@+id/appbarid"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:elevation="0dp"
+            android:gravity="center" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:padding="20px"
+                android:text="Hero of my life"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+
+        </android.support.design.widget.AppBarLayout>
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@+id/appbarid">
         <TableRow>
-            <Button android:text="@string/to_do_menu"
+
+            <Button
+                android:id="@+id/nav_Todo"
+                android:layout_width="191dp"
+                android:layout_height="235dp"
                 android:onClick="chargerPage"
-                android:id="@+id/nav_Todo"/>
-            <Button android:text="@string/personnage_menu"
+                android:text="@string/to_do_menu" />
+
+            <Button
+                android:id="@+id/nav_Personnage"
+                android:layout_width="219dp"
+                android:layout_height="235dp"
                 android:onClick="chargerPage"
-                android:id="@+id/nav_Personnage"/>
+                android:text="@string/personnage_menu" />
         </TableRow>
         <TableRow>
-            <Button android:text="@string/equipement_menu"
+
+            <Button
+                android:id="@+id/nav_Equipement"
+                android:layout_width="145dp"
+                android:layout_height="282dp"
                 android:onClick="chargerPage"
-                android:id="@+id/nav_Equipement"/>
-            <Button android:text="@string/familer_menu"
+                android:text="@string/equipement_menu" />
+
+            <Button
+                android:id="@+id/nav_Familier"
+                android:layout_width="185dp"
+                android:layout_height="294dp"
                 android:onClick="chargerPage"
-                android:id="@+id/nav_Familier"/>
+                android:text="@string/familer_menu" />
         </TableRow>
     </TableLayout>
-
+    </RelativeLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

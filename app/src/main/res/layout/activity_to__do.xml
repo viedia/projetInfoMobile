@@ -9,24 +9,63 @@
     android:fitsSystemWindows="true">
 
 
-
-
-
-
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".MainActivity">
+        tools:context=".MainActivity"
+        android:orientation="vertical">
 
-        <ListView
-            android:layout_width="wrap_content"
+        <android.support.design.widget.AppBarLayout
+
+            android:id="@+id/appbarid"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:elevation="0dp"
+            android:gravity="center" >
+
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:padding="20px"
+                android:text="Hero of my life"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tablayout_id"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/lvItems"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_above="@+id/btnAddItem" />
+            app:tabGravity="fill"
+            android:layout_below="@+id/appbarid"
+            android:background="@color/colorPrimary"
+            app:tabTextColor=	"#FFFFFF"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_id"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/tablayout_id">
+
+
+            <ListView
+                android:id="@+id/lvItems"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+        </android.support.v4.view.ViewPager>
+
 
         <android.support.design.widget.FloatingActionButton
             android:src="@drawable/plus"
@@ -41,6 +80,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="onAddItem"/>
+
+
 
     </RelativeLayout>
 

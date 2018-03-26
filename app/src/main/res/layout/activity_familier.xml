@@ -7,11 +7,33 @@
     android:fitsSystemWindows="true"
     tools:context="com.pm.heroofmylife.FamilierActivity"
     >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <android.support.design.widget.AppBarLayout
 
+            android:id="@+id/appbarid"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:elevation="0dp"
+            android:gravity="center" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:padding="20px"
+                android:text="Hero of my life"
+                android:textColor="@android:color/background_light"
+                android:textSize="24sp" />
+
+        </android.support.design.widget.AppBarLayout>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Familier"/>
+
+</RelativeLayout>
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"
