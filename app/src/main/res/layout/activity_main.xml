@@ -8,13 +8,15 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <android.support.design.widget.AppBarLayout
 
             android:id="@+id/appbarid"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="75dp"
             android:elevation="0dp"
-            android:gravity="center" >
+            android:gravity="center">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -30,39 +32,131 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/appbarid">
-        <TableRow>
+        android:layout_below="@+id/appbarid"
+        android:gravity="center"
+        >
+        <TableRow
+            android:gravity="center"
+            android:padding="@dimen/fab_margin"
+            android:layout_marginTop="@dimen/fab_margin"
+            >
 
-            <Button
-                android:id="@+id/nav_Todo"
-                android:layout_width="191dp"
-                android:layout_height="235dp"
-                android:onClick="chargerPage"
-                android:text="@string/to_do_menu" />
-
-            <Button
+            <android.support.design.widget.FloatingActionButton
+                android:src="@drawable/human"
                 android:id="@+id/nav_Personnage"
-                android:layout_width="219dp"
-                android:layout_height="235dp"
-                android:onClick="chargerPage"
-                android:text="@string/personnage_menu" />
-        </TableRow>
-        <TableRow>
+                android:layout_width="130dp"
+                android:layout_height="130dp"
 
-            <Button
+                android:onClick="chargerPage"
+                android:text="@string/personnage_menu"
+                app:backgroundTint="#303F9F"
+                android:layout_marginRight="25dp"/>
+
+
+
+
+
+            <android.support.design.widget.FloatingActionButton
+                android:src="@drawable/list"
+                android:id="@+id/nav_Todo"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:onClick="chargerPage"
+                android:text="@string/to_do_menu"
+                app:backgroundTint="#303F9F"
+                android:layout_marginRight="25dp"/>
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_marginLeft="30dp">
+
+            <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+
+            android:layout_centerInParent="true"
+            android:padding="20px"
+            android:text="@string/personnage_menu"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+                android:layout_marginRight="25dp"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+
+                android:layout_centerInParent="true"
+                android:padding="20px"
+                android:text="@string/to_do_menu"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp"
+                android:layout_marginLeft="10dp"/>
+
+        </TableRow>
+        <TableRow
+            android:gravity="center"
+            android:padding="@dimen/fab_margin">
+
+            <android.support.design.widget.FloatingActionButton
+                android:src="@drawable/plus"
                 android:id="@+id/nav_Equipement"
-                android:layout_width="145dp"
-                android:layout_height="282dp"
-                android:onClick="chargerPage"
-                android:text="@string/equipement_menu" />
+                android:layout_width="130dp"
+                android:layout_height="130dp"
 
-            <Button
-                android:id="@+id/nav_Familier"
-                android:layout_width="185dp"
-                android:layout_height="294dp"
                 android:onClick="chargerPage"
-                android:text="@string/familer_menu" />
+                android:text="@string/equipement_menu"
+                app:backgroundTint="#303F9F"
+                android:layout_marginRight="25dp"/>
+
+            <android.support.design.widget.FloatingActionButton
+                android:src="@drawable/cat"
+                android:id="@+id/nav_Familier"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:drawableLeft="@drawable/cat"
+                android:onClick="chargerPage"
+                android:text="@string/familer_menu"
+                app:backgroundTint="#303F9F"
+                android:layout_marginRight="30dp"/>
         </TableRow>
+
+        <TableRow android:layout_marginLeft="30dp">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+
+                android:layout_centerInParent="true"
+                android:layout_marginRight="25dp"
+                android:padding="20px"
+                android:text="@string/equipement_menu"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+
+                android:layout_centerInParent="true"
+
+                android:padding="20px"
+                android:text="@string/familer_menu"
+                android:textColor="@color/colorPrimary"
+                android:textSize="24sp" />
+
+        </TableRow>
+
+
     </TableLayout>
     </RelativeLayout>
     <android.support.design.widget.NavigationView

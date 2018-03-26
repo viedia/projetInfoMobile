@@ -50,9 +50,9 @@ import java.util.ArrayList;
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         //adding Fragments
-        adapter.AddFragment(new NormalTodo(), "Normal");
-         adapter.AddFragment(new RegulierTodo(), "Regulier");
-         adapter.AddFragment(new DeadlineTodo(), "Deadline");
+        adapter.AddFragment(new NormalTodo(), "Normal",R.drawable.plus);
+         adapter.AddFragment(new RegulierTodo(), "Regulier",R.drawable.plus);
+         adapter.AddFragment(new DeadlineTodo(), "Deadline",R.drawable.plus);
          //adapter setup
          viewPager.setAdapter(adapter);
          tabLayout.setupWithViewPager(viewPager);
@@ -96,6 +96,7 @@ import java.util.ArrayList;
         //  final EditText etNewItem = new EditText(this);
 
         final Dialog dialog = new Dialog(this);
+
         dialog.setContentView(R.layout.item_todonormal);
         dialog.setTitle("Add new task" );
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
@@ -105,7 +106,7 @@ import java.util.ArrayList;
         Button closeButton = (Button) dialog.findViewById(R.id.task_delete);
 
         Spinner spinner = (Spinner) dialog.findViewById(R.id.spinner_competence);
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.todotypes,android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.competence,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
@@ -145,7 +146,6 @@ import java.util.ArrayList;
          String difficulte = spinner.getSelectedItem().toString();
          spinner = (Spinner) v.findViewById(R.id.spinner_competence);
          String competence = spinner.getSelectedItem().toString();
-         spinner = (Spinner) v.findViewById(R.id.spinner_competence);
          switch (spinner.getSelectedItem().toString()){
              case "Simple":
                  retour = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
