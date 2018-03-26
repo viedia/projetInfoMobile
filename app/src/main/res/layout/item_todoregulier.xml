@@ -120,24 +120,7 @@
             android:prompt="@string/frequence_name"
             android:textSize="20sp" />
     </TableRow>
-    <TableRow
-        android:layout_marginBottom="20px"
-        android:layout_marginTop="20px"
-        android:id="@+id/notification">
-        <TextView
-            android:id="@+id/notification_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Activer notif "
-            android:textSize="20sp"
-            android:layout_centerInParent="true"/>
-        <CheckBox
-            android:id="@+id/checkbox_notifs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            />
-    </TableRow>
+
     <TableRow
         android:layout_marginBottom="20px"
         android:layout_marginTop="20px">
