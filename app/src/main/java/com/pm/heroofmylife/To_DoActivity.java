@@ -95,7 +95,17 @@ import java.util.ArrayList;
     public void onAddItem(View view) {
         final Dialog dialog = new Dialog(this);
         final int fActuel = this.viewPager.getCurrentItem();
-        dialog.setContentView(R.layout.item_todonormal);
+        switch(fActuel){
+            case 0:
+                dialog.setContentView(R.layout.item_todonormal);
+                break;
+            case 1:
+                dialog.setContentView(R.layout.item_todoregulier);
+                break;
+            case 2:
+                dialog.setContentView(R.layout.item_tododeadline);
+                break;
+        }
         dialog.setTitle("Add new task" );
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
 
