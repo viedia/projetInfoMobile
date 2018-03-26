@@ -12,26 +12,12 @@
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="0dp"
         tools:ignore="MissingConstraints">
-
-        <TextView
-            android:id="@+id/name"
+        <ListView
+            android:id="@+id/lvItems"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:padding="20px"/>
-
-        <TextView
-            android:id="@+id/difficulte"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Difficulte"
-            android:layout_centerInParent="true"/>
-        <CheckBox
-            android:id="@+id/checkbox"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:onClick="onRemove"/>
+            android:layout_alignParentStart="true" />
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

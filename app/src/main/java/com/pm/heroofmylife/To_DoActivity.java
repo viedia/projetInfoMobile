@@ -59,12 +59,14 @@ import java.util.ArrayList;
         tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
         appBarLayout = (AppBarLayout) findViewById(R.id.appbarid);
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
+
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         //adding Fragments
         adapter.AddFragment(new NormalTodo(), "Normal",R.drawable.plus);
          adapter.AddFragment(new RegulierTodo(), "Regulier",R.drawable.plus);
          adapter.AddFragment(new DeadlineTodo(), "Deadline",R.drawable.plus);
          //adapter setup
+
          viewPager.setAdapter(adapter);
          tabLayout.setupWithViewPager(viewPager);
 
@@ -72,13 +74,7 @@ import java.util.ArrayList;
 
      m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
-        lvItems = (ListView) findViewById(R.id.lvItems);
 
-        listTache = new ArrayList<Tache>();
-        listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.Facile));
-        listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.Moyen));
-        itemsAdapter = new TodoAdaptater(this, listTache);
-        lvItems.setAdapter(itemsAdapter);
 
 
 
