@@ -10,7 +10,9 @@ import com.pm.heroofmylife.R;
  * Created by Laetitia on 27/02/2018.
  */
 
-public class Joueur implements Parcelable{
+public class Joueur {
+    static Joueur instance = null;
+
     private String nom;
     private int level =1;
     private static final int PVMAX = 100;
@@ -22,60 +24,19 @@ public class Joueur implements Parcelable{
     private Classe classe;
     private Caracteristique[] caracteristiques;
 
-    public Joueur(String nom, Classe classe) {
-        this.nom = nom;
-        this.classe = classe;
+    private Joueur(final Builder builder) {
+        this.nom = builder.name;
+        this.classe = builder.classe;
         caracteristiques = new Caracteristique[]{new Caracteristique("Intelligence"),new Caracteristique("Force"),new Caracteristique("Agilité") };
     }
 
-    /***
-     * Lis les informations du parcel
-     * @param in
-     */
-    protected Joueur(Parcel in) {
-        nom = in.readString();
-        classe = Classe.valueOf(in.readString());
-        level = in.readInt();
-        pv = in.readInt();
-        exp = in.readInt();
-        argent = in.readInt();
-    }
-
-    public static final Creator<Joueur> CREATOR = new Creator<Joueur>() {
-        @Override
-        public Joueur createFromParcel(Parcel in) {
-            return new Joueur(in);
+    public static Joueur getInstance() {
+        if (instance == null) {
+            instance = new Joueur.Builder().setName("Abruti").setClasse(Classe.Guerrier).create();
         }
-
-        @Override
-        public Joueur[] newArray(int size) {
-            return new Joueur[size];
-        }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+        return(instance);
     }
-
-    /***
-     * Ecris les informations dans la parcel
-     * @param parcel
-     * @param i
-     */
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(nom);
-        parcel.writeString(classe.name());
-        parcel.writeInt(level);
-        parcel.writeInt(pv);
-        parcel.writeInt(exp);
-        parcel.writeInt(argent);
-    }
-
-
-
-
+    
     public int GetPv() {
         return pv;
     }
@@ -130,5 +91,30 @@ public class Joueur implements Parcelable{
         this.caracteristiques = caracteristiques;
     }
 
+    static class Builder {
+        private String name;
+        private Classe classe;
 
+        public Builder setName(final String firstName) {
+            this.name = firstName;
+            return this;
+        }
+
+        public Builder setClasse(final Classe c) {
+            this.classe = c;
+            return this;
+        }
+
+
+        public Joueur create() {
+            Joueur j = new Joueur(this);
+            if (j.nom.isEmpty()) {
+                throw new IllegalStateException("Name can not be empty!");
+            }
+            if (j.classe.name().isEmpty()) {
+                throw new IllegalStateException("Classe can not be empty!");
+            }
+            return j;
+        }
+    }
 }

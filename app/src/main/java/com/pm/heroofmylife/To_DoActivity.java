@@ -2,6 +2,7 @@ package com.pm.heroofmylife;
 
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.Intent;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -19,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
@@ -31,6 +33,7 @@ import java.util.ArrayList;
  public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private Menu m;
+  //  private Joueur j;
 
     private TabLayout tabLayout ;
     private AppBarLayout appBarLayout;
@@ -44,6 +47,11 @@ import java.util.ArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to__do);
+
+         Intent intent = getIntent();
+       //  j = (Joueur) intent.getParcelableExtra("joueur");
+         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
+
         tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
         appBarLayout = (AppBarLayout) findViewById(R.id.appbarid);
         viewPager = (ViewPager) findViewById(R.id.viewpager_id);
@@ -57,9 +65,6 @@ import java.util.ArrayList;
          viewPager.setAdapter(adapter);
          tabLayout.setupWithViewPager(viewPager);
 
-
-
-     m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
      }
 
     // selection d'un element du spinner, ne fonctionne pas pour l'instant
