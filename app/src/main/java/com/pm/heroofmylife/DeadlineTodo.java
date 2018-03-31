@@ -56,4 +56,5 @@ public class DeadlineTodo extends Fragment {
         itemsAdapter.remove(itemsAdapter.getItem(numTodo));
         Log.i("DICJ", "deadline validé");
     }
+
 }

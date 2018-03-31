@@ -3,6 +3,7 @@ package com.pm.heroofmylife.Joueur;
 import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.pm.heroofmylife.R;
 import com.pm.heroofmylife.ToDo.Tache;
@@ -36,6 +37,32 @@ public class Joueur {
             instance = new Joueur.Builder().setName("Abruti").setClasse(Classe.Guerrier).create();
         }
         return(instance);
+    }
+
+    public void toDoEchec(Tache todo){
+        int pertePV  =0;
+        switch (todo.getDiff()){
+            case Facile:
+                pertePV = 5;
+                break;
+            case Moyen:
+                pertePV = 10;
+                break;
+            case Difficile:
+                pertePV = 15;
+                break;
+        }
+        perdrePV(pertePV);
+    }
+
+    private void perdrePV(int pertePV) {
+        this.pv -=pertePV;
+        if(pv == 0)
+        {
+            level = 1;
+            exp =0;
+            Log.i("DICJ", "Mort");
+        }
     }
 
     public void toDoValider(Tache todo){

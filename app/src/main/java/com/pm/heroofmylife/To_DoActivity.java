@@ -180,7 +180,7 @@ import java.util.ArrayList;
                 ((NormalTodo)adapter.getItem(0)).validerTodo((int)view.getTag());
                 break;
             case R.id.btnnotsmile:
-              //  adapter.getItem(0)
+                ((NormalTodo)adapter.getItem(0)).raterTodo((int)view.getTag());
                 break;
          }
      }

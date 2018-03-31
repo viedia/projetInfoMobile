@@ -70,4 +70,8 @@ public class NormalTodo extends Fragment {
         Joueur.getInstance().toDoValider(itemsAdapter.getItem(tag));
         Log.i("DICJ", "normal validé");
     }
+
+    public void raterTodo(int tag) {
+        Joueur.getInstance().toDoEchec(itemsAdapter.getItem(tag));
+    }
 }
