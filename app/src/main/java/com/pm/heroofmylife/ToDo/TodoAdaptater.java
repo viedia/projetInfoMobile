@@ -27,21 +27,13 @@ public class TodoAdaptater extends ArrayAdapter<Tache> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        // Get the data item for this position
-        Tache t = getItem(position);
+
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(layout, parent, false);
         }
-        // Lookup view for data 
-        TextView champName = (TextView) convertView.findViewById(R.id.name);
-        TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);
-        //CheckBox box = (CheckBox) convertView.findViewById(R.id.checkbox);
-        // Populate the data into the template view using the data object
-        champName.setText(t.toString());
-        champDiff.setText(t.getDiff().toString());
-       // box.setTag(position);
-        //box.setChecked(false);
+
+
         // Return the completed view to render on screen
         return convertView;
     }

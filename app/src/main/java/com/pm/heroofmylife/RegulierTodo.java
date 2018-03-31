@@ -12,6 +12,7 @@ import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
 import com.pm.heroofmylife.ToDo.ToDoRegulier;
+import com.pm.heroofmylife.ToDo.ToDoRegulierAdapter;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
 
 public class RegulierTodo extends Fragment {
     View view;
-    private TodoAdaptater itemsAdapter;
+    private ToDoRegulierAdapter itemsAdapter;
     private ArrayList<Tache> listTache;
     private ListView lvItems;
     public RegulierTodo () {
@@ -44,7 +45,7 @@ public class RegulierTodo extends Fragment {
 
         listTache = new ArrayList<Tache>();
 
-        itemsAdapter = new TodoAdaptater(getActivity(), listTache, R.layout.temptodoreg);
+        itemsAdapter = new ToDoRegulierAdapter(getActivity(), listTache, R.layout.temptodoreg);
         lvItems.setAdapter(itemsAdapter);
     }
 

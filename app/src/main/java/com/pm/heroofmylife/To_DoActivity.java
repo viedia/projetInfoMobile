@@ -167,7 +167,9 @@ import java.util.ArrayList;
      public void onSelected(View view) {
         switch(view.getId()){
             case R.id.checkboxDeadLine:
-                ((DeadlineTodo)adapter.getItem(viewPager.getCurrentItem())).validerTodo((int)view.getTag());
+
+                DeadlineTodo f = ((DeadlineTodo)adapter.getItem(viewPager.getCurrentItem()));
+                f.validerTodo((int)view.getTag());
                 break;
             case R.id.checkboxRegulier:
                  ((RegulierTodo)adapter.getItem(1)).validerTodo((int)view.getTag());

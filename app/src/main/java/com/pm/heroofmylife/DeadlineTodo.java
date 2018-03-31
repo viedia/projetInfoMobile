@@ -10,6 +10,7 @@ import android.widget.ListView;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
+import com.pm.heroofmylife.ToDo.ToDoDeadlineAdapter;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 
 public class DeadlineTodo extends Fragment {
     View view;
-    private TodoAdaptater itemsAdapter;
+    private ToDoDeadlineAdapter itemsAdapter;
     private ArrayList<Tache> listTache;
     private ListView lvItems;
 
@@ -40,7 +41,7 @@ public class DeadlineTodo extends Fragment {
 
 
         listTache = new ArrayList<Tache>();
-        itemsAdapter = new TodoAdaptater(getActivity(), listTache, R.layout.temptododeadline);
+        itemsAdapter = new ToDoDeadlineAdapter(getActivity(), listTache, R.layout.temptododeadline);
         lvItems.setAdapter(itemsAdapter);
     }
 

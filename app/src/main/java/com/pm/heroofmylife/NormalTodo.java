@@ -13,6 +13,7 @@ import android.widget.ListView;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
+import com.pm.heroofmylife.ToDo.ToDoNormalAdapter;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 public class NormalTodo extends Fragment {
     View view;
-    private TodoAdaptater itemsAdapter;
+    private ToDoNormalAdapter itemsAdapter;
     private ArrayList<Tache> listTache;
     private ListView lvItems;
 
@@ -55,7 +56,7 @@ public class NormalTodo extends Fragment {
         listTache = new ArrayList<Tache>();
         listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.Facile));
         listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.Moyen));
-        itemsAdapter = new TodoAdaptater(getActivity(), listTache, R.layout.temptodo);
+        itemsAdapter = new ToDoNormalAdapter(getActivity(), listTache, R.layout.temptodo);
         lvItems.setAdapter(itemsAdapter);
     }
 
