@@ -13,7 +13,6 @@ import com.pm.heroofmylife.Joueur.Joueur;
 
 public class EquipementActivity extends AppCompatActivity {
     private Menu m;
-  //  private Joueur j;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +20,6 @@ public class EquipementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_equipement);
 
         Intent intent = getIntent();
-       // j = (Joueur) intent.getParcelableExtra("joueur");
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
     }

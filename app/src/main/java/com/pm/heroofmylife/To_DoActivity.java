@@ -33,7 +33,6 @@ import java.util.ArrayList;
  public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private Menu m;
-  //  private Joueur j;
 
     private TabLayout tabLayout ;
     private AppBarLayout appBarLayout;
@@ -49,7 +48,6 @@ import java.util.ArrayList;
         setContentView(R.layout.activity_to__do);
 
          Intent intent = getIntent();
-       //  j = (Joueur) intent.getParcelableExtra("joueur");
          m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
@@ -172,7 +170,6 @@ import java.util.ArrayList;
      public void onSelected(View view) {
         switch(view.getId()){
             case R.id.checkboxDeadLine:
-
                 DeadlineTodo f = ((DeadlineTodo)adapter.getItem(viewPager.getCurrentItem()));
                 f.validerTodo((int)view.getTag());
                 break;
@@ -180,7 +177,7 @@ import java.util.ArrayList;
                  ((RegulierTodo)adapter.getItem(1)).validerTodo((int)view.getTag());
                 break;
             case R.id.btnsmile:
-            //    adapter.getItem(0)
+                ((NormalTodo)adapter.getItem(0)).validerTodo((int)view.getTag());
                 break;
             case R.id.btnnotsmile:
               //  adapter.getItem(0)

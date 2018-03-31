@@ -2,11 +2,13 @@ package com.pm.heroofmylife;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
@@ -50,6 +52,8 @@ public class DeadlineTodo extends Fragment {
     }
 
     public void validerTodo(int numTodo){
+        Joueur.getInstance().toDoValider(itemsAdapter.getItem(numTodo));
         itemsAdapter.remove(itemsAdapter.getItem(numTodo));
+        Log.i("DICJ", "deadline validé");
     }
 }

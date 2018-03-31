@@ -25,7 +25,6 @@ public class PersonnageActivity extends Activity {
         setContentView(R.layout.activity_personnage);
 
         Intent intent = getIntent();
-     //   j = (Joueur) intent.getParcelableExtra("joueur");
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         initialiserPage();
@@ -42,7 +41,8 @@ public class PersonnageActivity extends Activity {
         TextView classe = (TextView) findViewById(R.id.class_personnage);
         classe.setText(j.getClasse().toString());
         TextView niveau = (TextView) findViewById(R.id.niveau_personnage);
-        niveau.setText(niveau.getText()+" "+String.valueOf(j.getLevel()));
+        String text = niveau.getText() +" "+ Integer.toString(j.getLevel());
+        niveau.setText(text);
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
     }

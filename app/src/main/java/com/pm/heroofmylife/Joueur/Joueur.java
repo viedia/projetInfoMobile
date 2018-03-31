@@ -5,6 +5,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.pm.heroofmylife.R;
+import com.pm.heroofmylife.ToDo.Tache;
 
 /**
  * Created by Laetitia on 27/02/2018.
@@ -36,7 +37,41 @@ public class Joueur {
         }
         return(instance);
     }
-    
+
+    public void toDoValider(Tache todo){
+        int gainXP=0;
+        int gainOR = 0;
+        switch (todo.getDiff()){
+            case Facile:
+                gainXP = 5;
+                gainOR = 10;
+                break;
+            case Moyen:
+                gainXP = 10;
+                gainOR = 20;
+                break;
+            case Difficile:
+                gainXP = 15;
+                gainOR = 30;
+                break;
+        }
+        this.gagnerExp(gainXP);
+        this.gagnerOr(gainOR);
+    }
+
+    private void gagnerOr(int gainOR) {
+        this.argent += gainOR;
+    }
+
+    private void gagnerExp(int exp) {
+        this.exp += exp;
+        if(this.exp >= EXPMAX) //Si il a assez d'exp, le joueur passe de niveau et perd l'exp pour un niveau
+        {
+            level+= 1;
+            this.exp = 0;
+        }
+    }
+    //####Getter et Setter
     public int GetPv() {
         return pv;
     }
@@ -51,18 +86,8 @@ public class Joueur {
         return level;
     }
 
-
     public int getExp() {
         return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-        if(exp > EXPMAX) //Si il a assez d'exp, le joueur passe de niveau et perd l'exp pour un niveau
-        {
-            level+= 1;
-            exp = EXPMAX - exp;
-        }
     }
 
     public int getArgent() {
@@ -91,6 +116,7 @@ public class Joueur {
         this.caracteristiques = caracteristiques;
     }
 
+    //###BUILDER
     static class Builder {
         private String name;
         private Classe classe;

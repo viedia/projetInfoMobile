@@ -13,14 +13,12 @@ import com.pm.heroofmylife.Joueur.Joueur;
 
 public class FamilierActivity extends AppCompatActivity {
     private Menu m;
-    //private Joueur j;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_familier);
         Intent intent = getIntent();
-        //j = (Joueur) intent.getParcelableExtra("joueur");
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
     }
