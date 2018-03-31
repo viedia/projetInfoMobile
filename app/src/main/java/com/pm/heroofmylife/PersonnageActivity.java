@@ -52,10 +52,10 @@ public class PersonnageActivity extends Activity {
         int ressource = -1;
         switch (j.getClasse()){
                 case Mage:
-                    ressource = R.drawable.voleur;
+                    ressource = R.drawable.mage;
                     break;
                 case Guerrier:
-                    ressource = R.drawable.voleur;
+                    ressource = R.drawable.guerrier;
                     break;
                 case Voleur:
                     ressource = R.drawable.voleur;
