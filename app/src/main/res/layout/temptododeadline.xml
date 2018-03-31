@@ -28,10 +28,10 @@
             android:text="Difficulte"
             android:layout_centerInParent="true"/>
         <CheckBox
-            android:id="@+id/checkbox"
+            android:id="@+id/checkboxDeadLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:onClick="onRemove"/>
+            android:onClick="onSelected"/>
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>

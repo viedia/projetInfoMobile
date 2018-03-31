@@ -2,6 +2,7 @@ package com.pm.heroofmylife;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,11 +44,17 @@ public class RegulierTodo extends Fragment {
 
         listTache = new ArrayList<Tache>();
 
-        itemsAdapter = new TodoAdaptater(getActivity(), listTache);
+        itemsAdapter = new TodoAdaptater(getActivity(), listTache, R.layout.temptodoreg);
         lvItems.setAdapter(itemsAdapter);
     }
 
     public void ajouterRegulierTodo(ToDoRegulier toDoRegulier) {
         itemsAdapter.add(toDoRegulier);
     }
+
+    public void validerTodo(int numTodo){
+        //mettre le changement de couleur
+        Log.i("DICJ", "regulier validé");
+    }
+
 }

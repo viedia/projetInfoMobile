@@ -40,11 +40,15 @@ public class DeadlineTodo extends Fragment {
 
 
         listTache = new ArrayList<Tache>();
-        itemsAdapter = new TodoAdaptater(getActivity(), listTache);
+        itemsAdapter = new TodoAdaptater(getActivity(), listTache, R.layout.temptododeadline);
         lvItems.setAdapter(itemsAdapter);
     }
 
     public void ajouterDeadlineTodo(ToDoDeadline toDoDeadline) {
         itemsAdapter.add(toDoDeadline);
+    }
+
+    public void validerTodo(int numTodo){
+        itemsAdapter.remove(itemsAdapter.getItem(numTodo));
     }
 }

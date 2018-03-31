@@ -35,9 +35,8 @@
             android:layout_alignParentTop="true"
             android:layout_marginStart="53dp"
             android:layout_toEndOf="@+id/difficulte"
-            android:onClick="onRemove"
+            android:onClick="onSelected"
             android:src="@drawable/happy"
-            android:text="Add Item"
             app:backgroundTint="#303F9F"
             app:fabSize="normal" />
 
@@ -49,7 +48,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_alignRight="@id/btnsmile"
-            android:onClick="onRemove"
+            android:onClick="onSelected"
             android:src="@drawable/sad"
             app:backgroundTint="#303F9F"
             app:fabSize="normal" />

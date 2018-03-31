@@ -30,9 +30,6 @@ import java.util.ArrayList;
 
  public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
-    private TodoAdaptater itemsAdapter;
-    private ListView lvItems;
-    private ArrayList<Tache> listTache;
     private Menu m;
 
     private TabLayout tabLayout ;
@@ -161,39 +158,26 @@ import java.util.ArrayList;
          }
      }
 
-     public void onRemove(View view) {
-        // Remove the item within array at position
-        listTache.remove((int)view.getTag());
-        // itemsAdapter.remove(listTache.get((int)view.getTag()));
-        // Refresh the adapter
-        itemsAdapter.notifyDataSetChanged();
-        // Return true consumes the long click event (marks it handled)
-    }
-
-    /***
-     * Listener pour supprimer des fonctions
-     */
-    private void setupListViewListener() {
-        lvItems.setOnItemLongClickListener( new AdapterView.OnItemLongClickListener() {
-            @Override
-            public boolean onItemLongClick(AdapterView<?> adapter,
-                                           View item, int pos, long id) {
-                // Remove the item within array at position
-                listTache.remove(pos);
-                // Refresh the adapter
-                itemsAdapter.notifyDataSetChanged();
-                // Return true consumes the long click event (marks it handled)
-                return true;
-            }
-
-        });
-    }
-
-
      @Override
      public void onPointerCaptureChanged(boolean hasCapture) {
 
      }
 
-     
+
+     public void onSelected(View view) {
+        switch(view.getId()){
+            case R.id.checkboxDeadLine:
+                ((DeadlineTodo)adapter.getItem(viewPager.getCurrentItem())).validerTodo((int)view.getTag());
+                break;
+            case R.id.checkboxRegulier:
+                 ((RegulierTodo)adapter.getItem(1)).validerTodo((int)view.getTag());
+                break;
+            case R.id.btnsmile:
+            //    adapter.getItem(0)
+                break;
+            case R.id.btnnotsmile:
+              //  adapter.getItem(0)
+                break;
+         }
+     }
  }

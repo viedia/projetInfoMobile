@@ -19,8 +19,10 @@ import java.util.ArrayList;
 
 public class TodoAdaptater extends ArrayAdapter<Tache> {
 
-    public TodoAdaptater(@NonNull Context context,  ArrayList<Tache> taches ) {
+    private int layout;
+    public TodoAdaptater(@NonNull Context context,  ArrayList<Tache> taches, int layout ) {
         super(context, 0, taches);
+        this.layout = layout;
     }
 
     @Override
@@ -29,7 +31,7 @@ public class TodoAdaptater extends ArrayAdapter<Tache> {
         Tache t = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.temptodo, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(layout, parent, false);
         }
         // Lookup view for data 
         TextView champName = (TextView) convertView.findViewById(R.id.name);

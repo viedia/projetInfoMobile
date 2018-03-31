@@ -55,11 +55,12 @@ public class NormalTodo extends Fragment {
         listTache = new ArrayList<Tache>();
         listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.Facile));
         listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.Moyen));
-        itemsAdapter = new TodoAdaptater(getActivity(), listTache);
+        itemsAdapter = new TodoAdaptater(getActivity(), listTache, R.layout.temptodo);
         lvItems.setAdapter(itemsAdapter);
     }
 
     public void ajouterNormalTodo(ToDoNormal t){
         itemsAdapter.add(t);
     }
+
 }
