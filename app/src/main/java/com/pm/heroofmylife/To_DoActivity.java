@@ -1,11 +1,10 @@
 package com.pm.heroofmylife;
 
 import android.app.Dialog;
-<<<<<<< HEAD
-=======
+
 import android.app.Fragment;
 import android.content.Intent;
->>>>>>> a18ddf17690da77f0f480afe3698cf80b94b0b61
+
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -181,22 +180,22 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
      public void onSelected(View view) {
         switch(view.getId()){
             case R.id.checkboxDeadLine:
-<<<<<<< HEAD
+
 
                 DeadlineFragment f = ((DeadlineFragment)adapter.getItem(viewPager.getCurrentItem()));
-=======
-                DeadlineTodo f = ((DeadlineTodo)adapter.getItem(viewPager.getCurrentItem()));
->>>>>>> a18ddf17690da77f0f480afe3698cf80b94b0b61
+
+
+
                 f.validerTodo((int)view.getTag());
                 break;
             case R.id.checkboxRegulier:
                  ((RegulierFragment)adapter.getItem(1)).validerTodo((int)view.getTag());
                 break;
             case R.id.btnsmile:
-                ((NormalTodo)adapter.getItem(0)).validerTodo((int)view.getTag());
+                ((NormalFragment)adapter.getItem(0)).validerTodo((int)view.getTag());
                 break;
             case R.id.btnnotsmile:
-                ((NormalTodo)adapter.getItem(0)).raterTodo((int)view.getTag());
+                ((NormalFragment)adapter.getItem(0)).raterTodo((int)view.getTag());
                 break;
          }
      }
