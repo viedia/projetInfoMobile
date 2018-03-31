@@ -61,6 +61,7 @@ public class Joueur {
         {
             level = 1;
             exp =0;
+            pv =PVMAX;
             Log.i("DICJ", "Mort");
         }
     }
