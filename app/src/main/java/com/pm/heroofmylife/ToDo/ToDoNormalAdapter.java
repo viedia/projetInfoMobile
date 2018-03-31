@@ -26,6 +26,7 @@ public class ToDoNormalAdapter extends TodoAdaptater {
 
         // Get the data item for this position
         Tache t = getItem(position);
+
         // Lookup view for data
         TextView champName = (TextView) convertView.findViewById(R.id.name);
         TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);

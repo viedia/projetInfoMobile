@@ -29,7 +29,7 @@ public class Menu  {
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem items) {
-                        Menu.this.changerActivity(items.getItemId(), null);
+                        Menu.this.changerActivity(items.getItemId());
                         return true;
                     }
                 });
@@ -39,33 +39,30 @@ public class Menu  {
      * Crée une nouvelle activité en fonction de celle choisie dans le menu
      * @param nbItem ID de l'activité selectionnée par l'utilisateur
      */
-    public void changerActivity(int nbItem, Object donnees){
+    public void changerActivity(int nbItem){
+        Intent intent = null;
         switch(nbItem){
             case R.id.nav_Todo :
             {
-                Intent intent = new Intent(parent, To_DoActivity.class);
-                parent.startActivity(intent);
+                 intent = new Intent(parent, To_DoActivity.class);
                 break;
             }
             case  R.id.nav_Personnage:
                 {
-                Intent intent = new Intent(parent, PersonnageActivity.class);
-                intent.putExtra("joueur" ,(Joueur) donnees);
-                parent.startActivity(intent);
+                intent = new Intent(parent, PersonnageActivity.class);
                 break;
             }
             case  R.id.nav_Equipement:
             {
-                Intent intent = new Intent(parent, EquipementActivity.class);
-                parent.startActivity(intent);
+                 intent = new Intent(parent, EquipementActivity.class);
                 break;
             }
             case  R.id.nav_Familier:
             {
-                Intent intent = new Intent(parent, FamilierActivity.class);
-                parent.startActivity(intent);
+                intent = new Intent(parent, FamilierActivity.class);
                 break;
             }
         }
+        parent.startActivity(intent);
     }
 }

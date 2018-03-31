@@ -17,23 +17,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
-        j = new Joueur("Toto", Classe.Voleur);
-
     }
 
     public void chargerPage(View view) {
         switch (view.getId()){
             case R.id.nav_Todo:
-                m.changerActivity(R.id.nav_Todo, null);
+                m.changerActivity(R.id.nav_Todo);
                 break;
             case R.id.nav_Personnage:
-                m.changerActivity(R.id.nav_Personnage, j);
+                m.changerActivity(R.id.nav_Personnage);
                 break;
             case R.id.nav_Equipement:
-                m.changerActivity(R.id.nav_Equipement, null);
+                m.changerActivity(R.id.nav_Equipement);
                 break;
             case R.id.nav_Familier:
-                m.changerActivity(R.id.nav_Familier, null);
+                m.changerActivity(R.id.nav_Familier);
                 break;
         }
     }

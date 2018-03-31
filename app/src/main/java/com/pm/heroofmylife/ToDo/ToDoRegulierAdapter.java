@@ -29,6 +29,7 @@ public class ToDoRegulierAdapter extends TodoAdaptater {
         // Lookup view for data
         TextView champName = (TextView) convertView.findViewById(R.id.name);
         TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);
+        TextView champfreq = (TextView) convertView.findViewById(R.id.frequence);
         CheckBox btn = convertView.findViewById(R.id.checkboxRegulier);
 
         // Populate the data into the template view using the data object

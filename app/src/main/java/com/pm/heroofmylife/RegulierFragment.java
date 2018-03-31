@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
@@ -21,12 +22,12 @@ import java.util.ArrayList;
  * Created by pierr on 2018-03-24.
  */
 
-public class RegulierTodo extends Fragment {
+public class RegulierFragment extends Fragment {
     View view;
     private ToDoRegulierAdapter itemsAdapter;
     private ArrayList<Tache> listTache;
     private ListView lvItems;
-    public RegulierTodo () {
+    public RegulierFragment() {
 
 
     }
@@ -55,6 +56,7 @@ public class RegulierTodo extends Fragment {
 
     public void validerTodo(int numTodo){
         //mettre le changement de couleur
+        Joueur.getInstance().toDoValider(itemsAdapter.getItem(numTodo));
         Log.i("DICJ", "regulier validé");
     }
 

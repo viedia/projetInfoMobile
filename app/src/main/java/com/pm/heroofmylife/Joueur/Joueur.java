@@ -3,14 +3,18 @@ package com.pm.heroofmylife.Joueur;
 import android.media.Image;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
 
 import com.pm.heroofmylife.R;
+import com.pm.heroofmylife.ToDo.Tache;
 
 /**
  * Created by Laetitia on 27/02/2018.
  */
 
-public class Joueur implements Parcelable{
+public class Joueur {
+    static Joueur instance = null;
+
     private String nom;
     private int level =1;
     private static final int PVMAX = 100;
@@ -22,60 +26,80 @@ public class Joueur implements Parcelable{
     private Classe classe;
     private Caracteristique[] caracteristiques;
 
-    public Joueur(String nom, Classe classe) {
-        this.nom = nom;
-        this.classe = classe;
+    private Joueur(final Builder builder) {
+        this.nom = builder.name;
+        this.classe = builder.classe;
         caracteristiques = new Caracteristique[]{new Caracteristique("Intelligence"),new Caracteristique("Force"),new Caracteristique("Agilité") };
     }
 
-    /***
-     * Lis les informations du parcel
-     * @param in
-     */
-    protected Joueur(Parcel in) {
-        nom = in.readString();
-        classe = Classe.valueOf(in.readString());
-        level = in.readInt();
-        pv = in.readInt();
-        exp = in.readInt();
-        argent = in.readInt();
-    }
-
-    public static final Creator<Joueur> CREATOR = new Creator<Joueur>() {
-        @Override
-        public Joueur createFromParcel(Parcel in) {
-            return new Joueur(in);
+    public static Joueur getInstance() {
+        if (instance == null) {
+            instance = new Joueur.Builder().setName("Abruti").setClasse(Classe.Guerrier).create();
         }
+        return(instance);
+    }
 
-        @Override
-        public Joueur[] newArray(int size) {
-            return new Joueur[size];
+    public void toDoEchec(Tache todo){
+        int pertePV  =0;
+        switch (todo.getDiff()){
+            case Facile:
+                pertePV = 5;
+                break;
+            case Moyen:
+                pertePV = 10;
+                break;
+            case Difficile:
+                pertePV = 15;
+                break;
         }
-    };
-
-    @Override
-    public int describeContents() {
-        return 0;
+        perdrePV(pertePV);
     }
 
-    /***
-     * Ecris les informations dans la parcel
-     * @param parcel
-     * @param i
-     */
-    @Override
-    public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(nom);
-        parcel.writeString(classe.name());
-        parcel.writeInt(level);
-        parcel.writeInt(pv);
-        parcel.writeInt(exp);
-        parcel.writeInt(argent);
+    private void perdrePV(int pertePV) {
+        this.pv -=pertePV;
+        if(pv == 0)
+        {
+            level = 1;
+            exp =0;
+            pv =PVMAX;
+            Log.i("DICJ", "Mort");
+        }
     }
 
+    public void toDoValider(Tache todo){
+        int gainXP=0;
+        int gainOR = 0;
+        switch (todo.getDiff()){
+            case Facile:
+                gainXP = 5;
+                gainOR = 10;
+                break;
+            case Moyen:
+                gainXP = 10;
+                gainOR = 20;
+                break;
+            case Difficile:
+                gainXP = 15;
+                gainOR = 30;
+                break;
+        }
+        this.gagnerExp(gainXP);
+        this.gagnerOr(gainOR);
+    }
 
+    private void gagnerOr(int gainOR) {
+        this.argent += gainOR;
+    }
 
-
+    private void gagnerExp(int exp) {
+        this.exp += exp;
+        if(this.exp >= EXPMAX) //Si il a assez d'exp, le joueur passe de niveau et perd l'exp pour un niveau
+        {
+            level+= 1;
+            this.exp = 0;
+        }
+    }
+    //####Getter et Setter
     public int GetPv() {
         return pv;
     }
@@ -90,18 +114,8 @@ public class Joueur implements Parcelable{
         return level;
     }
 
-
     public int getExp() {
         return exp;
-    }
-
-    public void setExp(int exp) {
-        this.exp = exp;
-        if(exp > EXPMAX) //Si il a assez d'exp, le joueur passe de niveau et perd l'exp pour un niveau
-        {
-            level+= 1;
-            exp = EXPMAX - exp;
-        }
     }
 
     public int getArgent() {
@@ -130,5 +144,31 @@ public class Joueur implements Parcelable{
         this.caracteristiques = caracteristiques;
     }
 
+    //###BUILDER
+    static class Builder {
+        private String name;
+        private Classe classe;
 
+        public Builder setName(final String firstName) {
+            this.name = firstName;
+            return this;
+        }
+
+        public Builder setClasse(final Classe c) {
+            this.classe = c;
+            return this;
+        }
+
+
+        public Joueur create() {
+            Joueur j = new Joueur(this);
+            if (j.nom.isEmpty()) {
+                throw new IllegalStateException("Name can not be empty!");
+            }
+            if (j.classe.name().isEmpty()) {
+                throw new IllegalStateException("Classe can not be empty!");
+            }
+            return j;
+        }
+    }
 }
