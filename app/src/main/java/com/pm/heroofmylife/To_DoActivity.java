@@ -11,6 +11,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
@@ -28,6 +29,7 @@ import com.pm.heroofmylife.ToDo.ToDoNormal;
 import com.pm.heroofmylife.ToDo.ToDoRegulier;
 
 import java.util.Calendar;
+import java.util.Date;
 
 public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
@@ -156,14 +158,15 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
                  ((RegulierFragment)fragement).ajouterRegulierTodo(new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString()));
                  break;
              case 2: //cas fragment Deadline
-                 CalendarView date = v.findViewById(R.id.simpleCalendarView);
-                /* date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                   CalendarView date = v.findViewById(R.id.simpleCalendarView);
+
+             /*   date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
                      //show the selected date as a toast
                      @Override
                      public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                         Calendar c = new Calendar.getInstance();
-                        c.set(year, month, day);
-                         temptime=  c.getTimeInMillis(); //this is what you want to use later
+                         CalendarView date2 = view;
+                         Log.i("DATE2",""+date2.getDate());
+                        date.setDate(date2.getDate());
                      }
                  });*/
                  ((DeadlineFragment)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate()));

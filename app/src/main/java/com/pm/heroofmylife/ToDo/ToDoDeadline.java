@@ -44,10 +44,11 @@ public class ToDoDeadline extends Tache {
 
         long temptime = deadLine-currentTime;
         Date date=new Date(temptime);
+        Date date2=new Date(deadLine);
         SimpleDateFormat df2 = new SimpleDateFormat("d'jours'-MM'mois'-YYYY");
         String tempsaffiche = df2.format(date);
-
-
+        String tempsaffiche2 = df2.format(date2);
+        Log.i("date finale",tempsaffiche2);
         return tempsaffiche;
 
 
