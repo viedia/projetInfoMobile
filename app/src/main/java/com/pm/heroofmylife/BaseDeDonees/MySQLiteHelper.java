@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.pm.heroofmylife.DeadlineFragment;
+import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
@@ -106,6 +107,22 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         return todo_id;
     }
 
+    public long createJoueur(Joueur j) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, 1);
+        values.put(COLUMN_CLASSE, j.getClasse().toString());
+        values.put(COLUMN_NIVEAU,j.getLevel());
+        values.put(COLUMN_FORCE,j.getCaracteristiques()[1].getLevel());
+        values.put(COLUMN_INTELLIGENCE,j.getCaracteristiques()[0].getLevel());
+        values.put(COLUMN_AGILITE,j.getCaracteristiques()[2].getLevel());
+
+        // insert row
+        long id = db.insert(TABLE_PERSO, null, values);
+
+        return id;
+    }
     //UPDATE
 
     public ArrayList<Tache> getAllToDos(String type) {
