@@ -56,8 +56,8 @@ public class NormalFragment extends Fragment {
 ;
 
         listTache = new ArrayList<Tache>();
-        listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.Facile));
-        listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.Moyen));
+        listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.Facile,"Intelligence"));
+        listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.Moyen,"Intelligence"));
         itemsAdapter = new ToDoNormalAdapter(getActivity(), listTache, R.layout.temptodo);
         lvItems.setAdapter(itemsAdapter);
     }

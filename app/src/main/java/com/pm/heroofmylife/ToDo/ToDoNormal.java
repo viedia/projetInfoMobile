@@ -6,8 +6,8 @@ package com.pm.heroofmylife.ToDo;
 
 public class ToDoNormal extends Tache {
 
-    public ToDoNormal(String nom, String description, Difficulte diff) {
-        super(nom, description, diff);
+    public ToDoNormal(String nom, String description, Difficulte diff, String categ) {
+        super(nom, description,diff ,categ);
     }
 
 }

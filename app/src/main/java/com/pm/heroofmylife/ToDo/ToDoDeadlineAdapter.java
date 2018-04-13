@@ -31,6 +31,8 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
         // Lookup view for data
         TextView champName = (TextView) convertView.findViewById(R.id.name);
         TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);
+        TextView champDesc = (TextView) convertView.findViewById(R.id.description);
+        TextView champcateg =(TextView) convertView.findViewById(R.id.categorie);
         TextView Afficherdate = (TextView) convertView.findViewById(R.id.tempsrestant);
         CheckBox btn = convertView.findViewById(R.id.checkboxDeadLine);
 
@@ -38,6 +40,8 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
         champName.setText(t.toString());
         champDiff.setText(t.getDiff().toString());
         String Dateaffiche = t.afficheDate();
+        champcateg.setText(t.getCategorie());
+        champDesc.setText(t.getDescription());
         Afficherdate.setText(Dateaffiche);
         btn.setTag(position);
         btn.setChecked(false);

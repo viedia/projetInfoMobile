@@ -9,11 +9,13 @@ public abstract class Tache {
     private String nom;
     private String description;
     private Difficulte diff;
+    private String categ;
 
-    public Tache(String nom, String description, Difficulte diff) {
+    public Tache(String nom, String description, Difficulte diff,String categ) {
         this.nom = nom;
         this.description = description;
         this.diff = diff;
+        this.categ =categ;
     }
 
     @Override
@@ -24,5 +26,14 @@ public abstract class Tache {
     public Difficulte getDiff() {
         return diff;
     }
+    public String getDescription() {
+
+        return description;
+    }
+    public String getCategorie(){
+
+        return categ;
+    }
+
 
 }

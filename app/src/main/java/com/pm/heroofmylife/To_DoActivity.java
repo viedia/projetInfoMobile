@@ -87,18 +87,22 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
     public void onAddItem(View view) {
         final long[] temptime = new long[1];
        final  long eventOccursOn;
+       int flag=0;
         final Dialog dialog = new Dialog(this);
         final int fActuel = this.viewPager.getCurrentItem();
         final android.support.v4.app.Fragment fenetreActuel = adapter.getItem(fActuel);
         switch(fActuel){
             case 0:
                 dialog.setContentView(R.layout.item_todonormal);
+                flag=0;
                 break;
             case 1:
                 dialog.setContentView(R.layout.item_todoregulier);
+                flag=0;
                 break;
             case 2:
                 dialog.setContentView(R.layout.item_tododeadline);
+                flag=1;
                 break;
         }
         dialog.setTitle("Add new task" );
@@ -113,26 +117,23 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
-        date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            //show the selected date as a toast
-            @Override
-            public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
+        if(flag==1) {
 
+            date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                //show the selected date as a toast
+                @Override
+                public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.set(Calendar.YEAR, year);
+                    cal.set(Calendar.MONTH, month);
+                    cal.set(Calendar.DAY_OF_MONTH, day);
+                    temptime[0] = cal.getTimeInMillis() ;
+                    Log.i("date maintenant",""+ temptime[0]);
 
+                }
+            });
+        }
 
-
-                Calendar cal = Calendar.getInstance();
-                cal.set(Calendar.YEAR, year);
-                cal.set(Calendar.MONTH, month);
-                cal.set(Calendar.DAY_OF_MONTH, day);
-
-
-
-                temptime[0] = cal.getTimeInMillis() ;
-                Log.i("date maintenant",""+ temptime[0]);
-
-            }
-        });
         // if button is clicked, close the custom dialog
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,15 +175,15 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
          String competence = spinner.getSelectedItem().toString();
          switch (numeroFragement){ //cas fragment Normal
              case 0:
-                 ((NormalFragment)fragement).ajouterNormalTodo(new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte)));
+                 ((NormalFragment)fragement).ajouterNormalTodo(new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte),competence));
                  break;
              case 1: //cas fragment Regulier
                  spinner = v.findViewById(R.id.spinner_frequence);
-                 ((RegulierFragment)fragement).ajouterRegulierTodo(new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString()));
+                 ((RegulierFragment)fragement).ajouterRegulierTodo(new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString(),competence));
                  break;
              case 2: //cas fragment Deadline
                    CalendarView date = v.findViewById(R.id.simpleCalendarView);
-                 ((DeadlineFragment)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time));
+                 ((DeadlineFragment)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time,competence));
                  break;
          }
      }

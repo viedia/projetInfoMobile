@@ -30,12 +30,16 @@ public class ToDoNormalAdapter extends TodoAdaptater {
         // Lookup view for data
         TextView champName = (TextView) convertView.findViewById(R.id.name);
         TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);
+        TextView champDesc = (TextView) convertView.findViewById(R.id.description);
+        TextView champcateg =(TextView) convertView.findViewById(R.id.categorie);
         FloatingActionButton smile = convertView.findViewById(R.id.btnsmile);
         FloatingActionButton notSmile = convertView.findViewById(R.id.btnnotsmile);
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
         champDiff.setText(t.getDiff().toString());
+        champDesc.setText(t.getDescription());
+        champcateg.setText(t.getCategorie());
         smile.setTag(position);
         notSmile.setTag(position);
 

@@ -16,8 +16,8 @@ import java.util.Date;
 
 public class ToDoDeadline extends Tache {
     private long deadLine;
-    public ToDoDeadline(String nom, String description, Difficulte diff, long date) {
-        super(nom, description, diff);
+    public ToDoDeadline(String nom, String description, Difficulte diff, long date, String categ) {
+        super(nom, description, diff,categ);
         deadLine= date;
 
         Log.i("Deadline",""+deadLine);
