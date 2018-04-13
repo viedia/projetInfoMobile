@@ -51,7 +51,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                                 +COLUMN_DIFFICULTE+ " text not null, "
                                 +COLUMN_TYPE+ " text not null, "
                                 +COLUMN_FREQUENCE+ " integer, "
-                                +COLUMN_DATE+ " date "+");";
+                                +COLUMN_DATE+ " long "+");";
     private static final String CREATE_PERSO = "create table "+ TABLE_PERSO + "("
             +COLUMN_ID + " integer primary key autoincrement, "
             +COLUMN_CLASSE + " text not null, "
@@ -107,27 +107,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     }
 
     //UPDATE
-    public Tache getTodo(long todo_id) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT  * FROM " + TABLE_TODO + " WHERE "
-                + COLUMN_ID + " = " + todo_id;
-
-        Log.e("LOG", selectQuery);
-
-        Cursor c = db.rawQuery(selectQuery, null);
-
-        if (c != null)
-            c.moveToFirst();
-
-        int id = c.getInt(c.getColumnIndex(COLUMN_ID));
-        String nom =c.getString(c.getColumnIndex(COLUMN_NOM));
-        String desc = c.getString(c.getColumnIndex(COLUMN_DESCRIPTION));
-        String diff =  c.getString(c.getColumnIndex(COLUMN_DIFFICULTE));
-
-        ToDoNormal td = new ToDoNormal(id, nom, desc, Difficulte.valueOf(diff));
-        return td;
-    }
 
     public ArrayList<Tache> getAllToDos(String type) {
         ArrayList<Tache> todos = new ArrayList<Tache>();
@@ -145,8 +124,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 String nom =c.getString(c.getColumnIndex(COLUMN_NOM));
                 String desc = c.getString(c.getColumnIndex(COLUMN_DESCRIPTION));
                 String diff =  c.getString(c.getColumnIndex(COLUMN_DIFFICULTE));
-
-                ToDoNormal td = new ToDoNormal(id, nom, desc, Difficulte.valueOf(diff));
+                Tache td= null;
+                switch(c.getString(c.getColumnIndex(COLUMN_TYPE))){
+                    case "deadline":
+                        td = new ToDoDeadline(id,nom, desc, Difficulte.valueOf(diff), c.getLong(c.getColumnIndex(COLUMN_DATE)), null);
+                        break;
+                    case "frequence":
+                        td = new ToDoRegulier(id,nom, desc, Difficulte.valueOf(diff),  c.getString(c.getColumnIndex(COLUMN_FREQUENCE)), null);
+                        break;
+                    default:
+                        td = new ToDoNormal(id, nom, desc, Difficulte.valueOf(diff), null);
+                        break;
+                }
 
                 // adding to todo list
                 todos.add(td);

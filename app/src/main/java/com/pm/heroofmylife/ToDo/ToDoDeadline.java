@@ -18,11 +18,15 @@ public class ToDoDeadline extends Tache {
 
 
     private long deadLine;
+
     public ToDoDeadline(String nom, String description, Difficulte diff, long date, String categ) {
         super(nom, description, diff,categ);
         deadLine= date;
+    }
 
-        Log.i("Deadline",""+deadLine);
+    public ToDoDeadline(int id, String nom, String description, Difficulte diff, long date, String categ) {
+        super(id, nom, description, diff,categ);
+        deadLine= date;
     }
 
 

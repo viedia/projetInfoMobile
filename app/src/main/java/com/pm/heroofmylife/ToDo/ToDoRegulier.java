@@ -13,6 +13,11 @@ public class ToDoRegulier extends Tache {
         frequence = Frequence.valueOf(f);
     }
 
+    public ToDoRegulier(int id, String nom, String description, Difficulte diff,String f, String categ) {
+        super(id, nom, description, diff,categ);
+        frequence= Frequence.valueOf(f);
+    }
+
     public Frequence getFrequence() {
         return frequence;
     }

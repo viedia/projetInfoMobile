@@ -209,7 +209,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
              }
              case 2: { //cas fragement Deadline
                  CalendarView date = v.findViewById(R.id.simpleCalendarView);
-                 todo = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate(),null);
+                 todo = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time,null);
                  ((DeadlineFragment) fragement).ajouterDeadlineTodo((ToDoDeadline)todo);
                  type = "Deadline";
 

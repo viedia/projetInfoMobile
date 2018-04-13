@@ -13,15 +13,7 @@ public abstract class Tache {
     private Difficulte diff;
     private String categ;
 
-    public Tache( String nom, String description, Difficulte diff) {
-        this.id = ID;
-        this.nom = nom;
-        this.description = description;
-        this.diff = diff;
-        ID++;
-    }
-
-    public Tache(int id, String nom, String description, Difficulte diff) {
+    public Tache(int id, String nom, String description, Difficulte diff, String competence) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -31,10 +23,12 @@ public abstract class Tache {
         }
     }
     public Tache(String nom, String description, Difficulte diff,String competence) {
+        this.id = ID;
         this.nom = nom;
         this.description = description;
         this.diff = diff;
         this.categ =competence;
+        ID++;
     }
 
     @Override
