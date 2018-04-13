@@ -85,6 +85,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
      * @param view
      */
     public void onAddItem(View view) {
+        final long[] temptime = new long[1];
        final  long eventOccursOn;
         final Dialog dialog = new Dialog(this);
         final int fActuel = this.viewPager.getCurrentItem();
@@ -98,12 +99,11 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
                 break;
             case 2:
                 dialog.setContentView(R.layout.item_tododeadline);
-
                 break;
         }
         dialog.setTitle("Add new task" );
         final EditText name = (EditText) dialog.findViewById(R.id.edit_name);
-
+        CalendarView date = (CalendarView) dialog.findViewById(R.id.simpleCalendarView);
         Button addButton = (Button) dialog.findViewById(R.id.task_add);
 
         Button closeButton = (Button) dialog.findViewById(R.id.task_delete);
@@ -113,11 +113,31 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(this);
+        date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            //show the selected date as a toast
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
+
+
+
+
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DAY_OF_MONTH, day);
+
+
+
+                temptime[0] = cal.getTimeInMillis() ;
+                Log.i("date maintenant",""+ temptime[0]);
+
+            }
+        });
         // if button is clicked, close the custom dialog
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                creerToDo(dialog, fActuel, fenetreActuel);
+                creerToDo(dialog, fActuel, fenetreActuel,temptime[0]);
                 dialog.dismiss();
             }
         });
@@ -129,8 +149,11 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
             }
         });
 
+
         dialog.show();
     }
+
+
 
      public boolean onCreateOptionsMenu(Menu menu) {
          getMenuInflater().inflate(R.menu.actionmenu, (android.view.Menu) menu);
@@ -141,8 +164,8 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
       * param  la fenetre d'ajout
       * @return le nouveau TO DO
       */
-     private void creerToDo(Dialog v, int numeroFragement,  android.support.v4.app.Fragment fragement) {
-         long temptime;
+     private void creerToDo(Dialog v, int numeroFragement,  android.support.v4.app.Fragment fragement, long time) {
+         final long[] temptime = new long[1];
          EditText name = (EditText) v.findViewById(R.id.edit_name);
          EditText description = (EditText) v.findViewById(R.id.edit_description);
          Spinner spinner = (Spinner) v.findViewById(R.id.spinner_difficulte);
@@ -159,17 +182,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
                  break;
              case 2: //cas fragment Deadline
                    CalendarView date = v.findViewById(R.id.simpleCalendarView);
-
-             /*   date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                     //show the selected date as a toast
-                     @Override
-                     public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
-                         CalendarView date2 = view;
-                         Log.i("DATE2",""+date2.getDate());
-                        date.setDate(date2.getDate());
-                     }
-                 });*/
-                 ((DeadlineFragment)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate()));
+                 ((DeadlineFragment)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time));
                  break;
          }
      }
@@ -183,11 +196,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
      public void onSelected(View view) {
         switch(view.getId()){
             case R.id.checkboxDeadLine:
-
-
                 DeadlineFragment f = ((DeadlineFragment)adapter.getItem(viewPager.getCurrentItem()));
-
-
 
                 f.validerTodo((int)view.getTag());
                 break;

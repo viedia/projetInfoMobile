@@ -41,11 +41,10 @@ public class ToDoDeadline extends Tache {
        // long selectedDate = CurrentCalendarView.getDate();
         long currentTime = System.currentTimeMillis();
         Log.i("GFDFDGDF",""+ currentTime);
-
         long temptime = deadLine-currentTime;
         Date date=new Date(temptime);
         Date date2=new Date(deadLine);
-        SimpleDateFormat df2 = new SimpleDateFormat("d'jours'-MM'mois'-YYYY");
+        SimpleDateFormat df2 = new SimpleDateFormat("D'jours'");
         String tempsaffiche = df2.format(date);
         String tempsaffiche2 = df2.format(date2);
         Log.i("date finale",tempsaffiche2);
