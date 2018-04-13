@@ -9,5 +9,8 @@ public class ToDoNormal extends Tache {
     public ToDoNormal(String nom, String description, Difficulte diff) {
         super(nom, description, diff);
     }
+    public ToDoNormal(int id, String nom, String description, Difficulte diff) {
+        super(id, nom, description, diff);
+    }
 
 }

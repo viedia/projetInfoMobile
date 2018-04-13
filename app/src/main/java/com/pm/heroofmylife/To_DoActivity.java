@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
@@ -29,8 +30,12 @@ import com.pm.heroofmylife.ToDo.ToDoRegulier;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.List;
 
- public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
+public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
     private Menu m;
 
@@ -38,6 +43,7 @@ import java.util.ArrayList;
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
     private  ViewPagerAdapter adapter;
+    private MySQLiteHelper db;
 
 
 
@@ -46,8 +52,8 @@ import java.util.ArrayList;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to__do);
+        db = new MySQLiteHelper(getApplicationContext());
 
-         Intent intent = getIntent();
          m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
@@ -59,12 +65,26 @@ import java.util.ArrayList;
         adapter.AddFragment(new NormalTodo(), "Normal",R.drawable.plus);
          adapter.AddFragment(new RegulierTodo(), "Regulier",R.drawable.plus);
          adapter.AddFragment(new DeadlineTodo(), "Deadline",R.drawable.plus);
+         setTodo();
+
          //adapter setup
          viewPager.setAdapter(adapter);
          tabLayout.setupWithViewPager(viewPager);
 
+
      }
 
+     private void setTodo(){
+         ArrayList<Tache> todos = db.getAllToDos("Normal");
+         if(!(todos.isEmpty()))
+             ((NormalTodo)adapter.getItem(0)).setListTache(todos);
+         todos = db.getAllToDos("Regulier");
+         if(!(todos.isEmpty()))
+             ((RegulierTodo)adapter.getItem(1)).setListTache(todos);
+         todos = db.getAllToDos("Deadline");
+         if(!(todos.isEmpty()))
+             ((DeadlineTodo)adapter.getItem(2)).setListTache(todos);
+     }
     // selection d'un element du spinner, ne fonctionne pas pour l'instant
 
      @Override
@@ -146,19 +166,32 @@ import java.util.ArrayList;
          String difficulte = spinner.getSelectedItem().toString();
          spinner = (Spinner) v.findViewById(R.id.spinner_competence);
          String competence = spinner.getSelectedItem().toString();
+
+         Tache todo = null;
+         String type ="";
          switch (numeroFragement){ //cas fragement Normal
-             case 0:
-                 ((NormalTodo)fragement).ajouterNormalTodo(new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte)));
+             case 0:{
+                 todo = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte));
+                 ((NormalTodo)fragement).ajouterNormalTodo((ToDoNormal)todo);
+                 type = "Normal";
                  break;
-             case 1: //cas fragement Regulier
+             }
+             case 1: {//cas fragement Regulier
                  spinner = v.findViewById(R.id.spinner_frequence);
-                 ((RegulierTodo)fragement).ajouterRegulierTodo(new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString()));
+                 todo = new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString());
+                 ((RegulierTodo) fragement).ajouterRegulierTodo((ToDoRegulier)todo);
+                 type = "Regulier";
                  break;
-             case 2: //cas fragement Deadline
+             }
+             case 2: { //cas fragement Deadline
                  CalendarView date = v.findViewById(R.id.simpleCalendarView);
-                 ((DeadlineTodo)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate()));
+                 todo = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), date.getDate());
+                 ((DeadlineTodo) fragement).ajouterDeadlineTodo((ToDoDeadline)todo);
+                 type = "Deadline";
                  break;
+             }
          }
+         db.createToDo(todo, type);
      }
 
      @Override
@@ -172,6 +205,7 @@ import java.util.ArrayList;
             case R.id.checkboxDeadLine:
                 DeadlineTodo f = ((DeadlineTodo)adapter.getItem(viewPager.getCurrentItem()));
                 f.validerTodo((int)view.getTag());
+                db.deleteToDo(f.getId());
                 break;
             case R.id.checkboxRegulier:
                  ((RegulierTodo)adapter.getItem(1)).validerTodo((int)view.getTag());
@@ -184,4 +218,33 @@ import java.util.ArrayList;
                 break;
          }
      }
- }
+
+    @Override
+    protected void onDestroy() {
+         db.closeDB();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+         db.closeDB();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+         db.closeDB();
+        super.onStop();
+    }
+}

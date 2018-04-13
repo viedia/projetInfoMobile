@@ -26,7 +26,7 @@ public class DeadlineTodo extends Fragment {
 
 
     public DeadlineTodo () {
-
+        listTache = new ArrayList<Tache>();
 
     }
     @Nullable
@@ -41,8 +41,6 @@ public class DeadlineTodo extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         lvItems = (ListView) getView().findViewById(R.id.lvItemsdeadline);
 
-
-        listTache = new ArrayList<Tache>();
         itemsAdapter = new ToDoDeadlineAdapter(getActivity(), listTache, R.layout.temptododeadline);
         lvItems.setAdapter(itemsAdapter);
     }
@@ -57,4 +55,9 @@ public class DeadlineTodo extends Fragment {
         Log.i("DICJ", "deadline validé");
     }
 
+    public void setListTache(ArrayList<Tache> todos){
+        for (Tache t : todos){
+            listTache.add(t);
+        }
+    }
 }

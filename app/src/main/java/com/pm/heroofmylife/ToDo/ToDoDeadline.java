@@ -9,11 +9,14 @@ import java.util.Calendar;
  */
 
 public class ToDoDeadline extends Tache {
+
+
     private long deadLine;
     public ToDoDeadline(String nom, String description, Difficulte diff, long date) {
         super(nom, description, diff);
         deadLine= date;
     }
+
 
     /**
      * Détermine si la date limite est passé
@@ -26,5 +29,8 @@ public class ToDoDeadline extends Tache {
             res = true;
         }
         return res;
+    }
+    public long getDeadLine() {
+        return deadLine;
     }
 }
