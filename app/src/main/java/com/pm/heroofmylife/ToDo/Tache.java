@@ -11,6 +11,7 @@ public abstract class Tache {
     private String nom;
     private String description;
     private Difficulte diff;
+    private String categ;
 
     public Tache( String nom, String description, Difficulte diff) {
         this.id = ID;
@@ -25,9 +26,15 @@ public abstract class Tache {
         this.nom = nom;
         this.description = description;
         this.diff = diff;
-        if(this.id >=ID){
-            ID = this.id+1;
+        if (this.id >= ID) {
+            ID = this.id + 1;
         }
+    }
+    public Tache(String nom, String description, Difficulte diff,String competence) {
+        this.nom = nom;
+        this.description = description;
+        this.diff = diff;
+        this.categ =competence;
     }
 
     @Override
@@ -38,6 +45,12 @@ public abstract class Tache {
     public Difficulte getDiff() {
         return diff;
     }
+
+    public String getCategorie(){
+
+        return categ;
+    }
+
 
     public int getId() {
         return id;

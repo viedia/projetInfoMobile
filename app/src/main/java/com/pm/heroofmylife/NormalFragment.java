@@ -1,7 +1,10 @@
 package com.pm.heroofmylife;
-import android.support.v4.app.Fragment;
+
+
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,48 +14,59 @@ import android.widget.ListView;
 import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
-import com.pm.heroofmylife.ToDo.ToDoDeadline;
-import com.pm.heroofmylife.ToDo.ToDoDeadlineAdapter;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
+import com.pm.heroofmylife.ToDo.ToDoNormalAdapter;
 import com.pm.heroofmylife.ToDo.TodoAdaptater;
 
 import java.util.ArrayList;
 
-public class DeadlineTodo extends Fragment {
+/**
+ * Created by pierr on 2018-03-24.
+ */
+
+public class NormalFragment extends Fragment {
     View view;
-    private ToDoDeadlineAdapter itemsAdapter;
+    private ToDoNormalAdapter itemsAdapter;
     private ArrayList<Tache> listTache;
     private ListView lvItems;
 
 
-    public DeadlineTodo () {
-        listTache = new ArrayList<Tache>();
-
+    public ListView getLvItems() {
+        return lvItems;
     }
+
+    public NormalFragment () {
+        listTache = new ArrayList<Tache>();
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.deadlinetodo,container,false);
+        view = inflater.inflate(R.layout.normaltodo,container,false);
+
         return view;
 
     }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lvItems = (ListView) getView().findViewById(R.id.lvItemsdeadline);
-
-        itemsAdapter = new ToDoDeadlineAdapter(getActivity(), listTache, R.layout.temptododeadline);
+        lvItems = (ListView) getView().findViewById(R.id.lvItems);
+        itemsAdapter = new ToDoNormalAdapter(getActivity(), listTache, R.layout.temptodo);
         lvItems.setAdapter(itemsAdapter);
     }
 
-    public void ajouterDeadlineTodo(ToDoDeadline toDoDeadline) {
-        itemsAdapter.add(toDoDeadline);
+    public void ajouterNormalTodo(ToDoNormal t){
+        itemsAdapter.add(t);
     }
 
-    public void validerTodo(int numTodo){
-        Joueur.getInstance().toDoValider(itemsAdapter.getItem(numTodo));
-        itemsAdapter.remove(itemsAdapter.getItem(numTodo));
-        Log.i("DICJ", "deadline validé");
+    public void validerTodo(int tag) {
+        Joueur.getInstance().toDoValider(itemsAdapter.getItem(tag));
+        Log.i("DICJ", "normal validé");
+    }
+
+    public void raterTodo(int tag) {
+        Joueur.getInstance().toDoEchec(itemsAdapter.getItem(tag));
     }
 
     public void setListTache(ArrayList<Tache> todos){

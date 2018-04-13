@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import com.pm.heroofmylife.DeadlineTodo;
+import com.pm.heroofmylife.DeadlineFragment;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
