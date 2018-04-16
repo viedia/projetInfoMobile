@@ -184,10 +184,15 @@
                         android:layout_marginLeft="2dp"/> <!-- Pet Buton -->
                 </LinearLayout> <!-- Stats -->
 
-                <ListView
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"></ListView>
+               <FrameLayout
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:id="@+id/perso_fragement">
+
+               </FrameLayout>
+
+
+
             </LinearLayout>  <!-- Partie basse -->
         </LinearLayout>
     </RelativeLayout>

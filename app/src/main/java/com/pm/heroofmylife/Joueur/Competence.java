@@ -50,4 +50,9 @@ public class Competence {
     public void setExpMax(int expMax) {
         this.expMax = expMax;
     }
+
+    @Override
+    public String toString() {
+        return nom;
+    }
 }

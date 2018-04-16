@@ -49,11 +49,9 @@ public class DeadlineFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lvItems = (ListView) getView().findViewById(R.id.lvItemsdeadline);
-<<<<<<< HEAD
-        listTache = new ArrayList<Tache>();
-=======
 
->>>>>>> 3d7858f1e7c568c2cee5d33d3e36917a34c871ea
+        listTache = new ArrayList<Tache>();
+
         itemsAdapter = new ToDoDeadlineAdapter(getActivity(), listTache, R.layout.temptododeadline);
         lvItems.setAdapter(itemsAdapter);
     }
