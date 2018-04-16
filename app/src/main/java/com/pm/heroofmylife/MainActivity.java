@@ -19,8 +19,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
         db = new MySQLiteHelper(getApplicationContext());
-        Joueur j = db.getJoueur();
-        System.out.println(j);
+        Joueur.setInstance(db.getJoueur());
 
     }
 

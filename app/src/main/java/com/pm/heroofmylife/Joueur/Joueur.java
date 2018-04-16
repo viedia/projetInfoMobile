@@ -32,11 +32,14 @@ public class Joueur {
 
     public static Joueur getInstance() {
         if (instance == null) {
-            instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
+          //  instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
         }
         return(instance);
     }
 
+    public static void setInstance(Joueur j){
+        instance = j;
+    }
     public void toDoEchec(Tache todo){
         int pertePV  =0;
         switch (todo.getDiff()){

@@ -215,6 +215,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
              }
          }
          db.createToDo(todo, type);
+
      }
 
      @Override

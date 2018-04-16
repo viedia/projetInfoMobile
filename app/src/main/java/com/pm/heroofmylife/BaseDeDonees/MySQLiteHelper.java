@@ -203,7 +203,6 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, 0);
         values.put(COLUMN_CLASSE, j.getClasse().toString());
         values.put(COLUMN_NIVEAU,j.getLevel());
         values.put(COLUMN_FORCE,j.getCaracteristiques()[1].getLevel());
