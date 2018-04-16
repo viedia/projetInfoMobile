@@ -105,7 +105,7 @@ public class Joueur {
     public void SetPv(int pv) {
         this.pv = pv;
         if(pv > PVMAX)
-            pv = PVMAX;
+            this.pv = PVMAX;
     }
 
     public int getLevel() {
@@ -123,7 +123,7 @@ public class Joueur {
     public void setArgent(int argent) {
         this.argent = argent;
         if(argent < 0)
-            argent = 0;
+            this.argent = 0;
     }
 
     public Classe getClasse() {

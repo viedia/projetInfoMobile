@@ -235,7 +235,9 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
                  ((RegulierFragment)adapter.getItem(1)).validerTodo((int)view.getTag());
                 break;
             case R.id.btnsmile:
+
                 ((NormalFragment)adapter.getItem(0)).validerTodo((int)view.getTag());
+
                 break;
             case R.id.btnnotsmile:
                 ((NormalFragment)adapter.getItem(0)).raterTodo((int)view.getTag());

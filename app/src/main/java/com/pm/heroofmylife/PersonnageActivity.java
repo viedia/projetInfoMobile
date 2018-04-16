@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -46,7 +47,7 @@ public class PersonnageActivity extends Activity {
         niveau.setText(text);
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
-    }
+}
 
     /**
      * retourne l'image correspondant à la classe du personnage
@@ -64,7 +65,6 @@ public class PersonnageActivity extends Activity {
                 case Voleur:
                     ressource = R.drawable.voleur;
                     break;
-
         }
         return ressource;
     }
