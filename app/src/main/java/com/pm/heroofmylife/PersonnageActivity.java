@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.Joueur.Classe;
 import com.pm.heroofmylife.Joueur.Joueur;
 
@@ -18,7 +19,7 @@ import com.pm.heroofmylife.Joueur.Joueur;
 
 public class PersonnageActivity extends Activity {
     private Menu m;
-   // private Joueur j;
+   private MySQLiteHelper db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +27,7 @@ public class PersonnageActivity extends Activity {
 
         Intent intent = getIntent();
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
-
+        db= new MySQLiteHelper(getApplicationContext());
         initialiserPage();
     }
 
@@ -35,9 +36,9 @@ public class PersonnageActivity extends Activity {
      */
     private void initialiserPage() {
         Joueur j = Joueur.getInstance();
+
         ImageView image = (ImageView) findViewById(R.id.image_personnage);
         image.setImageResource(getImage(j.getClasse()));
-
         TextView classe = (TextView) findViewById(R.id.class_personnage);
         classe.setText(j.getClasse().toString());
         TextView niveau = (TextView) findViewById(R.id.niveau_personnage);
@@ -67,6 +68,36 @@ public class PersonnageActivity extends Activity {
         }
         return ressource;
     }
+    @Override
+    protected void onDestroy() {
+        db.updateJoueur(Joueur.getInstance());
+        db.closeDB();
+        super.onDestroy();
+    }
 
+    @Override
+    protected void onPause() {
+        System.out.println(db.updateJoueur(Joueur.getInstance()));
+        db.closeDB();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        db.updateJoueur(Joueur.getInstance());
+        db.closeDB();
+        super.onStop();
+    }
 
 }
