@@ -31,10 +31,10 @@ public class DeadlineFragment extends Fragment {
     private ListView lvItems;
 
 
-    public DeadlineFragment() {
-
-
+    public DeadlineFragment () {
+        listTache = new ArrayList<Tache>();
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -49,7 +49,11 @@ public class DeadlineFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lvItems = (ListView) getView().findViewById(R.id.lvItemsdeadline);
+<<<<<<< HEAD
         listTache = new ArrayList<Tache>();
+=======
+
+>>>>>>> 3d7858f1e7c568c2cee5d33d3e36917a34c871ea
         itemsAdapter = new ToDoDeadlineAdapter(getActivity(), listTache, R.layout.temptododeadline);
         lvItems.setAdapter(itemsAdapter);
     }
@@ -64,4 +68,9 @@ public class DeadlineFragment extends Fragment {
         Log.i("DICJ", "deadline validé");
     }
 
+    public void setListTache(ArrayList<Tache> todos){
+        for (Tache t : todos){
+            listTache.add(t);
+        }
+    }
 }

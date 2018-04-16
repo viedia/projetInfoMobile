@@ -22,14 +22,17 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
+import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
 import com.pm.heroofmylife.ToDo.ToDoNormal;
 import com.pm.heroofmylife.ToDo.ToDoRegulier;
 
+import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+
 
 public class To_DoActivity extends FragmentActivity implements   OnItemSelectedListener  /*implements  AdapterView.OnItemSelectedListener*/ {
 
@@ -39,6 +42,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
     private AppBarLayout appBarLayout;
     private ViewPager viewPager;
     private  ViewPagerAdapter adapter;
+    private MySQLiteHelper db;
 
 
 
@@ -47,8 +51,8 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_to__do);
+        db = new MySQLiteHelper(getApplicationContext());
 
-         Intent intent = getIntent();
          m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
 
         tabLayout = (TabLayout) findViewById(R.id.tablayout_id);
@@ -60,12 +64,26 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
         adapter.AddFragment(new NormalFragment(), "Normal",R.drawable.plus);
          adapter.AddFragment(new RegulierFragment(), "Regulier",R.drawable.plus);
          adapter.AddFragment(new DeadlineFragment(), "Deadline",R.drawable.plus);
+         setTodo();
+
          //adapter setup
          viewPager.setAdapter(adapter);
          tabLayout.setupWithViewPager(viewPager);
 
+
      }
 
+     private void setTodo(){
+         ArrayList<Tache> todos = db.getAllToDos("Normal");
+         if(!(todos.isEmpty()))
+             ((NormalFragment)adapter.getItem(0)).setListTache(todos);
+         todos = db.getAllToDos("Regulier");
+         if(!(todos.isEmpty()))
+             ((RegulierFragment)adapter.getItem(1)).setListTache(todos);
+         todos = db.getAllToDos("Deadline");
+         if(!(todos.isEmpty()))
+             ((DeadlineFragment)adapter.getItem(2)).setListTache(todos);
+     }
     // selection d'un element du spinner, ne fonctionne pas pour l'instant
 
      @Override
@@ -173,19 +191,32 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
          String difficulte = spinner.getSelectedItem().toString();
          spinner = (Spinner) v.findViewById(R.id.spinner_competence);
          String competence = spinner.getSelectedItem().toString();
-         switch (numeroFragement){ //cas fragment Normal
-             case 0:
-                 ((NormalFragment)fragement).ajouterNormalTodo(new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte),competence));
+         Tache todo = null;
+         String type ="";
+         switch (numeroFragement){ //cas fragement Normal
+             case 0:{
+                 todo = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte),null);
+                 ((NormalFragment)fragement).ajouterNormalTodo((ToDoNormal)todo);
+                 type = "Normal";
                  break;
-             case 1: //cas fragment Regulier
+             }
+             case 1: {//cas fragement Regulier
                  spinner = v.findViewById(R.id.spinner_frequence);
-                 ((RegulierFragment)fragement).ajouterRegulierTodo(new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString(),competence));
+                 todo = new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString(),null);
+                 ((RegulierFragment) fragement).ajouterRegulierTodo((ToDoRegulier)todo);
+                 type = "Regulier";
                  break;
-             case 2: //cas fragment Deadline
-                   CalendarView date = v.findViewById(R.id.simpleCalendarView);
-                 ((DeadlineFragment)fragement).ajouterDeadlineTodo(new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time,competence));
+             }
+             case 2: { //cas fragement Deadline
+                 CalendarView date = v.findViewById(R.id.simpleCalendarView);
+                 todo = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time,null);
+                 ((DeadlineFragment) fragement).ajouterDeadlineTodo((ToDoDeadline)todo);
+                 type = "Deadline";
+
                  break;
+             }
          }
+         db.createToDo(todo, type);
      }
 
      @Override
@@ -200,6 +231,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
                 DeadlineFragment f = ((DeadlineFragment)adapter.getItem(viewPager.getCurrentItem()));
 
                 f.validerTodo((int)view.getTag());
+                db.deleteToDo(f.getId());
                 break;
             case R.id.checkboxRegulier:
                  ((RegulierFragment)adapter.getItem(1)).validerTodo((int)view.getTag());
@@ -214,4 +246,33 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
                 break;
          }
      }
- }
+
+    @Override
+    protected void onDestroy() {
+         db.closeDB();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+         db.closeDB();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+         db.closeDB();
+        super.onStop();
+    }
+}

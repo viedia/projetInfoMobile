@@ -35,11 +35,10 @@ public class NormalFragment extends Fragment {
         return lvItems;
     }
 
-
-    public NormalFragment() {
-
-
+    public NormalFragment () {
+        listTache = new ArrayList<Tache>();
     }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -53,11 +52,6 @@ public class NormalFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lvItems = (ListView) getView().findViewById(R.id.lvItems);
-;
-
-        listTache = new ArrayList<Tache>();
-        listTache.add(new ToDoNormal("First Item", "Premier", Difficulte.Facile,"Intelligence"));
-        listTache.add(new ToDoNormal("Second Item", "Second", Difficulte.Moyen,"Intelligence"));
         itemsAdapter = new ToDoNormalAdapter(getActivity(), listTache, R.layout.temptodo);
         lvItems.setAdapter(itemsAdapter);
     }
@@ -77,5 +71,11 @@ public class NormalFragment extends Fragment {
         Joueur.getInstance().toDoEchec(itemsAdapter.getItem(tag));
         itemsAdapter.remove(itemsAdapter.getItem(tag));
 
+    }
+
+    public void setListTache(ArrayList<Tache> todos){
+        for (Tache t : todos){
+            listTache.add(t);
+        }
     }
 }

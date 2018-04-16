@@ -6,16 +6,29 @@ package com.pm.heroofmylife.ToDo;
 
 public abstract class Tache {
 
+    private static int ID=1;
+    private int id;
     private String nom;
     private String description;
     private Difficulte diff;
     private String categ;
 
-    public Tache(String nom, String description, Difficulte diff,String categ) {
+    public Tache(int id, String nom, String description, Difficulte diff, String competence) {
+        this.id = id;
         this.nom = nom;
         this.description = description;
         this.diff = diff;
-        this.categ =categ;
+        if (this.id >= ID) {
+            ID = this.id + 1;
+        }
+    }
+    public Tache(String nom, String description, Difficulte diff,String competence) {
+        this.id = ID;
+        this.nom = nom;
+        this.description = description;
+        this.diff = diff;
+        this.categ =competence;
+        ID++;
     }
 
     @Override
@@ -26,14 +39,23 @@ public abstract class Tache {
     public Difficulte getDiff() {
         return diff;
     }
-    public String getDescription() {
 
-        return description;
-    }
     public String getCategorie(){
 
         return categ;
     }
 
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getDescription() {
+        return description;
+    }
 
 }

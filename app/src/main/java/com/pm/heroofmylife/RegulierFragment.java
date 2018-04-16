@@ -27,9 +27,9 @@ public class RegulierFragment extends Fragment {
     private ToDoRegulierAdapter itemsAdapter;
     private ArrayList<Tache> listTache;
     private ListView lvItems;
-    public RegulierFragment() {
 
-
+    public RegulierFragment () {
+        listTache = new ArrayList<Tache>();
     }
     @Nullable
     @Override
@@ -42,10 +42,6 @@ public class RegulierFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lvItems = (ListView) getView().findViewById(R.id.lvItemsregulier);
-        ;
-
-        listTache = new ArrayList<Tache>();
-
         itemsAdapter = new ToDoRegulierAdapter(getActivity(), listTache, R.layout.temptodoreg);
         lvItems.setAdapter(itemsAdapter);
     }
@@ -60,4 +56,9 @@ public class RegulierFragment extends Fragment {
         Log.i("DICJ", "regulier validé");
     }
 
+    public void setListTache(ArrayList<Tache> todos){
+        for (Tache t : todos){
+            listTache.add(t);
+        }
+    }
 }
