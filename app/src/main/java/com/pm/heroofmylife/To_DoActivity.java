@@ -45,8 +45,6 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
     private MySQLiteHelper db;
 
 
-
-
      @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -217,6 +215,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
              }
          }
          db.createToDo(todo, type);
+
      }
 
      @Override

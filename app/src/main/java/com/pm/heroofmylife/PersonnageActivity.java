@@ -11,6 +11,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.Joueur.Classe;
 import com.pm.heroofmylife.Joueur.Competence;
 import com.pm.heroofmylife.Joueur.Joueur;
@@ -27,7 +28,7 @@ import static com.pm.heroofmylife.R.id.perso_fragement;
 
 public class PersonnageActivity extends FragmentActivity {
     private Menu m;
-   // private Joueur j;
+   private MySQLiteHelper db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +36,7 @@ public class PersonnageActivity extends FragmentActivity {
 
         Intent intent = getIntent();
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
-
+        db= new MySQLiteHelper(getApplicationContext());
         initialiserPage();
     }
 
@@ -44,15 +45,15 @@ public class PersonnageActivity extends FragmentActivity {
      */
     private void initialiserPage() {
         Joueur j = Joueur.getInstance();
-    ImageView image = (ImageView) findViewById(R.id.image_personnage);
-        image.setImageResource(getImage(j.getClasse()));
 
-    TextView classe = (TextView) findViewById(R.id.class_personnage);
+        ImageView image = (ImageView) findViewById(R.id.image_personnage);
+        image.setImageResource(getImage(j.getClasse()));
+        TextView classe = (TextView) findViewById(R.id.class_personnage);
         classe.setText(j.getClasse().toString());
-    TextView niveau = (TextView) findViewById(R.id.niveau_personnage);
-    String text = niveau.getText() +" "+ Integer.toString(j.getLevel());
+        TextView niveau = (TextView) findViewById(R.id.niveau_personnage);
+        String text = niveau.getText() +" "+ Integer.toString(j.getLevel());
         niveau.setText(text);
-    ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
+        ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
 
       //  List<Competence> comps = Arrays.asList(Joueur.getInstance().getCompetences());
@@ -80,8 +81,39 @@ public class PersonnageActivity extends FragmentActivity {
         }
         return ressource;
     }
+    @Override
+    protected void onDestroy() {
+        db.updateJoueur(Joueur.getInstance());
+        db.closeDB();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        System.out.println(db.updateJoueur(Joueur.getInstance()));
+        db.closeDB();
+        super.onPause();
+    }
 
     public void chargerPage(View view) {
         m.changerActivity(view.getId());
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onStop() {
+        db.updateJoueur(Joueur.getInstance());
+        db.closeDB();
+        super.onStop();
     }
 }

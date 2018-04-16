@@ -17,7 +17,6 @@ import java.util.ArrayList;
 public class Joueur {
     static Joueur instance = null;
 
-    private String nom;
     private int level =1;
     private static final int PVMAX = 100;
     private int pv = PVMAX;
@@ -30,7 +29,6 @@ public class Joueur {
     private ArrayList<Competence> competences = new ArrayList<>();
 
     private Joueur(final Builder builder) {
-        this.nom = builder.name;
         this.classe = builder.classe;
         caracteristiques = new Caracteristique[]{new Caracteristique("Intelligence"),new Caracteristique("Force"),new Caracteristique("Agilité") };
         competences.add(new Competence("DevAndroid"));
@@ -39,11 +37,14 @@ public class Joueur {
 
     public static Joueur getInstance() {
         if (instance == null) {
-            instance = new Joueur.Builder().setName("Abruti").setClasse(Classe.Mage).create();
+          //  instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
         }
         return(instance);
     }
 
+    public static void setInstance(Joueur j){
+        instance = j;
+    }
     public void toDoEchec(Tache todo){
         int pertePV  =0;
         switch (todo.getDiff()){
@@ -158,26 +159,40 @@ public class Joueur {
     }
 
     //###BUILDER
-    static class Builder {
-        private String name;
+   public static class Builder {
         private Classe classe;
 
-        public Builder setName(final String firstName) {
-            this.name = firstName;
-            return this;
-        }
+        private int niveau;
+        private int force;
+        private int intelligence;
+        private int agilite;
 
         public Builder setClasse(final Classe c) {
             this.classe = c;
             return this;
         }
 
+        public Builder setNiveau(int niveau) {
+            this.niveau = niveau;
+            return this;
+        }
 
+        public Builder setForce(int force) {
+            this.force = force;
+            return this;
+        }
+
+        public Builder setIntelligence(int intelligence) {
+            this.intelligence = intelligence;
+            return this;
+        }
+
+        public Builder setAgilite(int agilite) {
+            this.agilite = agilite;
+            return this;
+        }
         public Joueur create() {
             Joueur j = new Joueur(this);
-            if (j.nom.isEmpty()) {
-                throw new IllegalStateException("Name can not be empty!");
-            }
             if (j.classe.name().isEmpty()) {
                 throw new IllegalStateException("Classe can not be empty!");
             }

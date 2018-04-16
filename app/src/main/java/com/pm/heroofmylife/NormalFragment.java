@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
@@ -29,7 +30,7 @@ public class NormalFragment extends Fragment {
     private ToDoNormalAdapter itemsAdapter;
     private ArrayList<Tache> listTache;
     private ListView lvItems;
-
+    private MySQLiteHelper db;
 
     public ListView getLvItems() {
         return lvItems;
@@ -43,7 +44,7 @@ public class NormalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.normaltodo,container,false);
-
+        db = new MySQLiteHelper(getContext());
         return view;
 
     }
@@ -62,7 +63,8 @@ public class NormalFragment extends Fragment {
 
     public void validerTodo(int tag) {
         Joueur.getInstance().toDoValider(itemsAdapter.getItem(tag));
-        itemsAdapter.remove(itemsAdapter.getItem(tag));
+        db.updateJoueur(Joueur.getInstance());
+     //   itemsAdapter.remove(itemsAdapter.getItem(tag));
         Log.i("DICJ", "normal validé");
     }
 

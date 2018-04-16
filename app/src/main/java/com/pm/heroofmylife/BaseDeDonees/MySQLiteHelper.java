@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.pm.heroofmylife.DeadlineFragment;
+import com.pm.heroofmylife.Joueur.Classe;
+import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
@@ -106,7 +108,23 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         return todo_id;
     }
 
-    //UPDATE
+    public long createJoueur(Joueur j) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID,0);
+        values.put(COLUMN_CLASSE, j.getClasse().toString());
+        values.put(COLUMN_NIVEAU,j.getLevel());
+        values.put(COLUMN_FORCE,j.getCaracteristiques()[1].getLevel());
+        values.put(COLUMN_INTELLIGENCE,j.getCaracteristiques()[0].getLevel());
+        values.put(COLUMN_AGILITE,j.getCaracteristiques()[2].getLevel());
+
+        // insert row
+        long id = db.insert(TABLE_PERSO, null, values);
+
+        return id;
+    }
+    //SELECT
 
     public ArrayList<Tache> getAllToDos(String type) {
         ArrayList<Tache> todos = new ArrayList<Tache>();
@@ -141,10 +159,31 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 todos.add(td);
             } while (c.moveToNext());
         }
-
+        c.close();
         return todos;
     }
 
+    public Joueur getJoueur() {
+        String selectQuery = "SELECT * FROM " + TABLE_PERSO +" WHERE "+COLUMN_ID+"=\""+0+"\"";
+
+        Log.e("LOG", selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+        Joueur j = null;
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+           String classe = c.getString(c.getColumnIndex(COLUMN_CLASSE));
+           int level = c.getInt(c.getColumnIndex(COLUMN_NIVEAU));
+           int force = c.getInt(c.getColumnIndex(COLUMN_FORCE));
+           int intelligence = c.getInt(c.getColumnIndex(COLUMN_INTELLIGENCE));
+           int agi = c.getInt(c.getColumnIndex(COLUMN_AGILITE));
+           j = new Joueur.Builder().setClasse(Classe.valueOf(classe)).setNiveau(level).setAgilite(agi).setForce(force).setIntelligence(intelligence).create();
+        }
+        c.close();
+        return j;
+    }
     //UPDATE
     public int updateToDo(Tache todo) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -160,6 +199,20 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(todo.getId()) });
     }
 
+    public int updateJoueur(Joueur j) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_CLASSE, j.getClasse().toString());
+        values.put(COLUMN_NIVEAU,j.getLevel());
+        values.put(COLUMN_FORCE,j.getCaracteristiques()[1].getLevel());
+        values.put(COLUMN_INTELLIGENCE,j.getCaracteristiques()[0].getLevel());
+        values.put(COLUMN_AGILITE,j.getCaracteristiques()[2].getLevel());
+
+        // updating row
+        return db.update(TABLE_PERSO, values, COLUMN_ID + " = ?",
+                new String[] { String.valueOf(0) });
+    }
     //DELETE
     public void deleteToDo(long tado_id) {
         SQLiteDatabase db = this.getWritableDatabase();
