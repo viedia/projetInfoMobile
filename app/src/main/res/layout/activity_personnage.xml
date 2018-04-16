@@ -9,185 +9,351 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <android.support.design.widget.AppBarLayout
-
-        android:id="@+id/appbarid"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:elevation="0dp"
-        android:gravity="center" >
-        <TextView
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appbarid"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_centerInParent="true"
-            android:padding="20px"
-            android:text="Hero of my life"
-            android:textColor="@android:color/background_light"
-            android:textSize="24sp" />
+            android:layout_height="50dp"
+            android:elevation="0dp"
+            android:gravity="center" >
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_centerInParent="true"
+                android:padding="2dp"
+                android:text="@string/hero_of_my_life"
+                android:textColor="@android:color/background_light"
+                android:textSize="25dp" />
 
-    </android.support.design.widget.AppBarLayout>
+        </android.support.design.widget.AppBarLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/appbarid"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <ImageView
+                    android:id="@+id/image_personnage"
+                    android:layout_width="0dp"
+                    android:layout_height="120dp"
+                    android:layout_margin="@dimen/text_margin"
+                    android:layout_weight="0.5"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/mage" />  <!-- Image Classe -->
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.5"
+                    android:weightSum="3"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/class_personnage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="Classe"
+                        android:layout_marginTop="10dp"
+                        android:textSize="@dimen/text_perso" /> <!-- Classe -->
+                    <TextView
+                        android:id="@+id/niveau_personnage"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:text="@string/niveau"
+                        android:textSize="@dimen/text_perso" /> <!-- Levels -->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <TextView
+                            android:id="@+id/test_exp"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.3"
+                            android:layout_height="wrap_content"
+                            android:text="@string/exp"
+                            android:textSize="@dimen/text_perso" /> <!-- "EXP" -->
+                        <ProgressBar
+                            android:layout_width="0dp"
+                            android:layout_weight="0.65"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/exp_progress"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_marginTop="6dp"
+                            android:max="100"
+                            android:minWidth="100dp" /> <!-- EXp ProgressBar -->
+
+                    </LinearLayout> <!-- EXP -->
+
+                </LinearLayout> <!-- Entête Droite -->
+
+
+            </LinearLayout> <!-- Entête -->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/text_pv"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_height="wrap_content"
+                    android:text="PV :"
+                    android:textSize="@dimen/text_perso" />
+
+                <ProgressBar
+                    android:layout_width="0dp"
+                    android:layout_weight="0.87"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pv_progress"
+                    style="@android:style/Widget.ProgressBar.Horizontal"
+                    android:layout_marginTop="6dp"
+                    android:minWidth="150dp" />
+            </LinearLayout> <!-- PV -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/text_face"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Force : "
+                        android:textSize="@dimen/text_perso" /> <!-- Force -->
+
+                    <TextView
+                        android:id="@+id/text_intelligence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Int :"
+                        android:textSize="@dimen/text_perso" /> <!-- Inteligence -->
+
+                    <TextView
+                        android:id="@+id/text_agi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Agilité :"
+                        android:textSize="@dimen/text_perso" /> <!-- Agilité -->
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/nav_Equipement"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:onClick="chargerPage"
+                        android:padding="10dp"
+                        android:src="@drawable/bouclier"
+                        android:text="@string/equipement_menu"
+                        app:backgroundTint="#303F9F"
+                        android:layout_marginLeft="2dp"/> <!-- Equipement Buton -->
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/nav_Familier"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:drawableStart="@drawable/cat"
+                        android:onClick="chargerPage"
+                        android:padding="10dp"
+                        android:src="@drawable/cat"
+                        android:text="@string/familer_menu"
+                        app:backgroundTint="#303F9F"
+                        android:layout_marginLeft="2dp"/> <!-- Pet Buton -->
+                </LinearLayout> <!-- Stats -->
+
+                <ListView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"></ListView>
+            </LinearLayout>  <!-- Partie basse -->
+        </LinearLayout>
+    </RelativeLayout>
+<!--
             <LinearLayout
                 android:id="@+id/linear_perso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/appbarid">
+
                 <ImageView
-                    android:src="@drawable/mage"
-                    android:id = "@+id/image_personnage"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/image_personnage"
+                    android:layout_width="120dp"
+                    android:layout_height="172dp"
+                    android:layout_margin="@dimen/text_margin"
                     android:layout_weight="1"
-                    android:scaleType= "fitStart"
                     android:adjustViewBounds="true"
-                    android:layout_margin="@dimen/text_margin"/>
+                    android:scaleType="fitStart"
+                    android:src="@drawable/mage"
+                    />
                 <TableLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="2">
                     <TableRow>
-
-
-
-                    <TextView
-                        android:id = "@+id/class_personnage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-
-                        android:textSize="30dp"/>
-                    <TextView
-                        android:id = "@+id/niveau_personnage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/niveau"
-                        android:layout_column="1"
-                        android:textSize="20dp"
-                        android:padding="@dimen/fab_margin"/>
+                        <TextView
+                            android:id = "@+id/class_personnage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="30dp"
+                            />
+                        <TextView
+                            android:id = "@+id/niveau_personnage"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/niveau"
+                            android:layout_column="1"
+                            android:textSize="20dp"
+                            android:padding="@dimen/fab_margin"
+                            />
                     </TableRow>
                     <TableRow>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-
                             android:text="@string/exp"
-                            android:textSize="30dp" />
+                            android:textSize="30dp"
+                            />
 
                         <ProgressBar
                             android:minWidth="100dp"
                             android:id="@+id/exp_progress"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_marginTop="15dp"
-                            android:max="100"/>
-
-
+                            android:max="100"
+                            />
                     </TableRow>
-
-
-                </TableLayout>
-
+                    </TableLayout>
             </LinearLayout>
-<TableLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_below="@id/linear_perso">
-    <TableRow>
 
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/linear_perso">
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/text_pv"
+                        android:layout_width="55dp"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_row="2"
+                        android:text="PV :"
+                        android:textSize="30dp"
+                        />
+
+                    <ProgressBar
+                        android:id="@+id/pv_progress"
+                        style="@android:style/Widget.ProgressBar.Horizontal"
+                        android:layout_alignRight="@id/text_pv"
+                        android:layout_column="2"
+                        android:layout_marginTop="15dp"
+                        android:minWidth="150dp"
+                        />
+                </TableRow>
+
+                <TableRow android:layout_width="182dp">
+                    <TextView
+                        android:id="@+id/text_face"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_row="2"
+                        android:text="Force : "
+                        android:textSize="30dp"
+                        />
+                </TableRow>
+                <TableRow>
+                    <TextView
+                        android:id="@+id/text_intelligence"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Int :"
+                        android:layout_column="1"
+                        android:layout_row="2"
+                        android:textSize="30dp"
+                        />
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:id="@+id/text_agi"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_row="2"
+                        android:text="Agilité :"
+                        android:textSize="30dp"
+                        />
+                </TableRow>
+
+                    <android.support.design.widget.FloatingActionButton
+                        android:id="@+id/nav_Equipement"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:padding="10dp"
+                        android:onClick="chargerPage"
+                        android:src="@drawable/bouclier"
+                        android:text="@string/equipement_menu"
+                        app:backgroundTint="#303F9F" />
+
+
+
+                        <android.support.design.widget.FloatingActionButton
+                            android:id="@+id/nav_Familier"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:padding="10dp"
+                            android:drawableLeft="@drawable/cat"
+                            android:onClick="chargerPage"
+                            android:src="@drawable/cat"
+                            android:text="@string/familer_menu"
+                            app:backgroundTint="#303F9F" />
+            </TableLayout>
 
         <TextView
-            android:id="@+id/text_pv"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:text="PV :"
-            android:textSize="30dp" />
-
-        <ProgressBar
-            android:id="@+id/pv_progress"
-
-            style="@android:style/Widget.ProgressBar.Horizontal"
-            android:layout_alignRight="@id/text_pv"
-            android:layout_column="2"
-            android:layout_marginTop="15dp"
-            android:minWidth="150dp" />
-    </TableRow>
-    <TableRow>
-
-
-        <TextView
-            android:id="@+id/text_face"
+            android:id = "@+id/TextCompetences"
+            android:text="Competences"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Force : "
-            android:layout_column="1"
-            android:layout_row="2"
-
-            android:textSize="30dp"
-
             />
 
-    </TableRow>
-    <TableRow>
+        <ListView
 
-
-        <TextView
-            android:id="@+id/text_intelligence"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Int :"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:textSize="30dp"
-            />
-
-    </TableRow>
-    <TableRow>
-
-
-        <TextView
-            android:id="@+id/text_agi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Agilité :"
-            android:layout_column="1"
-            android:layout_row="2"
-            android:textSize="30dp"
-            />
-
-    </TableRow>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/nav_Equipement"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:padding="10dp"
-            android:onClick="chargerPage"
-            android:src="@drawable/plus"
-            android:text="@string/equipement_menu"
-            app:backgroundTint="#303F9F" />
-
-
-
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/nav_Familier"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:padding="10dp"
-                android:drawableLeft="@drawable/cat"
-                android:onClick="chargerPage"
-                android:src="@drawable/cat"
-                android:text="@string/familer_menu"
-                app:backgroundTint="#303F9F" />
-
-
-
-
-
-
-</TableLayout>
+            android:id="@+id/ListOfCompetence"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/TextCompetences"
+            android:layout_marginStart="148dp"
+            android:layout_marginTop="160dp"
+            android:entries="@drawable/equipement"
+            android:scrollbars="vertical" />
     </RelativeLayout>
-
+!-->
 
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"

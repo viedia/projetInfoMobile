@@ -34,7 +34,7 @@ public class Joueur {
 
     public static Joueur getInstance() {
         if (instance == null) {
-            instance = new Joueur.Builder().setName("Abruti").setClasse(Classe.Guerrier).create();
+            instance = new Joueur.Builder().setName("Abruti").setClasse(Classe.Mage).create();
         }
         return(instance);
     }
@@ -107,7 +107,7 @@ public class Joueur {
     public void SetPv(int pv) {
         this.pv = pv;
         if(pv > PVMAX)
-            pv = PVMAX;
+            this.pv = PVMAX;
     }
 
     public int getLevel() {
@@ -125,7 +125,7 @@ public class Joueur {
     public void setArgent(int argent) {
         this.argent = argent;
         if(argent < 0)
-            argent = 0;
+            this.argent = 0;
     }
 
     public Classe getClasse() {
