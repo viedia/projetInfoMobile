@@ -61,4 +61,8 @@ public class RegulierFragment extends Fragment {
             listTache.add(t);
         }
     }
+
+    public void supprimer(int tag) {
+        itemsAdapter.remove(itemsAdapter.getItem(tag));
+    }
 }

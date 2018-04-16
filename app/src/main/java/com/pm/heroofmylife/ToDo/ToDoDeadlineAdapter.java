@@ -2,6 +2,7 @@ package com.pm.heroofmylife.ToDo;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
@@ -35,6 +36,7 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
         TextView champcateg =(TextView) convertView.findViewById(R.id.categorie);
         TextView Afficherdate = (TextView) convertView.findViewById(R.id.tempsrestant);
         CheckBox btn = convertView.findViewById(R.id.checkboxDeadLine);
+        FloatingActionButton suppr = convertView.findViewById(R.id.btnSuppressionDeadline);
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
@@ -45,6 +47,7 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
         Afficherdate.setText(Dateaffiche);
         btn.setTag(position);
         btn.setChecked(false);
+        suppr.setTag(position);
 
         return convertView;
     }

@@ -68,4 +68,8 @@ public class DeadlineFragment extends Fragment {
             listTache.add(t);
         }
     }
+
+    public void supprimer(int tag) {
+        itemsAdapter.remove(itemsAdapter.getItem(tag));
+    }
 }

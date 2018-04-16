@@ -1,10 +1,6 @@
 package com.pm.heroofmylife;
 
 import android.app.Dialog;
-
-import android.app.Fragment;
-import android.content.Intent;
-
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -23,7 +19,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
-import com.pm.heroofmylife.Joueur.Joueur;
 import com.pm.heroofmylife.ToDo.Difficulte;
 import com.pm.heroofmylife.ToDo.Tache;
 import com.pm.heroofmylife.ToDo.ToDoDeadline;
@@ -246,6 +241,21 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
          }
      }
 
+    public void onDelete(View view) {
+         switch (view.getId()){
+             case R.id.btnSuppressionNormal:
+                 ((NormalFragment)adapter.getItem(0)).supprimer((int)view.getTag());
+                 break;
+             case R.id.btnSuppressionReg:
+                 ((RegulierFragment)adapter.getItem(1)).supprimer((int)view.getTag());
+                 break;
+             case R.id.btnSuppressionDeadline:
+                 ((DeadlineFragment)adapter.getItem(2)).supprimer((int)view.getTag());
+                 break;
+
+
+         }
+    }
     @Override
     protected void onDestroy() {
          db.closeDB();
@@ -274,4 +284,6 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
          db.closeDB();
         super.onStop();
     }
+
+
 }

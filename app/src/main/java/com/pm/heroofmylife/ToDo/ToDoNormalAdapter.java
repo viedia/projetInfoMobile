@@ -34,6 +34,9 @@ public class ToDoNormalAdapter extends TodoAdaptater {
         TextView champcateg =(TextView) convertView.findViewById(R.id.categorie);
         FloatingActionButton smile = convertView.findViewById(R.id.btnsmile);
         FloatingActionButton notSmile = convertView.findViewById(R.id.btnnotsmile);
+        FloatingActionButton suppr = convertView.findViewById(R.id.btnSuppressionNormal);
+
+
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
@@ -42,6 +45,7 @@ public class ToDoNormalAdapter extends TodoAdaptater {
         champcateg.setText(t.getCategorie());
         smile.setTag(position);
         notSmile.setTag(position);
+        suppr.setTag(position);
 
         return convertView;
     }

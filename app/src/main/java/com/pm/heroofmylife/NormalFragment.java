@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
@@ -55,8 +56,27 @@ public class NormalFragment extends Fragment {
         lvItems = (ListView) getView().findViewById(R.id.lvItems);
         itemsAdapter = new ToDoNormalAdapter(getActivity(), listTache, R.layout.temptodo);
         lvItems.setAdapter(itemsAdapter);
+        setupListViewListener();
+
     }
 
+    // Attaches a long click listener to the listview
+    public void setupListViewListener() {
+        lvItems.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
+                        System.out.println("LISTENEr");
+                        // Remove the item within array at position
+                        itemsAdapter.remove(itemsAdapter.getItem(pos));
+                        // Refresh the adapter
+                        itemsAdapter.notifyDataSetChanged();
+                        // Return true consumes the long click event (marks it handled)
+                        return true;
+                    }
+
+                });
+    }
     public void ajouterNormalTodo(ToDoNormal t){
         itemsAdapter.add(t);
     }
@@ -79,5 +99,9 @@ public class NormalFragment extends Fragment {
         for (Tache t : todos){
             listTache.add(t);
         }
+    }
+
+    public void supprimer(int tag) {
+        itemsAdapter.remove(itemsAdapter.getItem(tag));
     }
 }

@@ -2,6 +2,7 @@ package com.pm.heroofmylife.ToDo;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -33,6 +34,7 @@ public class ToDoRegulierAdapter extends TodoAdaptater {
         TextView champcateg =(TextView) convertView.findViewById(R.id.categorie);
         TextView champfreq = (TextView) convertView.findViewById(R.id.frequence);
         CheckBox btn = convertView.findViewById(R.id.checkboxRegulier);
+        FloatingActionButton suppr = convertView.findViewById(R.id.btnSuppressionReg);
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
@@ -41,6 +43,7 @@ public class ToDoRegulierAdapter extends TodoAdaptater {
         champDesc.setText(t.getDescription());
         btn.setTag(position);
         btn.setChecked(false);
+        suppr.setTag(position);
 
         return convertView;
     }
