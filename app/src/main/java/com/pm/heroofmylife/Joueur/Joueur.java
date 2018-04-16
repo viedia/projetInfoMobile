@@ -8,6 +8,8 @@ import android.util.Log;
 import com.pm.heroofmylife.R;
 import com.pm.heroofmylife.ToDo.Tache;
 
+import java.util.ArrayList;
+
 /**
  * Created by Laetitia on 27/02/2018.
  */
@@ -24,10 +26,13 @@ public class Joueur {
     private int argent=0;
     private Classe classe;
     private Caracteristique[] caracteristiques;
+    private ArrayList<Competence> competences = new ArrayList<>();
 
     private Joueur(final Builder builder) {
         this.classe = builder.classe;
         caracteristiques = new Caracteristique[]{new Caracteristique("Intelligence"),new Caracteristique("Force"),new Caracteristique("Agilité") };
+        competences.add(new Competence("DevAndroid"));
+        competences.add(new Competence("Zenatitude"));
     }
 
     public static Joueur getInstance() {
@@ -143,6 +148,14 @@ public class Joueur {
 
     public void setCaracteristiques(Caracteristique[] caracteristiques) {
         this.caracteristiques = caracteristiques;
+    }
+
+    public ArrayList<Competence> getCompetences() {
+        return competences;
+    }
+
+    public void setCompetences(ArrayList<Competence> competences) {
+        this.competences = competences;
     }
 
     //###BUILDER

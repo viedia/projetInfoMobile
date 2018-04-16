@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -11,14 +13,20 @@ import android.widget.TextView;
 
 import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.Joueur.Classe;
+import com.pm.heroofmylife.Joueur.Competence;
 import com.pm.heroofmylife.Joueur.Joueur;
+
+import java.util.Arrays;
+import java.util.List;
+
+import static com.pm.heroofmylife.R.id.perso_fragement;
 
 
 /**
  * Created by Laetitia on 16/03/2018.
  */
 
-public class PersonnageActivity extends Activity {
+public class PersonnageActivity extends FragmentActivity {
     private Menu m;
    private MySQLiteHelper db;
 
@@ -47,7 +55,12 @@ public class PersonnageActivity extends Activity {
         niveau.setText(text);
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
-}
+
+      //  List<Competence> comps = Arrays.asList(Joueur.getInstance().getCompetences());
+
+        getSupportFragmentManager().beginTransaction().add(perso_fragement, new CompetenceFragment()).commit();
+
+    }
 
     /**
      * retourne l'image correspondant à la classe du personnage
@@ -82,6 +95,10 @@ public class PersonnageActivity extends Activity {
         super.onPause();
     }
 
+    public void chargerPage(View view) {
+        m.changerActivity(view.getId());
+    }
+
     @Override
     protected void onResume() {
 
@@ -99,5 +116,4 @@ public class PersonnageActivity extends Activity {
         db.closeDB();
         super.onStop();
     }
-
 }
