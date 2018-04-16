@@ -15,13 +15,20 @@ import java.util.Date;
  */
 
 public class ToDoDeadline extends Tache {
-    private long deadLine;
-    public ToDoDeadline(String nom, String description, Difficulte diff, long date) {
-        super(nom, description, diff);
-        deadLine= date;
 
-        Log.i("Deadline",""+deadLine);
+
+    private long deadLine;
+
+    public ToDoDeadline(String nom, String description, Difficulte diff, long date, String categ) {
+        super(nom, description, diff,categ);
+        deadLine= date;
     }
+
+    public ToDoDeadline(int id, String nom, String description, Difficulte diff, long date, String categ) {
+        super(id, nom, description, diff,categ);
+        deadLine= date;
+    }
+
 
     /**
      * Détermine si la date limite est passé
@@ -35,17 +42,19 @@ public class ToDoDeadline extends Tache {
         }
         return res;
     }
+    public long getDeadLine() {
+        return deadLine;
+    }
 
 
     public String afficheDate() {
        // long selectedDate = CurrentCalendarView.getDate();
         long currentTime = System.currentTimeMillis();
         Log.i("GFDFDGDF",""+ currentTime);
-
         long temptime = deadLine-currentTime;
         Date date=new Date(temptime);
         Date date2=new Date(deadLine);
-        SimpleDateFormat df2 = new SimpleDateFormat("d'jours'-MM'mois'-YYYY");
+        SimpleDateFormat df2 = new SimpleDateFormat("D'jours'");
         String tempsaffiche = df2.format(date);
         String tempsaffiche2 = df2.format(date2);
         Log.i("date finale",tempsaffiche2);
@@ -53,7 +62,4 @@ public class ToDoDeadline extends Tache {
 
 
     }
-
-
-
 }

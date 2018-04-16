@@ -1,0 +1,175 @@
+package com.pm.heroofmylife.BaseDeDonees;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
+import com.pm.heroofmylife.DeadlineFragment;
+import com.pm.heroofmylife.ToDo.Difficulte;
+import com.pm.heroofmylife.ToDo.Tache;
+import com.pm.heroofmylife.ToDo.ToDoDeadline;
+import com.pm.heroofmylife.ToDo.ToDoNormal;
+import com.pm.heroofmylife.ToDo.ToDoRegulier;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by Laetitia on 10/04/2018.
+ */
+
+public class MySQLiteHelper extends SQLiteOpenHelper {
+    //table TODO
+    public static final String TABLE_TODO = "Todo";
+    public static final String COLUMN_ID = "_id";
+    public static final String COLUMN_NOM = "nom";
+    public static final String COLUMN_DESCRIPTION = "description";
+    public static final String COLUMN_DIFFICULTE = "difficulte";
+    public static final String COLUMN_TYPE = "type";
+    public static final String COLUMN_FREQUENCE = "frequence";
+    public static final String COLUMN_DATE = "date";
+    //Table PERSONNAGE
+    public static final String TABLE_PERSO = "Personnage";
+    public static final String COLUMN_CLASSE = "classe";
+    public static final String COLUMN_NIVEAU = "niveau";
+    public static final String COLUMN_FORCE = "force";
+    public static final String COLUMN_INTELLIGENCE = "intelligence";
+    public static final String COLUMN_AGILITE = "agilite";
+
+    private static final String DATABASE_NAME = "heroofmylife.db";
+
+    private static final int DATABASE_VERSION = 1;
+
+    // Commande sql pour la création de la base de données
+    private static final String CREATE_TODO = "create table "+ TABLE_TODO + "("
+                                +COLUMN_ID + " integer primary key autoincrement, "
+                                +COLUMN_NOM + " text not null, "
+                                +COLUMN_DESCRIPTION+ " text not null, "
+                                +COLUMN_DIFFICULTE+ " text not null, "
+                                +COLUMN_TYPE+ " text not null, "
+                                +COLUMN_FREQUENCE+ " integer, "
+                                +COLUMN_DATE+ " long "+");";
+    private static final String CREATE_PERSO = "create table "+ TABLE_PERSO + "("
+            +COLUMN_ID + " integer primary key autoincrement, "
+            +COLUMN_CLASSE + " text not null, "
+            +COLUMN_NIVEAU+ " integer not null, "
+            +COLUMN_FORCE+ " integer not null, "
+            +COLUMN_INTELLIGENCE+ " integer not null, "
+            +COLUMN_AGILITE+ " integer not null "+");";
+
+    public MySQLiteHelper(Context context) {
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL(CREATE_TODO);
+        sqLiteDatabase.execSQL(CREATE_PERSO);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+        // on upgrade drop older tables
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSO);
+
+        // create new tables
+        onCreate(sqLiteDatabase);
+    }
+
+    //fonction CREATE
+    public long createToDo(Tache todo,String type) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, todo.getId());
+        values.put(COLUMN_NOM, todo.getNom());
+        values.put(COLUMN_DESCRIPTION, todo.getDescription());
+        values.put(COLUMN_DIFFICULTE, todo.getDiff().toString());
+        values.put(COLUMN_TYPE,type.toLowerCase());
+
+        switch (type.toLowerCase()){
+            case "deadline":
+                values.put(COLUMN_DATE, ((ToDoDeadline)todo).getDeadLine());
+                break;
+            case "frequence":
+                values.put(COLUMN_FREQUENCE, ((ToDoRegulier)todo).getFrequence().toString());
+                break;
+        }
+
+        // insert row
+        long todo_id = db.insert(TABLE_TODO, null, values);
+
+        return todo_id;
+    }
+
+    //UPDATE
+
+    public ArrayList<Tache> getAllToDos(String type) {
+        ArrayList<Tache> todos = new ArrayList<Tache>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO + " WHERE "+ COLUMN_TYPE + " = \"" + type.toLowerCase()+"\"";
+
+        Log.e("LOG", selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                int id = c.getInt(c.getColumnIndex(COLUMN_ID));
+                String nom =c.getString(c.getColumnIndex(COLUMN_NOM));
+                String desc = c.getString(c.getColumnIndex(COLUMN_DESCRIPTION));
+                String diff =  c.getString(c.getColumnIndex(COLUMN_DIFFICULTE));
+                Tache td= null;
+                switch(c.getString(c.getColumnIndex(COLUMN_TYPE))){
+                    case "deadline":
+                        td = new ToDoDeadline(id,nom, desc, Difficulte.valueOf(diff), c.getLong(c.getColumnIndex(COLUMN_DATE)), null);
+                        break;
+                    case "frequence":
+                        td = new ToDoRegulier(id,nom, desc, Difficulte.valueOf(diff),  c.getString(c.getColumnIndex(COLUMN_FREQUENCE)), null);
+                        break;
+                    default:
+                        td = new ToDoNormal(id, nom, desc, Difficulte.valueOf(diff), null);
+                        break;
+                }
+
+                // adding to todo list
+                todos.add(td);
+            } while (c.moveToNext());
+        }
+
+        return todos;
+    }
+
+    //UPDATE
+    public int updateToDo(Tache todo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(COLUMN_ID, todo.getId());
+        values.put(COLUMN_NOM, todo.getNom());
+        values.put(COLUMN_DESCRIPTION, todo.getDescription());
+        values.put(COLUMN_DIFFICULTE, todo.getDiff().toString());
+
+        // updating row
+        return db.update(TABLE_TODO, values, COLUMN_ID + " = ?",
+                new String[] { String.valueOf(todo.getId()) });
+    }
+
+    //DELETE
+    public void deleteToDo(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TODO, COLUMN_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+    }
+
+    public void closeDB() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        if (db != null && db.isOpen())
+            db.close();
+    }
+}

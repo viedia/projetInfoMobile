@@ -5,18 +5,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.Joueur.Classe;
 import com.pm.heroofmylife.Joueur.Joueur;
 
 public class MainActivity extends AppCompatActivity {
     private Menu m;
-    private Joueur j;
+    MySQLiteHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
+        db = new MySQLiteHelper(getApplicationContext());
     }
 
     public void chargerPage(View view) {
