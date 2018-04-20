@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class CompetenceFragment extends android.support.v4.app.Fragment
 {
-    View view;
+   /* View view;
     private CompetencesAdapter itemsAdapter;
     private ArrayList<Competence> listCompetences;
     private ListView lvItems;
@@ -55,6 +55,6 @@ public class CompetenceFragment extends android.support.v4.app.Fragment
         lvItems.setAdapter(itemsAdapter);
     }
 
-
+*/
 
 }

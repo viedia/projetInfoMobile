@@ -22,9 +22,9 @@
 
     <string name="competence_name">Choisir une Compétence</string>
     <string-array name="competence">
-        <item>Physique</item>
+        <item>Force</item>
         <item>Intelligence</item>
-        <item>Mental</item>
+        <item>Agilite</item>
     </string-array>
 
     <string name="todotypes_name">Choisir un Type</string>

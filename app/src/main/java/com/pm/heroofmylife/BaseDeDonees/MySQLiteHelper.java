@@ -30,6 +30,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_NOM = "nom";
     public static final String COLUMN_DESCRIPTION = "description";
     public static final String COLUMN_DIFFICULTE = "difficulte";
+    private static final String COLUMN_CARACTERISTIQUE = "caracteristique";
     public static final String COLUMN_TYPE = "type";
     public static final String COLUMN_FREQUENCE = "frequence";
     public static final String COLUMN_DATE = "date";
@@ -45,12 +46,14 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
     private static final int DATABASE_VERSION = 1;
 
+
     // Commande sql pour la création de la base de données
     private static final String CREATE_TODO = "create table "+ TABLE_TODO + "("
                                 +COLUMN_ID + " integer primary key autoincrement, "
                                 +COLUMN_NOM + " text not null, "
                                 +COLUMN_DESCRIPTION+ " text not null, "
                                 +COLUMN_DIFFICULTE+ " text not null, "
+                                +COLUMN_CARACTERISTIQUE+" integer not null, "
                                 +COLUMN_TYPE+ " text not null, "
                                 +COLUMN_FREQUENCE+ " integer, "
                                 +COLUMN_DATE+ " long "+");";
@@ -92,6 +95,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         values.put(COLUMN_DESCRIPTION, todo.getDescription());
         values.put(COLUMN_DIFFICULTE, todo.getDiff().toString());
         values.put(COLUMN_TYPE,type.toLowerCase());
+        values.put(COLUMN_CARACTERISTIQUE, todo.getCategorie());
 
         switch (type.toLowerCase()){
             case "deadline":
@@ -142,16 +146,17 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 String nom =c.getString(c.getColumnIndex(COLUMN_NOM));
                 String desc = c.getString(c.getColumnIndex(COLUMN_DESCRIPTION));
                 String diff =  c.getString(c.getColumnIndex(COLUMN_DIFFICULTE));
+                int caracteristique = c.getInt(c.getColumnIndex(COLUMN_CARACTERISTIQUE));
                 Tache td= null;
                 switch(c.getString(c.getColumnIndex(COLUMN_TYPE))){
                     case "deadline":
-                        td = new ToDoDeadline(id,nom, desc, Difficulte.valueOf(diff), c.getLong(c.getColumnIndex(COLUMN_DATE)), null);
+                        td = new ToDoDeadline(id,nom, desc, Difficulte.valueOf(diff), c.getLong(c.getColumnIndex(COLUMN_DATE)), caracteristique);
                         break;
                     case "frequence":
-                        td = new ToDoRegulier(id,nom, desc, Difficulte.valueOf(diff),  c.getString(c.getColumnIndex(COLUMN_FREQUENCE)), null);
+                        td = new ToDoRegulier(id,nom, desc, Difficulte.valueOf(diff),  c.getString(c.getColumnIndex(COLUMN_FREQUENCE)), caracteristique);
                         break;
                     default:
-                        td = new ToDoNormal(id, nom, desc, Difficulte.valueOf(diff), null);
+                        td = new ToDoNormal(id, nom, desc, Difficulte.valueOf(diff), caracteristique);
                         break;
                 }
 

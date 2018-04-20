@@ -8,11 +8,16 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 
+import com.pm.heroofmylife.Joueur.Competence;
 import com.pm.heroofmylife.Joueur.Joueur;
+
+import java.util.ArrayList;
 
 public class EquipementActivity extends AppCompatActivity {
     private Menu m;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +26,7 @@ public class EquipementActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         m = new Menu((NavigationView) findViewById(R.id.nav_view), this);
+
 
     }
 

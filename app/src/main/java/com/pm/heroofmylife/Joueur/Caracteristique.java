@@ -11,7 +11,7 @@ public class Caracteristique {
     private String nom;
     private int level=1;
     private int exp = 0;
-    private int expMax = 100;
+    private static int EXPMAX = 100;
 
     //************************COMMENT -» LevelMax ? ********************************
     // COMMENT -» Est ce qu'il faut plus d'exp plus le niveau est haut ? (niveau 1 -> 100ExpMax VS niveau 100 -> 10000ExpMax) ******************************
@@ -36,24 +36,8 @@ public class Caracteristique {
         this.level = level;
     }
 
-    public int getExp() {
-        return exp;
-    }
 
-    public void setExp(int exp) {
-        this.exp = exp;
-        if(exp > expMax) //Si il a assez d'exp, le joueur passe de niveau et perd l'exp pour un niveau
-        {
-            level+= 1;
-            exp = expMax - exp;
-        }
-    }
-
-    public int getExpMax() {
-        return expMax;
-    }
-
-    public void setExpMax(int expMax) {
-        this.expMax = expMax;
+    public void gagnerLevel(int i) {
+        this.level+=i;
     }
 }

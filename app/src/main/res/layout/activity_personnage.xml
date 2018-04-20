@@ -46,7 +46,8 @@
                     android:layout_height="120dp"
                     android:layout_margin="@dimen/text_margin"
                     android:layout_weight="0.5"
-                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:scaleType="fitStart"
                     android:src="@drawable/mage" />  <!-- Image Classe -->
 
                 <LinearLayout
@@ -171,39 +172,50 @@
                         android:text="@string/agilite_Abr"
                         android:textSize="@dimen/text_perso" /> <!-- Agilité -->
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/nav_Equipement"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="@dimen/perso_margin_left"
-                        android:layout_marginTop="@dimen/perso_margin_top"
-                        android:onClick="chargerPage"
-                        android:padding="10dp"
-                        android:src="@drawable/bouclier"
-                        android:text="@string/equipement_menu"
-                        app:backgroundTint="#303F9F" /> <!-- Equipement Buton -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
-                    <android.support.design.widget.FloatingActionButton
-                        android:id="@+id/nav_Familier"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="@dimen/perso_margin_left"
-                        android:layout_marginTop="@dimen/perso_margin_top"
-                        android:drawableStart="@drawable/cat"
-                        android:onClick="chargerPage"
-                        android:padding="10dp"
-                        android:src="@drawable/cat"
-                        android:text="@string/familer_menu"
-                        app:backgroundTint="#303F9F" />/> <!-- Pet Buton -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/nav_Equipement"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginLeft="@dimen/perso_margin_left"
+                                android:layout_marginTop="@dimen/perso_margin_top"
+                                android:onClick="chargerPage"
+                                android:padding="10dp"
+                                android:src="@drawable/bouclier"
+                                android:text="@string/equipement_menu"
+                                app:backgroundTint="#303F9F" /> <!-- Equipement Buton -->
+
+                            <android.support.design.widget.FloatingActionButton
+                                android:id="@+id/nav_Familier"
+                                android:layout_width="100dp"
+                                android:layout_height="100dp"
+                                android:layout_marginLeft="@dimen/perso_margin_left"
+                                android:layout_marginTop="@dimen/perso_margin_top"
+                                android:drawableStart="@drawable/cat"
+                                android:onClick="chargerPage"
+                                android:padding="10dp"
+                                android:src="@drawable/cat"
+                                android:text="@string/familer_menu"
+                                app:backgroundTint="#303F9F" />/> <!-- Pet Buton -->
+                        </LinearLayout>
+
+                        <ListView
+                            android:id="@+id/list_competences"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"></ListView>
+                    </LinearLayout>
                 </LinearLayout> <!-- Stats -->
 
-                <FrameLayout
 
-                    android:id="@+id/perso_fragement"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                </FrameLayout> <!-- Competences -->
 
 
             </LinearLayout>  <!-- Partie basse -->

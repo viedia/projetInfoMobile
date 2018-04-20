@@ -16,10 +16,10 @@ import com.pm.heroofmylife.Joueur.Classe;
 import com.pm.heroofmylife.Joueur.Competence;
 import com.pm.heroofmylife.Joueur.Joueur;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.pm.heroofmylife.R.id.perso_fragement;
 
 
 /**
@@ -29,6 +29,9 @@ import static com.pm.heroofmylife.R.id.perso_fragement;
 public class PersonnageActivity extends FragmentActivity {
     private Menu m;
    private MySQLiteHelper db;
+    private CompetencesAdapter itemsAdapter;
+    private ArrayList<Competence> listCompetences;
+    private ListView lvItems;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,9 +62,13 @@ public class PersonnageActivity extends FragmentActivity {
         TextView argent = (TextView) findViewById(R.id.text_argent);
         argent.setText(argent.getText() +" "+ Joueur.getInstance().getArgent());
 
+        lvItems = (ListView) this.findViewById(R.id.list_competences);
+        itemsAdapter = new CompetencesAdapter(this, Joueur.getInstance().getCompetences(), R.layout.tempcompetence);
+        lvItems.setAdapter(itemsAdapter);
+
       //  List<Competence> comps = Arrays.asList(Joueur.getInstance().getCompetences());
 
-        getSupportFragmentManager().beginTransaction().add(perso_fragement, new CompetenceFragment()).commit();
+       // getSupportFragmentManager().beginTransaction().add(perso_fragement, new CompetenceFragment()).commit();
 
     }
 
