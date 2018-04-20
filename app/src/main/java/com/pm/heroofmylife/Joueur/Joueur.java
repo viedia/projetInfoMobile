@@ -37,7 +37,7 @@ public class Joueur {
 
     public static Joueur getInstance() {
         if (instance == null) {
-          //  instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
+          instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
         }
         return(instance);
     }

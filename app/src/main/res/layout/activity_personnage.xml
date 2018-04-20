@@ -98,6 +98,13 @@
 
                     </LinearLayout> <!-- EXP -->
 
+                    <TextView
+                        android:id="@+id/text_argent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Argent :"
+                        android:textSize="@dimen/text_perso" /> <!-- Argent -->
+
                 </LinearLayout> <!-- Entête Droite -->
 
 
@@ -114,6 +121,7 @@
                     android:layout_width="0dp"
                     android:layout_weight="0.1"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/perso_margin_left"
                     android:text="PV :"
                     android:textSize="@dimen/text_perso" />
 
@@ -143,6 +151,7 @@
                         android:id="@+id/text_face"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/perso_margin_left"
                         android:text="Force : "
                         android:textSize="@dimen/text_perso" /> <!-- Force -->
 
@@ -150,6 +159,7 @@
                         android:id="@+id/text_intelligence"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/perso_margin_left"
                         android:text="Int :"
                         android:textSize="@dimen/text_perso" /> <!-- Inteligence -->
 
@@ -157,6 +167,7 @@
                         android:id="@+id/text_agi"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/perso_margin_left"
                         android:text="Agilité :"
                         android:textSize="@dimen/text_perso" /> <!-- Agilité -->
 
@@ -164,33 +175,35 @@
                         android:id="@+id/nav_Equipement"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="@dimen/perso_margin_left"
+                        android:layout_marginTop="@dimen/perso_margin_top"
                         android:onClick="chargerPage"
                         android:padding="10dp"
                         android:src="@drawable/bouclier"
                         android:text="@string/equipement_menu"
-                        app:backgroundTint="#303F9F"
-                        android:layout_marginLeft="2dp"/> <!-- Equipement Buton -->
+                        app:backgroundTint="#303F9F" /> <!-- Equipement Buton -->
 
                     <android.support.design.widget.FloatingActionButton
                         android:id="@+id/nav_Familier"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
+                        android:layout_marginLeft="@dimen/perso_margin_left"
+                        android:layout_marginTop="@dimen/perso_margin_top"
                         android:drawableStart="@drawable/cat"
                         android:onClick="chargerPage"
                         android:padding="10dp"
                         android:src="@drawable/cat"
                         android:text="@string/familer_menu"
-                        app:backgroundTint="#303F9F"
-                        android:layout_marginLeft="2dp"/> <!-- Pet Buton -->
+                        app:backgroundTint="#303F9F" />/> <!-- Pet Buton -->
                 </LinearLayout> <!-- Stats -->
 
-               <FrameLayout
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:id="@+id/perso_fragement">
+                <FrameLayout
 
-               </FrameLayout>
+                    android:id="@+id/perso_fragement"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
+                </FrameLayout> <!-- Competences -->
 
 
             </LinearLayout>  <!-- Partie basse -->

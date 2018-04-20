@@ -56,6 +56,9 @@ public class PersonnageActivity extends FragmentActivity {
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
 
+        TextView argent = (TextView) findViewById(R.id.text_argent);
+        argent.setText(argent.getText() +" "+ Joueur.getInstance().getArgent());
+
       //  List<Competence> comps = Arrays.asList(Joueur.getInstance().getCompetences());
 
         getSupportFragmentManager().beginTransaction().add(perso_fragement, new CompetenceFragment()).commit();
