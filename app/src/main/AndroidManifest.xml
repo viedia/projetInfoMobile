@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".PersonnageActivity"
-            android:label="@string/personnage_name"
+            android:label="@string/personnage_menu"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait">
             <meta-data
