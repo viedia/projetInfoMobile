@@ -52,11 +52,14 @@ public class PersonnageActivity extends FragmentActivity {
 
         ImageView image = (ImageView) findViewById(R.id.image_personnage);
         image.setImageResource(getImage(j.getClasse()));
+
         TextView classe = (TextView) findViewById(R.id.class_personnage);
         classe.setText(j.getClasse().toString());
+
         TextView niveau = (TextView) findViewById(R.id.niveau_personnage);
         String text = niveau.getText() +" "+ Integer.toString(j.getLevel());
         niveau.setText(text);
+
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
         Caracteristique[] valueCaract =j.getCaracteristiques();
@@ -78,10 +81,7 @@ public class PersonnageActivity extends FragmentActivity {
         itemsAdapter = new CompetencesAdapter(this, Joueur.getInstance().getCompetences(), R.layout.tempcompetence);
         lvItems.setAdapter(itemsAdapter);
 
-      //  List<Competence> comps = Arrays.asList(Joueur.getInstance().getCompetences());
-
-
-    }
+        }
 
     /**
      * retourne l'image correspondant à la classe du personnage
