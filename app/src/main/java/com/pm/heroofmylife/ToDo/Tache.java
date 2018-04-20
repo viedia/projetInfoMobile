@@ -22,6 +22,8 @@ public abstract class Tache {
             ID = this.id + 1;
         }
     }
+
+    
     public Tache(String nom, String description, Difficulte diff,String competence) {
         this.id = ID;
         this.nom = nom;

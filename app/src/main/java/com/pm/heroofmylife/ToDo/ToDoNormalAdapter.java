@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.pm.heroofmylife.R;
@@ -32,9 +34,9 @@ public class ToDoNormalAdapter extends TodoAdaptater {
         TextView champDiff = (TextView) convertView.findViewById(R.id.difficulte);
         TextView champDesc = (TextView) convertView.findViewById(R.id.description);
         TextView champcateg =(TextView) convertView.findViewById(R.id.categorie);
-        FloatingActionButton smile = convertView.findViewById(R.id.btnsmile);
-        FloatingActionButton notSmile = convertView.findViewById(R.id.btnnotsmile);
-        FloatingActionButton suppr = convertView.findViewById(R.id.btnSuppressionNormal);
+        ImageButton smile = convertView.findViewById(R.id.btnsmile);
+        ImageButton notSmile = convertView.findViewById(R.id.btnnotsmile);
+        ImageButton suppr = convertView.findViewById(R.id.btnSuppressionNormal);
 
 
 
