@@ -24,4 +24,31 @@
     <string name="date">Deadline :</string>
     <string name="fermer">Close</string>
     <string name="ajouter">Add</string>
+
+    <!--String Array!-->
+    <string-array name="difficulté">
+        <item>Hard</item>
+        <item>Medium</item>
+        <item>Easy</item>
+    </string-array>
+
+    <string-array name="competence">
+        <item>Strength</item>
+        <item>Intelligence</item>
+        <item>Agility</item>
+    </string-array>
+
+    <string-array name="todotypes">
+        <item>Simple</item>
+        <item>Regulier</item>
+        <item>Deadline</item>
+    </string-array>
+
+    <string-array name="frequence">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Annual</item>
+
+    </string-array>
 </resources>
