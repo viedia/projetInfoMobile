@@ -12,6 +12,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
+import com.pm.heroofmylife.Joueur.Caracteristique;
 import com.pm.heroofmylife.Joueur.Classe;
 import com.pm.heroofmylife.Joueur.Competence;
 import com.pm.heroofmylife.Joueur.Joueur;
@@ -58,9 +59,20 @@ public class PersonnageActivity extends FragmentActivity {
         niveau.setText(text);
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
+        Caracteristique[] valueCaract =j.getCaracteristiques();
+        TextView caract = (TextView)findViewById(R.id.text_intelligence);
+        text = caract.getText() + String.valueOf(valueCaract[1].getLevel());
+        caract.setText(text);
+        caract =(TextView)findViewById(R.id.text_force);
+        text = caract.getText() + String.valueOf(valueCaract[0].getLevel());
+        caract.setText(text);
+        caract =(TextView)findViewById(R.id.text_agi);
+        text = caract.getText() + String.valueOf(valueCaract[2].getLevel());
+        caract.setText(text);
 
         TextView argent = (TextView) findViewById(R.id.text_argent);
-        argent.setText(argent.getText() +" "+ Joueur.getInstance().getArgent());
+        text = argent.getText() +" "+ String.valueOf(j.getArgent())
+        argent.setText(text);
 
         lvItems = (ListView) this.findViewById(R.id.list_competences);
         itemsAdapter = new CompetencesAdapter(this, Joueur.getInstance().getCompetences(), R.layout.tempcompetence);
