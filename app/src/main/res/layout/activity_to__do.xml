@@ -32,7 +32,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerInParent="true"
                 android:padding="20px"
-                android:text="Hero of my life"
+                android:text="@string/hero_of_my_life"
                 android:textColor="@android:color/background_light"
                 android:textSize="24sp" />
 
@@ -67,10 +67,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:backgroundTint="#303F9F"
-            android:text="Add Item"
             android:id="@+id/btnAddItem"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
             android:onClick="onAddItem"/>
 

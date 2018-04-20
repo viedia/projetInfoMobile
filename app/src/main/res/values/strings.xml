@@ -1,6 +1,7 @@
 <resources>
     <!--String Titre!-->
     <string name="app_name" translatable="false">HeroOfMyLife</string>
+    <string name="hero_of_my_life" translatable="false">Hero of my life</string>
     <string name="title_activity_equipement" translatable="false">EquipementActivity</string>
     <string name="title_activity_familier" translatable="false">FamilierActivity</string>
 
@@ -84,7 +85,19 @@
     </string>
     <string name="niveau">Niveau</string>
     <string name="exp" translatable="false">EXP :</string>
-    <string name="hero_of_my_life" translatable="false">Hero of my life</string>
+    <string name="classe">Classe</string>
+    <string name="argent">Argent :</string>
+    <string name="pv">PV :</string>
+    <string name="force_Abr">FOR :</string>
+    <string name="intelligne_Abr" translatable="false">INT :</string>
+    <string name="agilite_Abr" translatable="false">AGI :</string>
+    <string name="nom">Nom :</string>
+    <string name="description">Description :</string>
+    <string name="difficulte">Difficulte :</string>
+    <string name="competence">Competence :</string>
+    <string name="date">Date de fin :</string>
+    <string name="fermer">Fermer</string>
+    <string name="ajouter">Ajouter</string>
 
 
 </resources>

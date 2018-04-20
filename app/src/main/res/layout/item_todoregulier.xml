@@ -19,7 +19,7 @@
             android:id="@+id/name_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name : "
+            android:text="@string/nom"
 
             android:textSize="20sp" />
 
@@ -27,11 +27,7 @@
             android:id="@+id/edit_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/name_title"
-
             android:textSize="20sp" />
-
-
 
     </TableRow>
 
@@ -42,15 +38,13 @@
             android:id="@+id/description_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Description : "
+            android:text="@string/description"
             android:textSize="20sp" />
 
         <EditText
             android:id="@+id/edit_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/description_title"
-
             android:textSize="20sp" />
 
 
@@ -65,14 +59,13 @@
             android:id="@+id/difficulte_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Difficulte : "
+            android:text="@string/difficulte"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_difficulte"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/difficulte_title"
             android:entries="@array/difficulté"
             android:prompt="@string/difficulte_name"
             android:textSize="20sp" />
@@ -86,14 +79,13 @@
             android:id="@+id/competence_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Competences : "
+            android:text="@string/competence"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_competence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/competence_title"
             android:entries="@array/competence"
             android:prompt="@string/competence_name"
             android:textSize="20sp" />
@@ -108,14 +100,13 @@
             android:id="@+id/frequence_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fréquence : "
+            android:text="@string/frequence_name"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/spinner_frequence"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/frequence_title"
             android:entries="@array/frequence"
             android:prompt="@string/frequence_name"
             android:textSize="20sp" />
@@ -128,16 +119,12 @@
         android:id="@+id/task_delete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Close" />
+        android:text="@string/fermer" />
     <Button
         android:id="@+id/task_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:text="Add" />
+        android:text="@string/ajouter" />
     </TableRow>
 </TableLayout>
 
