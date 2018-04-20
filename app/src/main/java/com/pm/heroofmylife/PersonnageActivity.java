@@ -48,18 +48,19 @@ public class PersonnageActivity extends FragmentActivity {
 
         ImageView image = (ImageView) findViewById(R.id.image_personnage);
         image.setImageResource(getImage(j.getClasse()));
+
         TextView classe = (TextView) findViewById(R.id.class_personnage);
         classe.setText(j.getClasse().toString());
+
         TextView niveau = (TextView) findViewById(R.id.niveau_personnage);
         String text = niveau.getText() +" "+ Integer.toString(j.getLevel());
         niveau.setText(text);
+
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
 
         TextView argent = (TextView) findViewById(R.id.text_argent);
         argent.setText(argent.getText() +" "+ Joueur.getInstance().getArgent());
-
-      //  List<Competence> comps = Arrays.asList(Joueur.getInstance().getCompetences());
 
         getSupportFragmentManager().beginTransaction().add(perso_fragement, new CompetenceFragment()).commit();
 
