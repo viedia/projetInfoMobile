@@ -8,13 +8,19 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+
+import com.pm.heroofmylife.Joueur.Competence;
 import com.pm.heroofmylife.Joueur.Joueur;
+
+import java.util.ArrayList;
 
 public class EquipementActivity extends AppCompatActivity {
     private Menu m;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class EquipementActivity extends AppCompatActivity {
 
         TextView argent = (TextView) findViewById(R.id.text_argent);
         argent.setText("Argent: "+ Joueur.getInstance().getArgent());
+
     }
 
 

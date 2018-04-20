@@ -183,26 +183,26 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
          Spinner spinner = (Spinner) v.findViewById(R.id.spinner_difficulte);
          String difficulte = spinner.getSelectedItem().toString();
          spinner = (Spinner) v.findViewById(R.id.spinner_competence);
-         String competence = spinner.getSelectedItem().toString();
+         int competence = spinner.getSelectedItemPosition();
          Tache todo = null;
          String type ="";
          switch (numeroFragement){ //cas fragement Normal
              case 0:{
-                 todo = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte),null);
+                 todo = new ToDoNormal(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte),competence);
                  ((NormalFragment)fragement).ajouterNormalTodo((ToDoNormal)todo);
                  type = "Normal";
                  break;
              }
              case 1: {//cas fragement Regulier
                  spinner = v.findViewById(R.id.spinner_frequence);
-                 todo = new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString(),null);
+                 todo = new ToDoRegulier(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), spinner.getSelectedItem().toString(),competence);
                  ((RegulierFragment) fragement).ajouterRegulierTodo((ToDoRegulier)todo);
                  type = "Regulier";
                  break;
              }
              case 2: { //cas fragement Deadline
                  CalendarView date = v.findViewById(R.id.simpleCalendarView);
-                 todo = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time,null);
+                 todo = new ToDoDeadline(name.getText().toString(), description.getText().toString(), Difficulte.valueOf(difficulte), time,competence);
                  ((DeadlineFragment) fragement).ajouterDeadlineTodo((ToDoDeadline)todo);
                  type = "Deadline";
 

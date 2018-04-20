@@ -1,9 +1,9 @@
 <resources>
     <!--String Titre!-->
-    <string name="app_name">HeroOfMyLife</string>
-    <string name="title_activity_equipement">EquipementActivity</string>
-    <string name="title_activity_familier">FamilierActivity</string>
-    <string name="personnage_name">Personnage</string>
+    <string name="app_name" translatable="false">HeroOfMyLife</string>
+    <string name="hero_of_my_life" translatable="false">Hero of my life</string>
+    <string name="title_activity_equipement" translatable="false">EquipementActivity</string>
+    <string name="title_activity_familier" translatable="false">FamilierActivity</string>
 
     <!--String du Menu!-->
     <string name="personnage_menu">Personnage</string>
@@ -22,9 +22,9 @@
 
     <string name="competence_name">Choisir une Compétence</string>
     <string-array name="competence">
-        <item>Physique</item>
+        <item>Force</item>
         <item>Intelligence</item>
-        <item>Mental</item>
+        <item>Agilite</item>
     </string-array>
 
     <string name="todotypes_name">Choisir un Type</string>
@@ -47,8 +47,8 @@
     <string name="force">Force</string>
     <string name="agilite">Agilité</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="large_text">
+    <string name="action_settings">Parametre</string>
+    <string name="large_text" translatable="false">
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."
@@ -83,9 +83,21 @@
 
         "3D world.\n\n"
     </string>
-    <string name="niveau">niveau</string>
-    <string name="exp">EXP :</string>
-    <string name="hero_of_my_life">Hero of my life</string>
+    <string name="niveau">Niveau</string>
+    <string name="exp" translatable="false">EXP :</string>
+    <string name="classe">Classe</string>
+    <string name="argent">Argent :</string>
+    <string name="pv">PV :</string>
+    <string name="force_Abr">FOR :</string>
+    <string name="intelligne_Abr" translatable="false">INT :</string>
+    <string name="agilite_Abr" translatable="false">AGI :</string>
+    <string name="nom">Nom :</string>
+    <string name="description">Description :</string>
+    <string name="difficulte">Difficulte :</string>
+    <string name="competence">Competence :</string>
+    <string name="date">Date de fin :</string>
+    <string name="fermer">Fermer</string>
+    <string name="ajouter">Ajouter</string>
 
 
 </resources>

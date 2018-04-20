@@ -35,7 +35,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="244dp"
-            android:text="Familier" />
+            android:text="@string/title_activity_familier" />
 
 </RelativeLayout>
     <android.support.design.widget.NavigationView

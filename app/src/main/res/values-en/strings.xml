@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="personnage_menu">Player</string>
+    <string name="equipement_menu">Equipment</string>
+    <string name="familer_menu">Pet</string>
+    <string name="to_do_menu">To-Do</string>
+    <string name="difficulte_name">To choose a difficult</string>
+    <string name="competence_name">To choose a skill</string>
+    <string name="todotypes_name">To choose a type</string>
+    <string name="frequence_name">Frequency :</string>
+    <string name="Intelligence">Intelligence</string>
+    <string name="force">Strength</string>
+    <string name="agilite">Agility</string>
+    <string name="action_settings">Settings</string>
+    <string name="niveau">Level</string>
+    <string name="classe">Classe</string>
+    <string name="pv">PV :</string>
+    <string name="nom">Nom :</string>
+    <string name="argent">Gold :</string>
+    <string name="force_Abr">STR :</string>
+    <string name="description">Description :</string>
+    <string name="difficulte">Difficult :</string>
+    <string name="competence">Skill :</string>
+    <string name="date">Deadline :</string>
+    <string name="fermer">Close</string>
+    <string name="ajouter">Add</string>
+
+    <!--String Array!-->
+    <string-array name="difficulté">
+        <item>Hard</item>
+        <item>Medium</item>
+        <item>Easy</item>
+    </string-array>
+
+    <string-array name="competence">
+        <item>Strength</item>
+        <item>Intelligence</item>
+        <item>Agility</item>
+    </string-array>
+
+    <string-array name="todotypes">
+        <item>Simple</item>
+        <item>Regulier</item>
+        <item>Deadline</item>
+    </string-array>
+
+    <string-array name="frequence">
+        <item>Daily</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+        <item>Annual</item>
+
+    </string-array>
+</resources>

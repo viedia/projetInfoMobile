@@ -30,7 +30,7 @@ public class Joueur {
 
     private Joueur(final Builder builder) {
         this.classe = builder.classe;
-        caracteristiques = new Caracteristique[]{new Caracteristique("Intelligence"),new Caracteristique("Force"),new Caracteristique("Agilité") };
+        caracteristiques = new Caracteristique[]{new Caracteristique("Force"),new Caracteristique("Intelligence"),new Caracteristique("Agilité") };
         competences.add(new Competence("DevAndroid"));
         competences.add(new Competence("Zenatitude"));
     }
@@ -75,7 +75,7 @@ public class Joueur {
     public void toDoValider(Tache todo){
         int gainXP=0;
         int gainOR = 0;
-        switch (todo.getDiff()){
+        switch (todo.getDiff()) {
             case Facile:
                 gainXP = 5;
                 gainOR = 10;
@@ -89,10 +89,14 @@ public class Joueur {
                 gainOR = 30;
                 break;
         }
+        this.ameliorerCaracteristique(todo.getCategorie());
         this.gagnerExp(gainXP);
         this.gagnerOr(gainOR);
     }
 
+    private void ameliorerCaracteristique(int carecteristique){
+        this.caracteristiques[carecteristique].gagnerLevel(1);
+    }
     private void gagnerOr(int gainOR) {
         this.argent += gainOR;
     }
