@@ -1,6 +1,8 @@
 package com.pm.heroofmylife.ToDo;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -42,11 +44,17 @@ public class ToDoNormalAdapter extends TodoAdaptater {
         champName.setText(t.toString());
         champDiff.setText(t.getDiff().toString());
         champDesc.setText(t.getDescription());
-        champcateg.setText(t.getCategorie());
+        champcateg.setText(intToCaracteristique(t.getCategorie()));
         smile.setTag(position);
         notSmile.setTag(position);
         suppr.setTag(position);
 
         return convertView;
+    }
+
+    private String intToCaracteristique(int id){
+        Resources res =  getContext().getResources();
+        String[] competence =res.getStringArray(R.array.competence);
+        return competence[id];
     }
 }

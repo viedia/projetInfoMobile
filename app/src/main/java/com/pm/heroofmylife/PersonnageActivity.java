@@ -68,7 +68,6 @@ public class PersonnageActivity extends FragmentActivity {
 
       //  List<Competence> comps = Arrays.asList(Joueur.getInstance().getCompetences());
 
-       // getSupportFragmentManager().beginTransaction().add(perso_fragement, new CompetenceFragment()).commit();
 
     }
 
