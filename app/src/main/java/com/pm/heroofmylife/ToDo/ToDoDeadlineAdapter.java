@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.pm.heroofmylife.R;
@@ -36,7 +37,7 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
         TextView champcateg =(TextView) convertView.findViewById(R.id.categorie);
         TextView Afficherdate = (TextView) convertView.findViewById(R.id.tempsrestant);
         CheckBox btn = convertView.findViewById(R.id.checkboxDeadLine);
-        FloatingActionButton suppr = convertView.findViewById(R.id.btnSuppressionDeadline);
+        ImageButton suppr = convertView.findViewById(R.id.btnSuppressionDeadline);
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
