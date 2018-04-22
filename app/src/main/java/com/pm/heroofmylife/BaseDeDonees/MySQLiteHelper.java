@@ -41,6 +41,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_FORCE = "force";
     public static final String COLUMN_INTELLIGENCE = "intelligence";
     public static final String COLUMN_AGILITE = "agilite";
+    public static final String COLUMN_PV = "pv";
+    public static final String COLUMN_XP = "xp";
+    public static final String COLUMN_ARGENT = "argent";
 
     private static final String DATABASE_NAME = "heroofmylife.db";
 
@@ -63,7 +66,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             +COLUMN_NIVEAU+ " integer not null, "
             +COLUMN_FORCE+ " integer not null, "
             +COLUMN_INTELLIGENCE+ " integer not null, "
-            +COLUMN_AGILITE+ " integer not null "+");";
+            +COLUMN_AGILITE+ " integer not null, "
+            +COLUMN_PV+ " integer not null, "
+            +COLUMN_XP+ " integer not null, "
+            +COLUMN_ARGENT+ " integer not null "+");";
 
     public MySQLiteHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -122,6 +128,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         values.put(COLUMN_FORCE,j.getCaracteristiques()[1].getLevel());
         values.put(COLUMN_INTELLIGENCE,j.getCaracteristiques()[0].getLevel());
         values.put(COLUMN_AGILITE,j.getCaracteristiques()[2].getLevel());
+        values.put(COLUMN_PV,j.GetPv());
+        values.put(COLUMN_XP,j.getExp());
+        values.put(COLUMN_ARGENT,j.getArgent());
 
         // insert row
         long id = db.insert(TABLE_PERSO, null, values);
@@ -169,7 +178,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     }
 
     public Joueur getJoueur() {
-        String selectQuery = "SELECT * FROM " + TABLE_PERSO +" WHERE "+COLUMN_ID+"=\""+0+"\"";
+        String selectQuery = "SELECT * FROM " + TABLE_PERSO +" WHERE "+COLUMN_ID +" = "+String.valueOf(0);
 
         Log.e("LOG", selectQuery);
 
@@ -179,30 +188,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
 
         // looping through all rows and adding to list
         if (c.moveToFirst()) {
+            int id = c.getInt(c.getColumnIndex(COLUMN_ID));
            String classe = c.getString(c.getColumnIndex(COLUMN_CLASSE));
            int level = c.getInt(c.getColumnIndex(COLUMN_NIVEAU));
            int force = c.getInt(c.getColumnIndex(COLUMN_FORCE));
            int intelligence = c.getInt(c.getColumnIndex(COLUMN_INTELLIGENCE));
            int agi = c.getInt(c.getColumnIndex(COLUMN_AGILITE));
-           j = new Joueur.Builder().setClasse(Classe.valueOf(classe)).setNiveau(level).setAgilite(agi).setForce(force).setIntelligence(intelligence).create();
+           int pv = c.getInt(c.getColumnIndex(COLUMN_PV));
+           int xp = c.getInt(c.getColumnIndex(COLUMN_XP));
+            int argent = c.getInt(c.getColumnIndex(COLUMN_ARGENT));
+           j = new Joueur.Builder().setClasse(Classe.valueOf(classe)).setNiveau(level).setAgilite(agi).setForce(force).setIntelligence(intelligence).setId(id).setPv(pv).setArgent(argent).setExp(xp).create();
         }
         c.close();
         return j;
     }
     //UPDATE
-    public int updateToDo(Tache todo) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, todo.getId());
-        values.put(COLUMN_NOM, todo.getNom());
-        values.put(COLUMN_DESCRIPTION, todo.getDescription());
-        values.put(COLUMN_DIFFICULTE, todo.getDiff());
-
-        // updating row
-        return db.update(TABLE_TODO, values, COLUMN_ID + " = ?",
-                new String[] { String.valueOf(todo.getId()) });
-    }
 
     public int updateJoueur(Joueur j) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -210,19 +210,21 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(COLUMN_CLASSE, j.getClasse().toString());
         values.put(COLUMN_NIVEAU,j.getLevel());
-        values.put(COLUMN_FORCE,j.getCaracteristiques()[1].getLevel());
-        values.put(COLUMN_INTELLIGENCE,j.getCaracteristiques()[0].getLevel());
+        values.put(COLUMN_FORCE,j.getCaracteristiques()[0].getLevel());
+        values.put(COLUMN_INTELLIGENCE,j.getCaracteristiques()[1].getLevel());
         values.put(COLUMN_AGILITE,j.getCaracteristiques()[2].getLevel());
+        values.put(COLUMN_PV,j.GetPv());
+        values.put(COLUMN_XP,j.getExp());
+        values.put(COLUMN_ARGENT,j.getArgent());
 
         // updating row
-        return db.update(TABLE_PERSO, values, COLUMN_ID + " = ?",
-                new String[] { String.valueOf(0) });
+        return db.update(TABLE_PERSO, values, COLUMN_ID + " = "+String.valueOf(0),null);
     }
     //DELETE
-    public void deleteToDo(long tado_id) {
+    public void deleteToDo(int todo_id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TODO, COLUMN_ID + " = ?",
-                new String[] { String.valueOf(tado_id) });
+        System.out.println(todo_id);
+        System.out.println(db.delete(TABLE_TODO, COLUMN_ID + " = " + String.valueOf(todo_id),null));
     }
 
     public void closeDB() {

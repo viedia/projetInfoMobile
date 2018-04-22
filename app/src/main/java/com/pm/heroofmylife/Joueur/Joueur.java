@@ -31,13 +31,22 @@ public class Joueur {
     private Joueur(final Builder builder) {
         this.classe = builder.classe;
         caracteristiques = new Caracteristique[]{new Caracteristique("Force"),new Caracteristique("Intelligence"),new Caracteristique("Agilité") };
+        caracteristiques[0].setLevel(builder.force);
+        caracteristiques[1].setLevel(builder.intelligence);
+        caracteristiques[2].setLevel(builder.agilite);
+
+        this.level = builder.niveau;
+        this.pv = builder.pv;
+        this.exp = builder.exp;
+        this.argent = builder.argent;
         competences.add(new Competence("DevAndroid"));
         competences.add(new Competence("Zenatitude"));
     }
 
     public static Joueur getInstance() {
         if (instance == null) {
-          instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
+            instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
+            //instance.level = 666 ;
         }
         return(instance);
     }
@@ -170,6 +179,27 @@ public class Joueur {
         private int force;
         private int intelligence;
         private int agilite;
+        private int id;
+        private int pv;
+        private int exp;
+        private int argent;
+
+        public Builder setPv(int pv) {
+            this.pv = pv;
+            return this;
+        }
+
+        public Builder setExp(int exp) {
+            this.exp = exp;
+            return this;
+        }
+
+        public Builder setArgent(int argent) {
+            this.argent = argent;
+            return this;
+        }
+
+
 
         public Builder setClasse(final Classe c) {
             this.classe = c;
@@ -201,6 +231,11 @@ public class Joueur {
                 throw new IllegalStateException("Classe can not be empty!");
             }
             return j;
+        }
+
+        public Builder setId(int i) {
+            this.id = i;
+            return this;
         }
     }
 }

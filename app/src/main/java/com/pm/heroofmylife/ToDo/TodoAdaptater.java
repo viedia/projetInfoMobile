@@ -34,7 +34,6 @@ public class TodoAdaptater extends ArrayAdapter<Tache> {
             convertView = LayoutInflater.from(getContext()).inflate(layout, parent, false);
         }
 
-
         // Return the completed view to render on screen
         return convertView;
     }

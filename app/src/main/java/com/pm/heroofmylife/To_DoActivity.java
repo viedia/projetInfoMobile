@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import com.pm.heroofmylife.BaseDeDonees.MySQLiteHelper;
 import com.pm.heroofmylife.ToDo.Difficulte;
@@ -83,8 +82,8 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
      public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {
 
         String text = adapterView.getItemAtPosition(position).toString();
-        Toast.makeText(adapterView.getContext(),text,Toast.LENGTH_SHORT).show();
-     }
+
+}
 
      @Override
      public void onNothingSelected(AdapterView<?> adapterView) {
@@ -131,7 +130,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
         if(flag==1) {
 
             date.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                //show the selected date as a toast
+
                 @Override
                 public void onSelectedDayChange(CalendarView view, int year, int month, int day) {
                     Calendar cal = Calendar.getInstance();
@@ -243,19 +242,21 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
      }
 
     public void onDelete(View view) {
+         int id = -1;
          switch (view.getId()){
              case R.id.btnSuppressionNormal:
-                 ((NormalFragment)adapter.getItem(0)).supprimer((int)view.getTag());
+                 id = ((NormalFragment)adapter.getItem(0)).supprimer((int)view.getTag());
                  break;
              case R.id.btnSuppressionReg:
-                 ((RegulierFragment)adapter.getItem(1)).supprimer((int)view.getTag());
+                 id = ((RegulierFragment)adapter.getItem(1)).supprimer((int)view.getTag());
                  break;
              case R.id.btnSuppressionDeadline:
-                 ((DeadlineFragment)adapter.getItem(2)).supprimer((int)view.getTag());
+                 id = ((DeadlineFragment)adapter.getItem(2)).supprimer((int)view.getTag());
                  break;
 
 
          }
+         db.deleteToDo(id);
     }
     @Override
     protected void onDestroy() {

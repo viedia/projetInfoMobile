@@ -83,7 +83,7 @@ public class NormalFragment extends Fragment {
 
     public void validerTodo(int tag) {
         Joueur.getInstance().toDoValider(itemsAdapter.getItem(tag));
-        db.updateJoueur(Joueur.getInstance());
+        System.out.println(db.updateJoueur(Joueur.getInstance()));
      //   itemsAdapter.remove(itemsAdapter.getItem(tag));
         Log.i("DICJ", "normal validé");
     }
@@ -101,7 +101,9 @@ public class NormalFragment extends Fragment {
         }
     }
 
-    public void supprimer(int tag) {
+    public int supprimer(int tag) {
+        int id = itemsAdapter.getItem(tag).getId();
         itemsAdapter.remove(itemsAdapter.getItem(tag));
+        return id;
     }
 }

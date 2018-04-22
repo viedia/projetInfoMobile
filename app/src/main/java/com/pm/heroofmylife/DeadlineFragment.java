@@ -70,7 +70,9 @@ public class DeadlineFragment extends Fragment {
         }
     }
 
-    public void supprimer(int tag) {
+    public int supprimer(int tag) {
+        int id = itemsAdapter.getItem(tag).getId();
         itemsAdapter.remove(itemsAdapter.getItem(tag));
+        return id;
     }
 }

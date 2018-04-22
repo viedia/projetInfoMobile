@@ -37,11 +37,14 @@ public class ToDoDeadline extends Tache {
     public boolean estExpire(){
         boolean res = false;
         Calendar c = Calendar.getInstance();
+        Log.i("Avant le test deadline ",""+ deadLine);
+        Log.i("Avant le test actuel ",""+ c.getTimeInMillis());
         if(deadLine - c.getTimeInMillis()<0){ //si l'heure actuelle est plus grande que la date limite alors...
             res = true;
         }
         return res;
     }
+
     public long getDeadLine() {
         return deadLine;
     }
@@ -50,14 +53,13 @@ public class ToDoDeadline extends Tache {
     public String afficheDate() {
        // long selectedDate = CurrentCalendarView.getDate();
         long currentTime = System.currentTimeMillis();
-        Log.i("GFDFDGDF",""+ currentTime);
         long temptime = deadLine-currentTime;
         Date date=new Date(temptime);
         Date date2=new Date(deadLine);
         SimpleDateFormat df2 = new SimpleDateFormat("D'jours'");
         String tempsaffiche = df2.format(date);
         String tempsaffiche2 = df2.format(date2);
-        Log.i("date finale",tempsaffiche2);
+
         return tempsaffiche;
 
 

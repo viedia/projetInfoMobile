@@ -1,6 +1,7 @@
 package com.pm.heroofmylife.ToDo;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -27,7 +28,7 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = super.getView(position, convertView, parent);
-
+        convertView.setBackgroundColor(Color.WHITE);
         // Get the data item for this position
         ToDoDeadline t = (ToDoDeadline) getItem(position);
         // Lookup view for data
@@ -40,16 +41,22 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
         ImageButton suppr = convertView.findViewById(R.id.btnSuppressionDeadline);
 
         // Populate the data into the template view using the data object
-        champName.setText(t.toString());
+        champName.setText(t.getNom());
         champDiff.setText(intToDifficulte(t.getDiff()));
         String Dateaffiche = t.afficheDate();
         champcateg.setText(intToCaracteristique(t.getCategorie()));
         champDesc.setText(t.getDescription());
+
         Afficherdate.setText(Dateaffiche);
+        if (t.estExpire()){
+            convertView.setBackgroundColor(Color.RED);
+            String text = "Expire" ;
+            Afficherdate.setText(text);
+
+        }
         btn.setTag(position);
         btn.setChecked(false);
         suppr.setTag(position);
-
         return convertView;
     }
 }
