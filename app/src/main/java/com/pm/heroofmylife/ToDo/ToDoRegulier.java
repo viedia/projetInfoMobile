@@ -7,18 +7,18 @@ package com.pm.heroofmylife.ToDo;
 public class ToDoRegulier extends Tache {
 
 
-    private Frequence frequence;
-    public ToDoRegulier(String nom, String description, int diff, String f, int categ) {
+    private int frequence;
+    public ToDoRegulier(String nom, String description, int diff, int f, int categ) {
         super(nom, description, diff,categ);
-        frequence = Frequence.valueOf(f);
+        frequence = f;
     }
 
-    public ToDoRegulier(int id, String nom, String description, int diff,String f, int categ) {
+    public ToDoRegulier(int id, String nom, String description, int diff,int f, int categ) {
         super(id, nom, description, diff,categ);
-        frequence= Frequence.valueOf(f);
+        frequence= f;
     }
 
-    public Frequence getFrequence() {
+    public int getFrequence() {
         return frequence;
     }
 }

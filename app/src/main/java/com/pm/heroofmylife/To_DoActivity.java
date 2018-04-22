@@ -196,7 +196,7 @@ public class To_DoActivity extends FragmentActivity implements   OnItemSelectedL
              }
              case 1: {//cas fragement Regulier
                  spinner = v.findViewById(R.id.spinner_frequence);
-                 todo = new ToDoRegulier(name.getText().toString(), description.getText().toString(), difficulte, spinner.getSelectedItem().toString(),competence);
+                 todo = new ToDoRegulier(name.getText().toString(), description.getText().toString(), difficulte, spinner.getSelectedItemPosition(),competence);
                  ((RegulierFragment) fragement).ajouterRegulierTodo((ToDoRegulier)todo);
                  type = "Regulier";
                  break;

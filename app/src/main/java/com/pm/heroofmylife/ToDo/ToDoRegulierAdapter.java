@@ -1,6 +1,7 @@
 package com.pm.heroofmylife.ToDo;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -47,5 +48,10 @@ public class ToDoRegulierAdapter extends TodoAdaptater {
         suppr.setTag(position);
 
         return convertView;
+    }
+    protected String intToFrequence(int id){
+        Resources res =  getContext().getResources();
+        String[] frequence =res.getStringArray(R.array.frequence);
+        return frequence[id];
     }
 }

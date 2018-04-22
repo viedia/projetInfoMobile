@@ -102,7 +102,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 values.put(COLUMN_DATE, ((ToDoDeadline)todo).getDeadLine());
                 break;
             case "frequence":
-                values.put(COLUMN_FREQUENCE, ((ToDoRegulier)todo).getFrequence().toString());
+                values.put(COLUMN_FREQUENCE, ((ToDoRegulier)todo).getFrequence());
                 break;
         }
 
@@ -153,7 +153,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                         td = new ToDoDeadline(id,nom, desc, diff, c.getLong(c.getColumnIndex(COLUMN_DATE)), caracteristique);
                         break;
                     case "frequence":
-                        td = new ToDoRegulier(id,nom, desc, diff,  c.getString(c.getColumnIndex(COLUMN_FREQUENCE)), caracteristique);
+                        td = new ToDoRegulier(id,nom, desc, diff,  c.getInt(c.getColumnIndex(COLUMN_FREQUENCE)), caracteristique);
                         break;
                     default:
                         td = new ToDoNormal(id, nom, desc, diff, caracteristique);

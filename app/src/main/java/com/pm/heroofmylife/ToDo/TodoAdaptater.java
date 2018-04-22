@@ -48,4 +48,5 @@ public class TodoAdaptater extends ArrayAdapter<Tache> {
         String[] difficulte =res.getStringArray(R.array.difficulté);
         return difficulte[id];
     }
+
 }
