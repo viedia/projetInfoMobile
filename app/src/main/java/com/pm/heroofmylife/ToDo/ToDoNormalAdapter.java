@@ -44,7 +44,7 @@ public class ToDoNormalAdapter extends TodoAdaptater {
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
-        champDiff.setText(t.getDiff().toString());
+        champDiff.setText(intToDifficulte(t.getDiff()));
         champDesc.setText(t.getDescription());
         champcateg.setText(intToCaracteristique(t.getCategorie()));
         smile.setTag(position);
@@ -54,9 +54,5 @@ public class ToDoNormalAdapter extends TodoAdaptater {
         return convertView;
     }
 
-    private String intToCaracteristique(int id){
-        Resources res =  getContext().getResources();
-        String[] competence =res.getStringArray(R.array.competence);
-        return competence[id];
-    }
+
 }

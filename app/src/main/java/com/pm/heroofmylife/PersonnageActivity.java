@@ -74,7 +74,7 @@ public class PersonnageActivity extends FragmentActivity {
         caract.setText(text);
 
         TextView argent = (TextView) findViewById(R.id.text_argent);
-        text = argent.getText() +" "+ String.valueOf(j.getArgent())
+        text = argent.getText() +" "+ String.valueOf(j.getArgent());
         argent.setText(text);
 
         lvItems = (ListView) this.findViewById(R.id.list_competences);

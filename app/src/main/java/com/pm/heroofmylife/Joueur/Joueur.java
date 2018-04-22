@@ -48,13 +48,13 @@ public class Joueur {
     public void toDoEchec(Tache todo){
         int pertePV  =0;
         switch (todo.getDiff()){
-            case Facile:
+            case 0:
                 pertePV = 5;
                 break;
-            case Moyen:
+            case 1:
                 pertePV = 10;
                 break;
-            case Difficile:
+            case 2:
                 pertePV = 15;
                 break;
         }
@@ -76,15 +76,15 @@ public class Joueur {
         int gainXP=0;
         int gainOR = 0;
         switch (todo.getDiff()) {
-            case Facile:
+            case 0:
                 gainXP = 5;
                 gainOR = 10;
                 break;
-            case Moyen:
+            case 1:
                 gainXP = 10;
                 gainOR = 20;
                 break;
-            case Difficile:
+            case 2:
                 gainXP = 15;
                 gainOR = 30;
                 break;

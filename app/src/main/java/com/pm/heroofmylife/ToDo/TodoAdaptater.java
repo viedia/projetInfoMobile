@@ -1,6 +1,7 @@
 package com.pm.heroofmylife.ToDo;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,5 +37,15 @@ public class TodoAdaptater extends ArrayAdapter<Tache> {
 
         // Return the completed view to render on screen
         return convertView;
+    }
+    protected String intToCaracteristique(int id){
+        Resources res =  getContext().getResources();
+        String[] competence =res.getStringArray(R.array.competence);
+        return competence[id];
+    }
+    protected String intToDifficulte(int id){
+        Resources res =  getContext().getResources();
+        String[] difficulte =res.getStringArray(R.array.difficulté);
+        return difficulte[id];
     }
 }

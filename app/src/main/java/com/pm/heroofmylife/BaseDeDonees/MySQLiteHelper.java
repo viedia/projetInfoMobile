@@ -52,7 +52,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                                 +COLUMN_ID + " integer primary key autoincrement, "
                                 +COLUMN_NOM + " text not null, "
                                 +COLUMN_DESCRIPTION+ " text not null, "
-                                +COLUMN_DIFFICULTE+ " text not null, "
+                                +COLUMN_DIFFICULTE+ " integer not null, "
                                 +COLUMN_CARACTERISTIQUE+" integer not null, "
                                 +COLUMN_TYPE+ " text not null, "
                                 +COLUMN_FREQUENCE+ " integer, "
@@ -93,7 +93,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         values.put(COLUMN_ID, todo.getId());
         values.put(COLUMN_NOM, todo.getNom());
         values.put(COLUMN_DESCRIPTION, todo.getDescription());
-        values.put(COLUMN_DIFFICULTE, todo.getDiff().toString());
+        values.put(COLUMN_DIFFICULTE, todo.getDiff());
         values.put(COLUMN_TYPE,type.toLowerCase());
         values.put(COLUMN_CARACTERISTIQUE, todo.getCategorie());
 
@@ -145,18 +145,18 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
                 int id = c.getInt(c.getColumnIndex(COLUMN_ID));
                 String nom =c.getString(c.getColumnIndex(COLUMN_NOM));
                 String desc = c.getString(c.getColumnIndex(COLUMN_DESCRIPTION));
-                String diff =  c.getString(c.getColumnIndex(COLUMN_DIFFICULTE));
+                int diff =  c.getInt(c.getColumnIndex(COLUMN_DIFFICULTE));
                 int caracteristique = c.getInt(c.getColumnIndex(COLUMN_CARACTERISTIQUE));
                 Tache td= null;
                 switch(c.getString(c.getColumnIndex(COLUMN_TYPE))){
                     case "deadline":
-                        td = new ToDoDeadline(id,nom, desc, Difficulte.valueOf(diff), c.getLong(c.getColumnIndex(COLUMN_DATE)), caracteristique);
+                        td = new ToDoDeadline(id,nom, desc, diff, c.getLong(c.getColumnIndex(COLUMN_DATE)), caracteristique);
                         break;
                     case "frequence":
-                        td = new ToDoRegulier(id,nom, desc, Difficulte.valueOf(diff),  c.getString(c.getColumnIndex(COLUMN_FREQUENCE)), caracteristique);
+                        td = new ToDoRegulier(id,nom, desc, diff,  c.getString(c.getColumnIndex(COLUMN_FREQUENCE)), caracteristique);
                         break;
                     default:
-                        td = new ToDoNormal(id, nom, desc, Difficulte.valueOf(diff), caracteristique);
+                        td = new ToDoNormal(id, nom, desc, diff, caracteristique);
                         break;
                 }
 
@@ -197,7 +197,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         values.put(COLUMN_ID, todo.getId());
         values.put(COLUMN_NOM, todo.getNom());
         values.put(COLUMN_DESCRIPTION, todo.getDescription());
-        values.put(COLUMN_DIFFICULTE, todo.getDiff().toString());
+        values.put(COLUMN_DIFFICULTE, todo.getDiff());
 
         // updating row
         return db.update(TABLE_TODO, values, COLUMN_ID + " = ?",

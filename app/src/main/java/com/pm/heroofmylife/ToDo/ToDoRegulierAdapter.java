@@ -39,8 +39,8 @@ public class ToDoRegulierAdapter extends TodoAdaptater {
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
-        champDiff.setText(t.getDiff().toString());
-        champcateg.setText(t.getCategorie());
+        champDiff.setText(intToDifficulte(t.getDiff()));
+        champcateg.setText(intToCaracteristique(t.getCategorie()));
         champDesc.setText(t.getDescription());
         btn.setTag(position);
         btn.setChecked(false);

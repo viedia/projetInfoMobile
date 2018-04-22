@@ -12,10 +12,10 @@ public abstract class Tache {
     private int id;
     private String nom;
     private String description;
-    private Difficulte diff;
+    private int diff;
     private int categ;
 
-    public Tache(int id, String nom, String description, Difficulte diff, int competence) {
+    public Tache(int id, String nom, String description, int diff, int competence) {
         this.id = id;
         this.nom = nom;
         this.description = description;
@@ -25,7 +25,7 @@ public abstract class Tache {
             ID = this.id + 1;
         }
     }
-    public Tache(String nom, String description, Difficulte diff,int competence) {
+    public Tache(String nom, String description, int diff,int competence) {
         this.id = ID;
         this.nom = nom;
         this.description = description;
@@ -39,7 +39,7 @@ public abstract class Tache {
         return nom ;
     }
 
-    public Difficulte getDiff() {
+    public int getDiff() {
         return diff;
     }
 

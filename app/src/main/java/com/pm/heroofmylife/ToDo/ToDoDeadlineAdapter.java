@@ -41,9 +41,9 @@ public class ToDoDeadlineAdapter extends TodoAdaptater {
 
         // Populate the data into the template view using the data object
         champName.setText(t.toString());
-        champDiff.setText(t.getDiff().toString());
+        champDiff.setText(intToDifficulte(t.getDiff()));
         String Dateaffiche = t.afficheDate();
-        champcateg.setText(t.getCategorie());
+        champcateg.setText(intToCaracteristique(t.getCategorie()));
         champDesc.setText(t.getDescription());
         Afficherdate.setText(Dateaffiche);
         btn.setTag(position);

@@ -19,12 +19,12 @@ public class ToDoDeadline extends Tache {
 
     private long deadLine;
 
-    public ToDoDeadline(String nom, String description, Difficulte diff, long date, int categ) {
+    public ToDoDeadline(String nom, String description, int diff, long date, int categ) {
         super(nom, description, diff,categ);
         deadLine= date;
     }
 
-    public ToDoDeadline(int id, String nom, String description, Difficulte diff, long date, int categ) {
+    public ToDoDeadline(int id, String nom, String description, int diff, long date, int categ) {
         super(id, nom, description, diff,categ);
         deadLine= date;
     }
