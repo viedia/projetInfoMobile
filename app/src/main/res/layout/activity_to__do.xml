@@ -20,7 +20,7 @@
 
             android:id="@+id/appbarid"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="100dp"
             android:elevation="0dp"
             android:gravity="center" >
 
@@ -34,7 +34,7 @@
                 android:padding="20px"
                 android:text="@string/hero_of_my_life"
                 android:textColor="@android:color/background_light"
-                android:textSize="24sp" />
+                android:textSize="35sp" />
 
         </android.support.design.widget.AppBarLayout>
 

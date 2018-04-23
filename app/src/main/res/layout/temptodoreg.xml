@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="43dp"
+        tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <ImageButton
@@ -27,48 +27,43 @@
 
         <TextView
             android:id="@+id/name"
-            android:layout_width="wrap_content"
+            android:layout_width="367dp"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/btnSuppressionReg"
             android:padding="10dp"
-            android:textSize="20dp" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/description"
-            android:layout_width="104dp"
+            android:layout_width="299dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignStart="@+id/name"
             android:layout_marginTop="34dp"
-            android:padding="@dimen/fab_margin" />
+            android:padding="@dimen/fab_margin"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/difficulte"
-            android:layout_width="wrap_content"
+            android:layout_width="118dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/description"
-            android:layout_toEndOf="@+id/description"
-            android:padding="@dimen/fab_margin" />
+            android:layout_toEndOf="@+id/name"
+            android:padding="@dimen/fab_margin"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/categorie"
-            android:layout_width="102dp"
-            android:layout_height="43dp"
+            android:layout_width="136dp"
+            android:layout_height="58dp"
             android:layout_alignBaseline="@+id/name"
-            android:layout_toEndOf="@+id/difficulte" />
-
-        <TextView
-            android:id="@+id/frequence"
-            android:layout_width="92dp"
-            android:layout_height="38dp"
-            android:layout_alignBottom="@+id/description"
             android:layout_toEndOf="@+id/difficulte"
-            android:textSize="12sp" />
+            android:textSize="20sp" />
+
 
         <CheckBox
             android:id="@+id/checkboxRegulier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50sp"
+            android:layout_height="50sp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"

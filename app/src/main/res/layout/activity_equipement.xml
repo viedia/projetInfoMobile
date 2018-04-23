@@ -13,7 +13,7 @@
 
         android:id="@+id/appbarid"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="100dp"
         android:elevation="0dp"
         android:gravity="center" >
         <TextView
@@ -24,7 +24,7 @@
             android:padding="20px"
             android:text="@string/hero_of_my_life"
             android:textColor="@android:color/background_light"
-            android:textSize="24sp" />
+            android:textSize="35sp" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -41,14 +41,16 @@
                 android:layout_weight="0.1"
                 android:orientation="horizontal"
                 android:weightSum="4">
+
                 <TextView
                     android:id="@+id/text_argent"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:layout_marginTop="3dp"
                     android:layout_weight="1"
-                    android:text="Argent: "
                     android:padding="11dp"
-                    android:layout_marginTop="3dp"/> <!-- Text Argent -->
+                    android:text="Argent: "
+                    android:textSize="35sp" /> <!-- Text Argent -->
                 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -57,13 +59,13 @@
 
                     <TextView
                         android:id="@+id/text_pv"
-                        android:layout_width="0dp"
-                        android:layout_weight="0.2"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="@dimen/perso_margin_left"
+                        android:layout_weight="0.2"
+                        android:padding="9dp"
                         android:text="PV :"
-                        android:textSize="@dimen/text_perso"
-                        android:padding="9dp"/> <!-- "PV: " -->
+                        android:textSize="35sp" /> <!-- "PV: " -->
 
                     <ProgressBar
                         android:layout_width="0dp"
@@ -81,12 +83,12 @@
             </LinearLayout> <!-- Entête -->
 
             <LinearLayout
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="183dp"
+                android:layout_height="164dp"
 
-                android:orientation="vertical"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="20dp"
+                android:orientation="vertical"
                 android:weightSum="4">
 
                 <!-- Potion Buton -->
@@ -95,9 +97,9 @@
                     android:id="@+id/PotionButton"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_weight="2"
                     android:onClick="Potion"
-                    android:layout_gravity="center_horizontal"
                     android:src="@drawable/potion"
                     android:text="LIFE POTION"
                     app:backgroundTint="#303F9F" />
@@ -110,40 +112,41 @@
                     android:text="Potion" /> <!-- Potion Text -->
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="144dp"
                     android:layout_height="0dp"
                     android:layout_weight="1"
-                    android:weightSum="4"
-                    android:orientation="horizontal">
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal"
+                    android:weightSum="4">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="30"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_resources_equipement"/> <!-- resources number Text -->
+                        android:textSize="@dimen/text_resources_equipement"
+                        android:textStyle="bold" /> <!-- resources number Text -->
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/dollar"/> <!-- picture gold -->
+                        android:src="@drawable/dollar" /> <!-- picture gold -->
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/perso_margin_left"
                         android:layout_weight="1"
                         android:text="60"
-                        android:layout_marginLeft="@dimen/perso_margin_left"
-                        android:textStyle="bold"
-                        android:textSize="@dimen/text_resources_equipement"/> <!-- resources number Text -->
+                        android:textSize="@dimen/text_resources_equipement"
+                        android:textStyle="bold" /> <!-- resources number Text -->
 
                     <ImageView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:src="@drawable/heart"/> <!-- picture gold -->
+                        android:src="@drawable/heart" /> <!-- picture gold -->
 
 
                 </LinearLayout>

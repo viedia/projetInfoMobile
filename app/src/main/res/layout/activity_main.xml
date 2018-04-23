@@ -13,7 +13,7 @@
 
             android:id="@+id/appbarid"
             android:layout_width="match_parent"
-            android:layout_height="75dp"
+            android:layout_height="100dp"
             android:elevation="0dp"
             android:gravity="center">
 
@@ -25,7 +25,7 @@
                 android:padding="20px"
                 android:text="@string/hero_of_my_life"
                 android:textColor="@android:color/background_light"
-                android:textSize="24sp" />
+                android:textSize="35sp" />
 
         </android.support.design.widget.AppBarLayout>
 
@@ -44,8 +44,8 @@
             <android.support.design.widget.FloatingActionButton
                 android:src="@drawable/human"
                 android:id="@+id/nav_Personnage"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
 
                 android:onClick="chargerPage"
                 android:text="@string/personnage_menu"
@@ -53,37 +53,20 @@
                 android:layout_marginRight="25dp"/>
 
 
-
-
-
             <android.support.design.widget.FloatingActionButton
-                android:src="@drawable/list"
                 android:id="@+id/nav_Todo"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_marginRight="50dp"
                 android:onClick="chargerPage"
+                android:src="@drawable/list"
                 android:text="@string/to_do_menu"
-                app:backgroundTint="#303F9F"
-                android:layout_marginRight="25dp"/>
+                app:backgroundTint="#303F9F" />
 
 
         </TableRow>
 
-        <TableRow
-            android:layout_marginLeft="30dp">
-
-            <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-
-            android:layout_centerInParent="true"
-            android:padding="20px"
-            android:text="@string/personnage_menu"
-            android:textColor="@color/colorPrimary"
-            android:textSize="24sp"
-                android:layout_marginRight="25dp"/>
+        <TableRow android:layout_marginLeft="80dp">
 
             <TextView
 
@@ -92,11 +75,24 @@
                 android:layout_alignParentLeft="true"
 
                 android:layout_centerInParent="true"
+                android:layout_marginRight="10dp"
+                android:padding="20px"
+                android:text="@string/personnage_menu"
+                android:textColor="@color/colorPrimary"
+                android:textSize="50sp" />
+
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
                 android:padding="20px"
                 android:text="@string/to_do_menu"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp"
-                android:layout_marginLeft="10dp"/>
+                android:textSize="50sp" />
 
         </TableRow>
         <TableRow
@@ -106,8 +102,8 @@
             <android.support.design.widget.FloatingActionButton
                 android:src="@drawable/bouclier"
                 android:id="@+id/nav_Equipement"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
 
                 android:onClick="chargerPage"
                 android:text="@string/equipement_menu"
@@ -117,16 +113,16 @@
             <android.support.design.widget.FloatingActionButton
                 android:src="@drawable/cat"
                 android:id="@+id/nav_Familier"
-                android:layout_width="130dp"
-                android:layout_height="130dp"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 android:drawableLeft="@drawable/cat"
                 android:onClick="chargerPage"
                 android:text="@string/familer_menu"
                 app:backgroundTint="#303F9F"
-                android:layout_marginRight="30dp"/>
+                android:layout_marginRight="50dp"/>
         </TableRow>
 
-        <TableRow android:layout_marginLeft="30dp">
+        <TableRow android:layout_marginLeft="80dp">
 
             <TextView
 
@@ -139,7 +135,7 @@
                 android:padding="20px"
                 android:text="@string/equipement_menu"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="50sp" />
 
             <TextView
 
@@ -152,7 +148,7 @@
                 android:padding="20px"
                 android:text="@string/familer_menu"
                 android:textColor="@color/colorPrimary"
-                android:textSize="24sp" />
+                android:textSize="50sp" />
 
         </TableRow>
 

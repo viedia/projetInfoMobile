@@ -18,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".PersonnageActivity"
             android:label="@string/personnage_menu"
@@ -36,6 +37,7 @@
             android:label="@string/title_activity_familier"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".To_DoActivity"></activity>
+
     </application>
 
 </manifest>
