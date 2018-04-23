@@ -62,6 +62,9 @@ public class PersonnageActivity extends FragmentActivity {
 
         ProgressBar exp = (ProgressBar) findViewById(R.id.exp_progress);
         exp.setProgress(j.getExp());
+
+        ProgressBar pv = (ProgressBar) findViewById(R.id.pv_progress);
+        pv.setProgress(j.GetPv());
         Caracteristique[] valueCaract =j.getCaracteristiques();
         TextView caract = (TextView)findViewById(R.id.text_intelligence);
         text = caract.getText() + String.valueOf(valueCaract[1].getLevel());
@@ -72,6 +75,7 @@ public class PersonnageActivity extends FragmentActivity {
         caract =(TextView)findViewById(R.id.text_agi);
         text = caract.getText() + String.valueOf(valueCaract[2].getLevel());
         caract.setText(text);
+
 
         TextView argent = (TextView) findViewById(R.id.text_argent);
         text = argent.getText() +" "+ String.valueOf(j.getArgent());

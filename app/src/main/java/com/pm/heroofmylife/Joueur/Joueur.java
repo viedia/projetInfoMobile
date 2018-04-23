@@ -9,6 +9,7 @@ import com.pm.heroofmylife.R;
 import com.pm.heroofmylife.ToDo.Tache;
 
 import java.util.ArrayList;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 /**
  * Created by Laetitia on 27/02/2018.
@@ -21,9 +22,9 @@ public class Joueur {
     private static final int PVMAX = 100;
     private int pv = PVMAX;
 
-    private int exp =50;
+    private int exp;
     private static final int EXPMAX = 100;
-    private int argent=0;
+    private int argent;
     private Classe classe;
     private Caracteristique[] caracteristiques;
     private ArrayList<Competence> competences = new ArrayList<>();
@@ -45,7 +46,7 @@ public class Joueur {
 
     public static Joueur getInstance() {
         if (instance == null) {
-            instance = new Joueur.Builder().setClasse(Classe.Guerrier).create();
+            instance = new Joueur.Builder().setClasse(Classe.Voleur).setNiveau(1).setAgilite(1).setForce(1).setIntelligence(1).setId(0).setPv(PVMAX).setArgent(0).setExp(0).create();
             //instance.level = 666 ;
         }
         return(instance);
